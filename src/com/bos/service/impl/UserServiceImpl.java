@@ -33,8 +33,6 @@ public class UserServiceImpl implements IUserService{
         String username = user.getUsername();
         // 明文
         String password = user.getPassword();
-        // md5加密
-        password = MD5Utils.md5(password);
 
         return userDao.findByUsernameAndPassword(username, password);
     }

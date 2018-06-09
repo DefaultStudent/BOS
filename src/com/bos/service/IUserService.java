@@ -8,8 +8,8 @@ import com.bos.domain.User;
 public interface IUserService {
     /**
      * 登录
-     * @param user
+     * @param model
      * @return
      */
-    public User login(User user);
+    public User login(User model);
 }
