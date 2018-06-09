@@ -12,4 +12,11 @@ public interface IUserService {
      * @return
      */
     public User login(User model);
+
+    /**
+     * 修改密码
+     * @param password
+     * @param id
+     */
+    public void editPassword(String password, String id);
 }

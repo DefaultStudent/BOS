@@ -33,7 +33,17 @@ public class UserServiceImpl implements IUserService{
         String username = user.getUsername();
         // 明文
         String password = user.getPassword();
-
         return userDao.findByUsernameAndPassword(username, password);
+    }
+
+    /**
+     * 修改密码
+     *
+     * @param password
+     * @param id
+     */
+    @Override
+    public void editPassword(String password, String id) {
+        userDao.executeUpdate("editPassword", password, id);
     }
 }

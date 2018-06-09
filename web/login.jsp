@@ -61,7 +61,7 @@ input[type=password] {
 				<div id="lbNormal" class="loginFuncMobile">员工登录</div>
 			</div>
 			<div class="loginForm">
-				<form id="loginform" name="loginform" method="post" class="niceform" action="${pageContext.request.contextPath}/login.action">
+				<form id="loginform" name="loginform" method="post" class="niceform" action="login.action">
 					<div id="idInputLine" class="loginFormIpt showPlaceholder"
 						style="margin-top: 5px;">
 						<input id="loginform:idInput" type="text" name="username"
@@ -88,6 +88,11 @@ input[type=password] {
 							id="loginform:loginBtn" class="btn btn-login"
 							style="margin-top:-36px;">登录</span>
 						</a>
+					</div>
+					<div>
+						<font color="red">
+							<s:actionerror/>
+						</font>
 					</div>
 				</form>
 			</div>

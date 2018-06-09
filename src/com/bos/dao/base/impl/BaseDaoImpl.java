@@ -1,6 +1,8 @@
 package com.bos.dao.base.impl;
 
 import com.bos.dao.base.IBaseDao;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
@@ -22,13 +24,16 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
      */
     private Class<T> entityClass;
 
+    @Resource
+    private SessionFactory mySessionFactory;
+
     /**
      * 使用注解的方式进行依赖注入
-     * @param sessionFactory
+     * @param mySessionFactory
      */
     @Resource
-    public void setMySessionFactory(SessionFactory sessionFactory) {
-        super.setSessionFactory(sessionFactory);
+    public void setMySessionFactory(SessionFactory mySessionFactory) {
+        super.setSessionFactory(mySessionFactory);
     }
 
     /**
@@ -92,5 +97,26 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
     public List<T> findAll() {
         String hql = "FROM " + entityClass.getSimpleName();
         return (List<T>) this.getHibernateTemplate().find(hql);
+    }
+
+    /**
+     * 通用修改方法
+     *
+     * @param queryName
+     * @param objects
+     */
+    @Override
+    public void executeUpdate(String queryName, Object... objects) {
+        // 从本地线程中获取一个session对象
+        Session session = mySessionFactory.openSession();
+        // 使用命名查询语句获得一个查询对象
+        Query query = session.getNamedQuery(queryName);
+        // 为HQL语句的"?"赋值
+        int i = 0;
+        for (Object arg : objects) {
+            query.setParameter(i++, arg);
+        }
+        query.executeUpdate();
+
     }
 }

@@ -77,15 +77,38 @@
 				msg:'欢迎登录，超级管理员！ <a href="javascript:void" onclick="top.showAbout();">联系管理员</a>',
 				timeout:5000
 			});
-		},3000);
+		},1000);
 		/*************/
 		
 		$("#btnCancel").click(function(){
 			$('#editPwdWindow').window('close');
 		});
-		
+
+		// 为"确定"按钮绑定事件
 		$("#btnEp").click(function(){
-			alert("修改密码");
+			// 进行表单校验
+			var v = $("#editPasswordForm").form("validate");
+			if (v) {
+			    // 判断两次输入是否一致
+				var v1 = $("#txtNewPass").val();
+				var v2 = $("#txtRePass").val();
+				if (v1 == v2) {
+				    // 输入一致，发送ajax请求，修改当前用户密码
+					var url = "/editPassword.action";
+					$.post(url, {"password" : v1}, function (data) {
+						if (data == 1) {
+						    // 修改成功
+                            $message.alert("提示信息", "密码修改成功", "info");
+						} else {
+						    // 修改失败
+                            $message.alert("提示信息", "密码修改失败", "warning");
+						}
+                    });
+				} else {
+				    // 输入不一致，提示用户输入不一致
+					$message.alert("提示信息", "两次输入密码不一致", "warning");
+				}
+			}
 		});
 	});
 
@@ -135,7 +158,7 @@
 		$.messager
 		.confirm('系统提示','您确定要退出本次登录吗?',function(isConfirm) {
 			if (isConfirm) {
-				location.href = '${pageContext.request.contextPath }/login.jsp';
+				location.href = '${pageContext.request.contextPath }/logout.action';
 			}
 		});
 	}
@@ -145,7 +168,7 @@
 	}
 	// 版权信息
 	function showAbout(){
-		$.messager.alert("宅急送 v1.0","管理员邮箱: zqx@itcast.cn");
+		$.messager.alert("宅急送 v1.0","管理员邮箱: comrade_vodka@outlook.com");
 	}
 </script>
 </head>
@@ -206,11 +229,6 @@
 		<table style="width: 100%;">
 			<tbody>
 				<tr>
-					<td style="width: 300px;">
-						<div style="color: #999; font-size: 8pt;">
-							传智播客 | Powered by <a href="http://www.itcast.cn/">itcast.cn</a>
-						</div>
-					</td>
 					<td style="width: *;" class="co1"><span id="online"
 						style="background: url(${pageContext.request.contextPath }/images/online.png) no-repeat left;padding-left:18px;margin-left:3px;font-size:8pt;color:#005590;">在线人数:1</span>
 					</td>
@@ -225,16 +243,20 @@
         background: #fafafa">
         <div class="easyui-layout" fit="true">
             <div region="center" border="false" style="padding: 10px; background: #fff; border: 1px solid #ccc;">
-                <table cellpadding=3>
-                    <tr>
-                        <td>新密码：</td>
-                        <td><input id="txtNewPass" type="Password" class="txt01" /></td>
-                    </tr>
-                    <tr>
-                        <td>确认密码：</td>
-                        <td><input id="txtRePass" type="Password" class="txt01" /></td>
-                    </tr>
-                </table>
+                <form id="editPasswordForm">
+					<table cellpadding=3>
+						<tr>
+							<td>新密码：</td>
+							<td><input id="txtNewPass" type="Password" class="txt01 easyui-validatebox"
+									   required="true" data-options="validType:'length[4,8]'"/></td>
+						</tr>
+						<tr>
+							<td>确认密码：</td>
+							<td><input id="txtRePass" type="Password" class="txt01 easyui-validatebox"
+									   required="true" data-options="validType:'length[4,8]'"/></td>
+						</tr>
+					</table>
+				</form>
             </div>
             <div region="south" border="false" style="text-align: right; height: 30px; line-height: 30px;">
                 <a id="btnEp" class="easyui-linkbutton" icon="icon-ok" href="javascript:void(0)" >确定</a> 

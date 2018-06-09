@@ -27,12 +27,21 @@
                 <prop key="hibernate.format_sql">true</prop>
                 <prop key="hibernate.connection.autocommit">true</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/bos19</prop>
+                <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
             </props>
         </property>
         <!-- 配置Hibernate的映射文件 -->
         <property name="annotatedClasses">
             <list>
                 <value>com.bos.domain.User</value>
+                <value>com.bos.domain.User</value>
+                <value>com.bos.domain.User</value>
+            </list>
+        </property>
+        <property name="mappingDirectoryLocations">
+            <list>
+                <value>classpath:com/bos/domain</value>
             </list>
         </property>
     </bean>
