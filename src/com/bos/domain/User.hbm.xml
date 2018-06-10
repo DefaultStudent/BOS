@@ -17,6 +17,6 @@
     </class>
     <!-- 命名查询语句 -->
     <query name="editPassword">
-        UPDATE User SET password = ? where username = ?
+        UPDATE User SET password = ? where id = ?
     </query>
 </hibernate-mapping>
