@@ -26,6 +26,7 @@ public class StaffAction extends BaseAction<Staff> {
      * @return
      */
     public String add() {
+        staffService.save(model);
         return "list";
     }
 }

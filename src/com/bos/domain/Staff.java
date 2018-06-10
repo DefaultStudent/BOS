@@ -8,8 +8,14 @@ public class Staff {
     private String id;
     private String name;
     private String telephone;
-    private String haspda;
-    private String deltag;
+    /**
+     * 是否持有PDA 1：有；0：无
+     */
+    private String haspda = "0";
+    /**
+     * 删除标识位 1：已删除；0：未删除
+     */
+    private String deltag = "0";
     private String station;
     private String standard;
 

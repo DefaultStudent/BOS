@@ -38,5 +38,9 @@
         <action name="editPassword" class="com.bos.web.action.UserAction" method="editPassword">
             <result name="none"></result>
         </action>
+        <!-- StaffAction的方法 -->
+        <action name="staffAdd" class="com.bos.web.action.StaffAction" method="add">
+            <result name="list">/pages/base/staff.jsp</result>
+        </action>
     </package>
 </struts>
