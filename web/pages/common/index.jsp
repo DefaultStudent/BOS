@@ -2,31 +2,34 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宅急送BOS主界面</title>
-<!-- 导入jquery核心类库 -->
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/js/jquery-1.8.3.js"></script>
-<!-- 导入easyui类库 -->
-<link id="easyuiTheme" rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath }/js/easyui/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath }/js/easyui/themes/icon.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath }/css/default.css">
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/js/easyui/jquery.easyui.min.js"></script>
-<!-- 导入ztree类库 -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/js/ztree/zTreeStyle.css"
-	type="text/css" />
-<script
-	src="${pageContext.request.contextPath }/js/ztree/jquery.ztree.all-3.5.js"
-	type="text/javascript"></script>
-<script
-	src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js"
-	type="text/javascript"></script>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>宅急送BOS主界面</title>
+	<!-- 导入jquery核心类库 -->
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath }/js/jquery-1.8.3.js"></script>
+	<!-- 导入easyui类库 -->
+	<link id="easyuiTheme" rel="stylesheet" type="text/css"
+		href="${pageContext.request.contextPath }/js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css"
+		href="${pageContext.request.contextPath }/js/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css"
+		href="${pageContext.request.contextPath }/css/default.css">
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath }/js/easyui/jquery.easyui.min.js"></script>
+	<!-- 导入ztree类库 -->
+	<link rel="stylesheet"
+		href="${pageContext.request.contextPath }/js/ztree/zTreeStyle.css"
+		type="text/css" />
+	<script
+		src="${pageContext.request.contextPath }/js/ztree/jquery.ztree.all-3.5.js"
+		type="text/javascript"></script>
+	<script
+		src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js"
+		type="text/javascript"></script>
+	<script
+			src="${pageContext.request.contextPath }/js/outOfBounds.js"
+			type="text/javascript"></script>
 <script type="text/javascript">
 	// 初始化ztree菜单
 	$(function() {
@@ -94,19 +97,21 @@
 				var v2 = $("#txtRePass").val();
 				if (v1 == v2) {
 				    // 输入一致，发送ajax请求，修改当前用户密码
-					var url = "/editPassword.action";
-					$.post(url, {"password" : v1}, function (data) {
-						if (data == 1) {
+					var url = "${pageContext.request.contextPath}/editPassword.action";
+					$.post(url, {"password":v1}, function (data) {
+						if (data == '1') {
 						    // 修改成功
-                            $message.alert("提示信息", "密码修改成功", "info");
+                            $.messager.alert("提示信息", "密码修改成功", "info");
 						} else {
 						    // 修改失败
-                            $message.alert("提示信息", "密码修改失败", "warning");
+                            $.messager.alert("提示信息", "密码修改失败", "warning");
 						}
+                        //关闭修改密码的窗口
+                        $("#editPwdWindow").window("close");
                     });
 				} else {
 				    // 输入不一致，提示用户输入不一致
-					$message.alert("提示信息", "两次输入密码不一致", "warning");
+					$.messager.alert("提示信息", "两次输入密码不一致", "warning");
 				}
 			}
 		});

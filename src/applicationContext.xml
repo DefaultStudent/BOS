@@ -37,6 +37,10 @@
                 <value>com.bos.domain.User</value>
                 <value>com.bos.domain.User</value>
                 <value>com.bos.domain.User</value>
+                <value>com.bos.domain.Decidedzone</value>
+                <value>com.bos.domain.Region</value>
+                <value>com.bos.domain.Staff</value>
+                <value>com.bos.domain.Subarea</value>
             </list>
         </property>
         <property name="mappingDirectoryLocations">
