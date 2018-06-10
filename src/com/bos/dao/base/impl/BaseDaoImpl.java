@@ -1,9 +1,12 @@
 package com.bos.dao.base.impl;
 
 import com.bos.dao.base.IBaseDao;
+import com.bos.utils.PageBean;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 import javax.annotation.Resource;
@@ -100,7 +103,7 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
     }
 
     /**
-     * 通用修改方法
+     * 通用更新方法
      *
      * @param queryName
      * @param objects
@@ -117,6 +120,36 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
             query.setParameter(i++, arg);
         }
         query.executeUpdate();
+    }
 
+    /**
+     * 分页查询
+     *
+     * @param pageBean
+     */
+    @Override
+    public void pageQuery(PageBean pageBean) {
+        int currentPage = pageBean.getCurrentPage();
+        int pageSize = pageBean.getPageSize();
+        DetachedCriteria detachedCriteria = pageBean.getDetachedCriteria();
+
+        // 总数据量
+        // 改变Hibernate框架发出的sql形式
+        // select count(*) from bc_staff
+        detachedCriteria.setProjection(Projections.rowCount());
+        List list = this.getHibernateTemplate().findByCriteria(detachedCriteria);
+        Long total = (Long) list.get(0);
+        // 设置总数据量
+        pageBean.setTotal(total.intValue());
+
+        // 修改SQL形式为select * from ...
+        detachedCriteria.setProjection(null);
+        // 重置表和类的关系
+        detachedCriteria.setResultTransformer(DetachedCriteria.ROOT_ENTITY);
+        // 当前页展示的数据集合
+        int firstResult = (currentPage - 1) * pageSize;
+        int maxResult = pageSize;
+        List rows = this.getHibernateTemplate().findByCriteria(detachedCriteria, firstResult, maxResult);
+        pageBean.setRows(rows);
     }
 }

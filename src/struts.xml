@@ -42,5 +42,8 @@
         <action name="staffAdd" class="com.bos.web.action.StaffAction" method="add">
             <result name="list">/pages/base/staff.jsp</result>
         </action>
+        <action name="staffPageQuery" class="com.bos.web.action.StaffAction" method="pageQuery">
+            <result name="none"></result>
+        </action>
     </package>
 </struts>

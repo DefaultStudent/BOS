@@ -16,6 +16,7 @@
           <element id="library" level="project" name="log4j-core-2.8.2" />
           <element id="library" level="project" name="log4j-api-2.8.2" />
           <element id="library" level="project" name="servlet-api" />
+          <element id="library" level="project" name="json-lib-2.4-jdk15" />
         </element>
       </element>
     </root>

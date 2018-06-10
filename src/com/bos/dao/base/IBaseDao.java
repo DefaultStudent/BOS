@@ -1,5 +1,7 @@
 package com.bos.dao.base;
 
+import com.bos.utils.PageBean;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -48,4 +50,10 @@ public interface IBaseDao<T> {
      * @param objects
      */
     public void executeUpdate(String queryName, Object ...objects);
+
+    /**
+     * 分页查询
+     * @param pageBean
+     */
+    public void pageQuery(PageBean pageBean);
 }

@@ -52,5 +52,6 @@
     <orderEntry type="library" name="log4j-core-2.8.2" level="project" />
     <orderEntry type="library" name="log4j-api-2.8.2" level="project" />
     <orderEntry type="library" name="servlet-api" level="project" />
+    <orderEntry type="library" name="json-lib-2.4-jdk15" level="project" />
   </component>
 </module>
