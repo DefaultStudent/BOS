@@ -40,10 +40,10 @@
         </action>
         <!-- StaffAction的方法 -->
         <action name="staffAdd" class="com.bos.web.action.StaffAction" method="add">
-            <result name="list">/pages/base/staff.jsp</result>
+            <result type="chain">staffPageQuery</result>
         </action>
         <action name="staffPageQuery" class="com.bos.web.action.StaffAction" method="pageQuery">
-            <result name="none"></result>
+            <result name="success">/pages/base/staff.jsp</result>
         </action>
     </package>
 </struts>

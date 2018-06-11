@@ -1,7 +1,1 @@
-{                                                      
-	"total":100,	
-	"rows":[ 
-		{"id":"001","name":"李大","telephone":"13912345678","haspda":"1","deltag":"0","standard":"10-20公斤","station":"杭州分部"},
-		{"id":"002","name":"李二","telephone":"13912345678","haspda":"1","deltag":"0","standard":"10-20公斤","station":"杭州分部"}
-	]
-}
+{"currentPage":0,"detachedCriteria":{"alias":"this"},"pageSize":0,"rows":[{"deltag":"0","haspda":"1","id":"402880e563e945440163e946802a0000","name":"杜毅","standard":"标准一","station":"运输一公司","telephone":"13841875567"},{"deltag":"0","haspda":"0","id":"402880e563ea164e0163ea171dcf0000","name":"水子恒","standard":"标准一","station":"运输一公司","telephone":"15642335676"},{"deltag":"0","haspda":"1","id":"4028abee63ec32280163ec3685a40000","name":"张三","standard":"标准二","station":"运输一公司","telephone":"18320453345"},{"deltag":"0","haspda":"1","id":"4028abee63ec52f30163ec5389ff0000","name":"王五","standard":"标准二","station":"运输三公司","telephone":"18866472346"},{"deltag":"0","haspda":"1","id":"4028abee63ec52f30163ec53f0e00001","name":"李四","standard":"标准二","station":"运输二公司","telephone":"13766579903"},{"deltag":"0","haspda":"1","id":"4028abee63ec88e40163ec8a67fd0000","name":"赵六","standard":"标准二","station":"运输一公司","telephone":"13841875567"}],"total":6}

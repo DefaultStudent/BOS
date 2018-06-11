@@ -4,6 +4,7 @@ import com.bos.domain.Staff;
 import com.bos.service.IStaffService;
 import com.bos.utils.PageBean;
 import com.bos.web.action.base.BaseAction;
+import net.sf.json.JSON;
 import net.sf.json.JSONObject;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
@@ -11,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import java.io.IOException;
+import java.io.*;
 
 /**
  * 取派员管理
@@ -36,6 +37,8 @@ public class StaffAction extends BaseAction<Staff> {
       */
     private int rows;
 
+    private String json;
+
     public void setPage(int page) {
         this.page = page;
     }
@@ -44,13 +47,21 @@ public class StaffAction extends BaseAction<Staff> {
         this.rows = rows;
     }
 
+    public String getJson() {
+        return json;
+    }
+
+    public void setJson(String json) {
+        this.json = json;
+    }
+
     /**
      * 添加取派员
      * @return
      */
     public String add() {
         staffService.save(model);
-        return "list";
+        return SUCCESS;
     }
 
     /**
@@ -58,7 +69,7 @@ public class StaffAction extends BaseAction<Staff> {
      * @throws java.io.IOException
      * @return
      */
-    public String pageQuery() {
+    public String pageQuery() throws IOException {
         PageBean pageBean = new PageBean();
         pageBean.setCurrentPage(page);
         pageBean.setPageSize(rows);
@@ -68,13 +79,19 @@ public class StaffAction extends BaseAction<Staff> {
         staffService.pageQuery(pageBean);
         // 将PageBean对象转化为JSON
         JSONObject jsonObject = JSONObject.fromObject(pageBean);
-        String json = jsonObject.toString();
-        ServletActionContext.getResponse().setContentType("text/json;charset=UTF-8");
-        try {
-            ServletActionContext.getResponse().getWriter().print(json);
-        } catch (IOException e) {
-            e.printStackTrace();
+        json = jsonObject.toString();
+        File file = new File("/Users/vodka/Desktop/ideaProject/BOS/web/json/staff.json");
+        if (!file.exists()) {
+            file.createNewFile();
         }
-        return "none";
+        FileWriter fileWriter = new FileWriter(file);
+        BufferedWriter out = new BufferedWriter(fileWriter);
+        out.write(json);
+        out.close();
+
+//        ServletActionContext.getResponse().setContentType("text/json;charset=UTF-8");
+//        ServletActionContext.getResponse().getWriter().print(json);
+//        System.out.println(json);
+        return SUCCESS;
     }
 }

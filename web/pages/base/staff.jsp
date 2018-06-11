@@ -114,7 +114,7 @@
 		width : 200,
 		align : 'center'
 	} ] ];
-	
+
 	$(function(){
 		// 先将body隐藏，再显示，不会出现页面刷新效果
 		$("body").css({visibility:"visible"});
@@ -129,7 +129,8 @@
 			pageList: [3,5,10],
 			pagination : true,
 			toolbar : toolbar,
-			url : "${pageContext.request.contextPath}/staffPageQuery.action",
+			url : '/json/staff.json',
+            method : 'post',
 			idField : 'id',
 			columns : columns,
 			onDblClickRow : doDblClickRow
@@ -191,7 +192,7 @@
 		</div>
 		
 		<div region="center" style="overflow:auto;padding:5px;" border="false">
-			<form id="addStaffForm" method="post" action="${pageContext.request.contextPath}/staffAdd.action">
+			<form id="addStaffForm" method="post" action="staffAdd.action">
 				<table class="table-edit" width="80%" align="center">
 					<tr class="title">
 						<td colspan="2">收派员信息</td>
@@ -212,8 +213,9 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-						<input type="checkbox" name="haspda" value="1" />
-						是否有PDA</td>
+							<input type="checkbox" name="haspda" value="1" />
+							是否有PDA
+						</td>
 					</tr>
 					<tr>
 						<td>取派标准</td>
