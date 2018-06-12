@@ -46,4 +46,14 @@ public class UserServiceImpl implements IUserService{
     public void editPassword(String password, String id) {
         userDao.executeUpdate("editPassword", password, id);
     }
+
+    /**
+     * 注册
+     *
+     * @param user
+     */
+    @Override
+    public void signIn(User user) {
+        userDao.save(user);
+    }
 }

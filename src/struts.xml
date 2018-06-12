@@ -8,10 +8,19 @@
     <!-- 注册国际化文件 -->
     <constant name="struts.custom.i18n.resources" value="message"/>
     <package name="basicstruts2" extends="struts-default">
+        <global-results>
+            <result name="login">/login.jsp</result>
+        </global-results>
         <!-- UserAction的方法 -->
         <action name="login" class="com.bos.web.action.UserAction" method="login">
             <result name="home">/index.jsp</result>
             <result name="login">/login.jsp</result>
+        </action>
+        <action name="logout" class="com.bos.web.action.UserAction" method="logout">
+            <result name="logout">/login.jsp</result>
+        </action>
+        <action name="register" class="com.bos.web.action.UserAction" method="signIn">
+            <result name="success">/index.jsp</result>
         </action>
     </package>
 </struts>

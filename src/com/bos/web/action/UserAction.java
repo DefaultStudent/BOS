@@ -47,7 +47,16 @@ public class UserAction extends BaseAction<User>{
     public String logout() {
         // 销毁session
         ServletActionContext.getRequest().getSession().invalidate();
-        return "login";
+        return "logout";
+    }
+
+    /**
+     * 注册
+     * @return
+     */
+    public String signIn() {
+        userService.signIn(model);
+        return SUCCESS;
     }
 
     /**

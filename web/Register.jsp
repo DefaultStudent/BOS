@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: vodka
-  Date: 2018/6/11
-  Time: 下午7:12
+  Date: 2018/6/12
+  Time: 下午5:14
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -12,7 +12,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>登录</title>
+    <title>欢迎注册</title>
 
     <!-- Import google fonts - Heading first/ text second -->
     <link rel='stylesheet' type='text/css' href='http://fonts.useso.com/css?family=Open+Sans:400,700|Droid+Sans:400,700' />
@@ -45,27 +45,38 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-</head>
 
 <body>
 <div class="container-fluid content">
     <div class="row">
         <div id="content" class="col-sm-12 full">
             <div class="row">
+
                 <div class="login-box">
 
                     <div class="header">
-                        欢迎登录A.I仓储管理系统
+                        添加新的管理员账号
                     </div>
 
-                    <form class="form-horizontal login" method="post" action="login.action" >
+                    <%--<script type="text/javascript">--%>
+                        <%--function validateForm() {--%>
+                            <%--var pwd = document.getElementById("password").valueOf();--%>
+                            <%--var repwd = document.getElementById("repwd").valueOf();--%>
+                            <%--if (pwd == repwd) {--%>
+                                <%--return true;--%>
+                            <%--} else {--%>
+                                <%--alert("两次密码输入不相同");--%>
+                                <%--return false;--%>
+                            <%--}--%>
+                        <%--}--%>
+                    <%--</script>--%>
+                    <form class="form-horizontal register" method="post" action="register.action">
 
                         <fieldset class="col-sm-12">
                             <div class="form-group">
                                 <div class="controls row">
                                     <div class="input-group col-sm-12">
-                                        <input type="text" class="form-control" name="username" id="username" placeholder="请输入用户名"/>
-                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                        <input type="text" class="form-control" required="required" placeholder="用户账号" name="id" id="id"/>
                                     </div>
                                 </div>
                             </div>
@@ -73,25 +84,49 @@
                             <div class="form-group">
                                 <div class="controls row">
                                     <div class="input-group col-sm-12">
-                                        <input type="password" class="form-control" name="password" id="password" placeholder="请输入密码"/>
-                                        <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                        <input type="password" class="form-control" required="required" placeholder="密码" name="password" id="password"/>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <div class="controls row">
+                                    <div class="input-group col-sm-12">
+                                        <input type="password" class="form-control" required="required" placeholder="重复密码" name="repwd" id="repwd"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="controls row">
+                                    <div class="input-group col-sm-12">
+                                        <input type="text" class="form-control" placeholder="联系电话" name="phone" id="phone"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="confirm">
+                                <input type="checkbox" name="agree"/>
+                                <label>我同意 <a href="page-register.html#">用户守则</a></label>
+                            </div>
+
+
                             <div class="row">
 
-                                <button type="submit" class="btn btn-lg btn-primary col-xs-12">登录</button>
+                                <button type="submit" class="btn btn-primary btn-lg col-xs-12">创建账户!</button>
 
                             </div>
+
 
                         </fieldset>
 
                     </form>
 
-                    <a class="pull-left" href="page-login.html#">忘记密码？</a>
-                    <a class="pull-right" href="Register.jsp">注册</a>
-
-                    <div class="clearfix"></div>
+                    <div class="text-center">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </div>
 
                 </div>
             </div><!--/row-->
@@ -141,9 +176,6 @@
 <script src="assets/js/SmoothScroll.js"></script>
 <script src="assets/js/jquery.mmenu.min.js"></script>
 <script src="assets/js/core.min.js"></script>
-
-<!-- inline scripts related to this page -->
-<script src="assets/js/pages/login.js"></script>
 
 <!-- end: JavaScript-->
 

@@ -19,4 +19,10 @@ public interface IUserService {
      * @param id
      */
     public void editPassword(String password, String id);
+
+    /**
+     * 注册
+     * @param model
+     */
+    public void signIn(User model);
 }

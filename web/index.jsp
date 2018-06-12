@@ -42,7 +42,7 @@
           </li>
           <li><a href="page-profile.html"><i class="fa fa-user"></i> 查看个人信息</a></li>
           <li><a href="page-login.html"><i class="fa fa-wrench"></i> 修改个人信息</a></li>
-          <li><a href="index.html"><i class="fa fa-sign-out"></i> 登出</a></li>
+          <li><a href="/logout.action"><i class="fa fa-sign-out"></i> 登出</a></li>
         </ul>
       </li>
       <li><a href="index.html"><i class="fa fa-power-off"></i></a></li>
@@ -62,7 +62,7 @@
     </div>
     <div class="sidebar-menu">
       <ul class="nav nav-sidebar">
-        <li><a href="index.html"><i class="fa fa-laptop"></i><span class="text"> 首页</span></a></li>
+        <li><a href="index.jsp"><i class="fa fa-laptop"></i><span class="text"> 首页</span></a></li>
         <li>
           <a href="#"><i class="fa fa-file-text"></i><span class="text"> 仓库管理</span> <span class="fa fa-angle-down pull-right"></span></a>
           <ul class="nav sub">
@@ -114,7 +114,7 @@
     <div class="col-lg-12">
       <h3 class="page-header"><i class="fa fa-laptop"></i> 仓库总体信息</h3>
       <ol class="breadcrumb">
-        <li><i class="fa fa-home"></i><a href="index.html">首页</a></li>
+        <li><i class="fa fa-home"></i><a href="index.jsp">首页</a></li>
         <li><i class="fa fa-laptop"></i>总体信息</li>
       </ol>
     </div>
