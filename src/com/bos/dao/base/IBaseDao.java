@@ -1,16 +1,7 @@
 package com.bos.dao.base;
 
-import com.bos.utils.PageBean;
-
 import java.io.Serializable;
 import java.util.List;
-
-/**
- * 抽取持久层通用方法
- * @author Simon
- *
- * @param <T>
- */
 
 public interface IBaseDao<T> {
     /**
@@ -50,10 +41,4 @@ public interface IBaseDao<T> {
      * @param objects
      */
     public void executeUpdate(String queryName, Object ...objects);
-
-    /**
-     * 分页查询
-     * @param pageBean
-     */
-    public void pageQuery(PageBean pageBean);
 }

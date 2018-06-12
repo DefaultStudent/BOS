@@ -8,42 +8,10 @@
     <!-- 注册国际化文件 -->
     <constant name="struts.custom.i18n.resources" value="message"/>
     <package name="basicstruts2" extends="struts-default">
-        <interceptors>
-            <!-- 注册拦截器 -->
-            <interceptor name="BOSLoginInterceptor" class="com.bos.web.interceptor.BOSLoginInterceptor">
-                <param name="excludeMethods">login</param>
-            </interceptor>
-            <!-- 拦截器栈 -->
-            <interceptor-stack name="myStack">
-                <interceptor-ref name="BOSLoginInterceptor"/>
-                <interceptor-ref name="defaultStack"/>
-            </interceptor-stack>
-        </interceptors>
-        <!-- 指定默认栈 -->
-        <default-interceptor-ref name="myStack"/>
-        <global-results>
-            <result name="login">/login.jsp</result>
-        </global-results>
-        <!-- 需要进行权限控制的页面访问 -->
-        <action name="page_*_*">
-            <result name="success" type="dispatcher">/pages/{1}/{2}.jsp</result>
-        </action>
         <!-- UserAction的方法 -->
         <action name="login" class="com.bos.web.action.UserAction" method="login">
-            <result name="home">/pages/common/index.jsp</result>
-        </action>
-        <action name="logout" class="com.bos.web.action.UserAction" method="logout">
+            <result name="home">/index.jsp</result>
             <result name="login">/login.jsp</result>
-        </action>
-        <action name="editPassword" class="com.bos.web.action.UserAction" method="editPassword">
-            <result name="none"></result>
-        </action>
-        <!-- StaffAction的方法 -->
-        <action name="staffAdd" class="com.bos.web.action.StaffAction" method="add">
-            <result type="chain">staffPageQuery</result>
-        </action>
-        <action name="staffPageQuery" class="com.bos.web.action.StaffAction" method="pageQuery">
-            <result name="success">/pages/base/staff.jsp</result>
         </action>
     </package>
 </struts>

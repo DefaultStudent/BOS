@@ -4,19 +4,34 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.bos.domain.User" table="t_user" schema="bos19">
-        <id name="id" column="id"/>
-        <property name="username" column="username"/>
-        <property name="password" column="password"/>
-        <property name="salary" column="salary"/>
-        <property name="birthday" column="birthday"/>
-        <property name="gender" column="gender"/>
-        <property name="station" column="station"/>
-        <property name="telephone" column="telephone"/>
-        <property name="remark" column="remark"/>
+    <class name="com.bos.domain.User" table="user" schema="aistorage">
+        <id name="id">
+            <column name="id" sql-type="varchar(11)" length="11"/>
+        </id>
+        <property name="username">
+            <column name="username" sql-type="varchar(32)" length="32" not-null="true"/>
+        </property>
+        <property name="password">
+            <column name="password" sql-type="varchar(32)" length="32" not-null="true"/>
+        </property>
+        <property name="gender">
+            <column name="gender" sql-type="varchar(10)" length="10" not-null="true"/>
+        </property>
+        <property name="birth">
+            <column name="birth" sql-type="date" not-null="true"/>
+        </property>
+        <property name="phone">
+            <column name="phone" sql-type="varchar(11)" length="11" not-null="true"/>
+        </property>
+        <property name="address">
+            <column name="address" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="remark">
+            <column name="remark" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <!-- 命名查询语句 -->
+        <query name="editPassword">
+            UPDATE User SET password = ? where id = ?
+        </query>
     </class>
-    <!-- 命名查询语句 -->
-    <query name="editPassword">
-        UPDATE User SET password = ? where id = ?
-    </query>
 </hibernate-mapping>

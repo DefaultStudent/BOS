@@ -1,23 +1,25 @@
 package com.bos.domain;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Date;
 import java.util.Objects;
 
-/**
- * @author Simon
- */
+@Entity
 public class User {
     private String id;
     private String username;
     private String password;
-    private double salary;
-    private Date birthday;
     private String gender;
-    private String station;
-    private String telephone;
+    private Date birth;
+    private String phone;
+    private String address;
     private String remark;
 
+    @Id
+    @Column(name = "id", nullable = false, length = 11)
     public String getId() {
         return id;
     }
@@ -26,6 +28,8 @@ public class User {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "username", nullable = true, length = 32)
     public String getUsername() {
         return username;
     }
@@ -34,6 +38,8 @@ public class User {
         this.username = username;
     }
 
+    @Basic
+    @Column(name = "password", nullable = true, length = 32)
     public String getPassword() {
         return password;
     }
@@ -42,22 +48,8 @@ public class User {
         this.password = password;
     }
 
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
+    @Basic
+    @Column(name = "gender", nullable = true, length = 10)
     public String getGender() {
         return gender;
     }
@@ -66,27 +58,64 @@ public class User {
         this.gender = gender;
     }
 
-    public String getStation() {
-        return station;
+    @Basic
+    @Column(name = "birth", nullable = true)
+    public Date getBirth() {
+        return birth;
     }
 
-    public void setStation(String station) {
-        this.station = station;
+    public void setBirth(Date birth) {
+        this.birth = birth;
     }
 
-    public String getTelephone() {
-        return telephone;
+    @Basic
+    @Column(name = "phone", nullable = true, length = 11)
+    public String getPhone() {
+        return phone;
     }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
+    @Basic
+    @Column(name = "address", nullable = true, length = 255)
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    @Basic
+    @Column(name = "remark", nullable = true, length = 255)
     public String getRemark() {
         return remark;
     }
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) &&
+                Objects.equals(username, user.username) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(gender, user.gender) &&
+                Objects.equals(birth, user.birth) &&
+                Objects.equals(phone, user.phone) &&
+                Objects.equals(address, user.address) &&
+                Objects.equals(remark, user.remark);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, username, password, gender, birth, phone, address, remark);
     }
 }
