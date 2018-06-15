@@ -56,4 +56,15 @@ public class UserServiceImpl implements IUserService{
     public void signIn(User user) {
         userDao.save(user);
     }
+
+    /**
+     * 根据id查询
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public User findById(String id) {
+        return userDao.findById(id);
+    }
 }

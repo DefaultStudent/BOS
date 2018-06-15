@@ -2,14 +2,13 @@ package com.bos.web.action;
 
 import com.bos.domain.User;
 import com.bos.service.IUserService;
-import com.bos.utils.MD5Utils;
 import com.bos.web.action.base.BaseAction;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletRequest;
 import java.io.IOException;
 
 /**
@@ -78,10 +77,19 @@ public class UserAction extends BaseAction<User>{
         ServletActionContext.getResponse().setContentType("text/html;charset=UTF-8");
         try {
             ServletActionContext.getResponse().getWriter().print(flag);
-            String pwd = user.getPassword();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return "none";
+    }
+
+    /**
+     * 根据Id查询
+     * @return
+     */
+    public String findById() {
+        User user = (User) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
+        ServletActionContext.getRequest().getSession().setAttribute("profile", user);
+        return SUCCESS;
     }
 }

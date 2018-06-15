@@ -25,4 +25,11 @@ public interface IUserService {
      * @param model
      */
     public void signIn(User model);
+
+    /**
+     * 根据id查询
+     * @param id
+     * @return
+     */
+    public User findById(String id);
 }

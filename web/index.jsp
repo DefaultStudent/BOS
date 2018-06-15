@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,17 +36,16 @@
     </form>
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown visible-md visible-lg">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">欢迎：jhonsmith@mail.com</a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">欢迎：<s:property value="#request.username"/></a>
         <ul class="dropdown-menu">
           <li class="dropdown-menu-header">
             <strong>个人账户</strong>
           </li>
-          <li><a href="page-profile.html"><i class="fa fa-user"></i> 查看个人信息</a></li>
-          <li><a href="page-login.html"><i class="fa fa-wrench"></i> 修改个人信息</a></li>
+          <li><a href="/profile.action"><i class="fa fa-user"></i> 查看个人信息</a></li>
           <li><a href="/logout.action"><i class="fa fa-sign-out"></i> 登出</a></li>
         </ul>
       </li>
-      <li><a href="index.html"><i class="fa fa-power-off"></i></a></li>
+      <li><a href="/logout.action"><i class="fa fa-power-off"></i></a></li>
     </ul>
 
   </div>
@@ -78,7 +78,10 @@
         <li>
           <a href="#"><i class="fa fa-signal"></i><span class="text"> 员工管理</span> <span class="fa fa-angle-down pull-right"></span></a>
           <ul class="nav sub">
-            <li><a href="chart-flot.html"><i class="fa fa-random"></i><span class="text"> 员工信息添加</span></a></li>
+            <li><a href="chart-flot.html">
+              <i class="fa fa-random"></i>
+              <span class="text"> 员工信息添加</span></a>
+            </li>
           </ul>
         </li>
         <li>
@@ -87,20 +90,38 @@
             <li><a href="ui-sliders-progress.html"><i class="fa fa-align-left"></i><span class="text"> 地区信息添加</span></a></li>
           </ul>
         </li>
+        <li>
+          <a href="#"><i class="fa fa-list-alt"></i><span class="text"> 商品管理</span> <span class="fa fa-angle-down pull-right"></span></a>
+          <ul class="nav sub">
+            <li>
+              <a href="ui-sliders-progress.html">
+                <i class="fa fa-align-left"></i>
+                <span class="text"> 商品入库</span>
+              </a>
+            </li>
+            <li>
+              <a href="ui-sliders-progress.html">
+                <i class="fa fa-align-left"></i>
+                <span class="text"> 商品出库</span>
+              </a>
+            </li>
+            <li>
+              <a href="ui-sliders-progress.html">
+                <i class="fa fa-random"></i>
+                <span class="text"> 商品移库</span>
+              </a>
+            </li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>
   <div class="sidebar-footer">
 
     <div class="sidebar-brand">
-      Proton
     </div>
 
     <ul class="sidebar-terms">
-      <li><a href="index.html#">Terms</a></li>
-      <li><a href="index.html#">Privacy</a></li>
-      <li><a href="index.html#">Help</a></li>
-      <li><a href="index.html#">About</a></li>
     </ul>
   </div>
 
