@@ -14,17 +14,10 @@ public interface IUserService {
     public User login(User model);
 
     /**
-     * 修改密码
-     * @param password
-     * @param id
-     */
-    public void editPassword(String password, String id);
-
-    /**
      * 注册
      * @param model
      */
-    public void signIn(User model);
+    public void save(User model);
 
     /**
      * 根据id查询
@@ -32,4 +25,10 @@ public interface IUserService {
      * @return
      */
     public User findById(String id);
+
+    /**
+     * 更新用户信息
+     * @param model
+     */
+    public void updateUser(User model);
 }

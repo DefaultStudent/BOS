@@ -25,5 +25,8 @@
         <action name="profile" class="com.bos.web.action.UserAction" method="findById">
             <result name="success">/profile.jsp</result>
         </action>
+        <action name="updateUser" class="com.bos.web.action.UserAction" method="updateUser">
+            <result type="chain" name="success">login</result>
+        </action>
     </package>
 </struts>

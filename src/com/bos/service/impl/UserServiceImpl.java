@@ -37,23 +37,12 @@ public class UserServiceImpl implements IUserService{
     }
 
     /**
-     * 修改密码
-     *
-     * @param password
-     * @param id
-     */
-    @Override
-    public void editPassword(String password, String id) {
-        userDao.executeUpdate("editPassword", password, id);
-    }
-
-    /**
      * 注册
      *
      * @param user
      */
     @Override
-    public void signIn(User user) {
+    public void save(User user) {
         userDao.save(user);
     }
 
@@ -66,5 +55,15 @@ public class UserServiceImpl implements IUserService{
     @Override
     public User findById(String id) {
         return userDao.findById(id);
+    }
+
+    /**
+     * 更新用户信息
+     *
+     * @param user
+     */
+    @Override
+    public void updateUser(User user) {
+        userDao.update(user);
     }
 }

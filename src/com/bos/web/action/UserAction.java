@@ -54,33 +54,8 @@ public class UserAction extends BaseAction<User>{
      * @return
      */
     public String signIn() {
-        userService.signIn(model);
+        userService.save(model);
         return SUCCESS;
-    }
-
-    /**
-     * 修改当前登录用户的密码
-     * @throws java.io.IOException
-     * @return
-     */
-    public String editPassword() {
-        User user = (User) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
-        // 新密码
-        String password = model.getPassword();
-        String flag = "1";
-        try {
-            userService.editPassword(password, user.getId());
-        } catch (Exception e) {
-            // 修改密码失败
-            flag = "0";
-        }
-        ServletActionContext.getResponse().setContentType("text/html;charset=UTF-8");
-        try {
-            ServletActionContext.getResponse().getWriter().print(flag);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "none";
     }
 
     /**
@@ -90,6 +65,15 @@ public class UserAction extends BaseAction<User>{
     public String findById() {
         User user = (User) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
         ServletActionContext.getRequest().getSession().setAttribute("profile", user);
+        return SUCCESS;
+    }
+
+    /**
+     * 修改用户信息
+     * @return
+     */
+    public String updateUser() {
+        userService.updateUser(model);
         return SUCCESS;
     }
 }

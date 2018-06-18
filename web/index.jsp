@@ -62,7 +62,7 @@
     </div>
     <div class="sidebar-menu">
       <ul class="nav nav-sidebar">
-        <li><a href="index.jsp"><i class="fa fa-laptop"></i><span class="text"> 首页</span></a></li>
+        <li><i class="fa fa-laptop"></i><span class="text"> 首页</span></li>
         <li>
           <a href="#"><i class="fa fa-file-text"></i><span class="text"> 仓库管理</span> <span class="fa fa-angle-down pull-right"></span></a>
           <ul class="nav sub">
@@ -76,7 +76,7 @@
           </ul>
         </li>
         <li>
-          <a href="#"><i class="fa fa-signal"></i><span class="text"> 员工管理</span> <span class="fa fa-angle-down pull-right"></span></a>
+          <a href="/pages/user/User.jsp"><i class="fa fa-signal"></i><span class="text"> 员工管理</span> <span class="fa fa-angle-down pull-right"></span></a>
           <ul class="nav sub">
             <li><a href="chart-flot.html">
               <i class="fa fa-random"></i>
@@ -135,7 +135,7 @@
     <div class="col-lg-12">
       <h3 class="page-header"><i class="fa fa-laptop"></i> 仓库总体信息</h3>
       <ol class="breadcrumb">
-        <li><i class="fa fa-home"></i><a href="index.jsp">首页</a></li>
+        <li><i class="fa fa-home"></i>首页</li>
         <li><i class="fa fa-laptop"></i>总体信息</li>
       </ol>
     </div>
