@@ -76,7 +76,7 @@
                             <div class="form-group">
                                 <div class="controls row">
                                     <div class="input-group col-sm-12">
-                                        <input type="text" class="form-control" required="required" placeholder="用户账号" name="id" id="id"/>
+                                        <input type="text" class="form-control" required="required" placeholder="用户账号" name="username" id="id"/>
                                     </div>
                                 </div>
                             </div>

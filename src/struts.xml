@@ -20,13 +20,16 @@
             <result name="logout">/login.jsp</result>
         </action>
         <action name="register" class="com.bos.web.action.UserAction" method="signIn">
-            <result name="success">/index.jsp</result>
+            <result name="success">/login.jsp</result>
         </action>
         <action name="profile" class="com.bos.web.action.UserAction" method="findById">
             <result name="success">/profile.jsp</result>
         </action>
         <action name="updateUser" class="com.bos.web.action.UserAction" method="updateUser">
-            <result type="chain" name="success">login</result>
+            <result type="chain">profile</result>
+        </action>
+        <action name="findAllUser" class="com.bos.web.action.UserAction" method="findAll">
+            <result name="success">/pages/user/User.jsp</result>
         </action>
     </package>
 </struts>

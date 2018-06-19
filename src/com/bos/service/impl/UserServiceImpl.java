@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * @author Simon
  */
@@ -65,5 +67,16 @@ public class UserServiceImpl implements IUserService{
     @Override
     public void updateUser(User user) {
         userDao.update(user);
+    }
+
+    /**
+     * 查询全部
+     *
+     * @return
+     */
+    @Override
+    public List<User> findAll() {
+        List list = userDao.findAll();
+        return list;
     }
 }

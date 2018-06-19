@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import javax.annotation.Resource;
 import javax.servlet.ServletRequest;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @author Simon
@@ -74,6 +75,18 @@ public class UserAction extends BaseAction<User>{
      */
     public String updateUser() {
         userService.updateUser(model);
+        return SUCCESS;
+    }
+
+    /**
+     * 查询全部员工信息
+     * @return
+     */
+    public String findAll() {
+        List list = userService.findAll();
+        if (list.size() > 0) {
+            ServletActionContext.getRequest().getSession().setAttribute("findAllUser", list);
+        }
         return SUCCESS;
     }
 }

@@ -2,6 +2,8 @@ package com.bos.service;
 
 import com.bos.domain.User;
 
+import java.util.List;
+
 /**
  * @author Simon
  */
@@ -31,4 +33,10 @@ public interface IUserService {
      * @param model
      */
     public void updateUser(User model);
+
+    /**
+     * 查询全部
+     * @return
+     */
+    public List<User> findAll();
 }

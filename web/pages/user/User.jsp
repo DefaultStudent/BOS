@@ -45,33 +45,7 @@
 
 <body>
 <!-- start: Header -->
-<div class="navbar" role="navigation">
-
-    <div class="container-fluid">
-
-
-
-        <form class="navbar-form navbar-left">
-            <button type="submit" class="fa fa-search"></button>
-            <input type="text" class="form-control" placeholder="搜点什么..."></a>
-        </form>
-        <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown visible-md visible-lg">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">欢迎：<s:property value="#request.username"/></a>
-                <ul class="dropdown-menu">
-                    <li class="dropdown-menu-header">
-                        <strong>个人账户</strong>
-                    </li>
-                    <li><a href="/profile.action"><i class="fa fa-user"></i> 查看个人信息</a></li>
-                    <li><a href="/logout.action"><i class="fa fa-sign-out"></i> 登出</a></li>
-                </ul>
-            </li>
-            <li><a href="/logout.action"><i class="fa fa-power-off"></i></a></li>
-        </ul>
-
-    </div>
-
-</div>
+<s:include value="/pages/header.jsp"/>
 <!-- end: Header -->
 
 <div class="container-fluid content">
@@ -79,74 +53,7 @@
     <div class="row">
 
         <!-- start: Main Menu -->
-        <div class="sidebar ">
-
-            <div class="sidebar-collapse">
-                <div class="sidebar-header t-center">
-                    <span><img class="text-logo" src="/assets/img/logo1.png"><i class="fa fa-space-shuttle fa-3x blue"></i></span>
-                </div>
-                <div class="sidebar-menu">
-                    <ul class="nav nav-sidebar">
-                        <li><i class="fa fa-laptop"></i><span class="text"> 首页</span></li>
-                        <li>
-                            <a href="#"><i class="fa fa-file-text"></i><span class="text"> 仓库管理</span> <span class="fa fa-angle-down pull-right"></span></a>
-                            <ul class="nav sub">
-                                <li><a href="#"><i class="fa fa-car"></i><span class="text"> 仓库信息添加</span></a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-list-alt"></i><span class="text"> 分区管理</span> <span class="fa fa-angle-down pull-right"></span></a>
-                            <ul class="nav sub">
-                                <li><a href="form-elements.html"><i class="fa fa-indent"></i><span class="text"> 分区信息添加</span></a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-signal"></i><span class="text"> 员工管理</span> <span class="fa fa-angle-down pull-right"></span></a>
-                            <ul class="nav sub">
-                                <li><a href="chart-flot.html">
-                                    <i class="fa fa-random"></i>
-                                    <span class="text"> 员工信息添加</span></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-briefcase"></i><span class="text"> 地区管理</span> <span class="fa fa-angle-down pull-right"></span></a>
-                            <ul class="nav sub">
-                                <li><a href="ui-sliders-progress.html"><i class="fa fa-align-left"></i><span class="text"> 地区信息添加</span></a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-list-alt"></i><span class="text"> 商品管理</span> <span class="fa fa-angle-down pull-right"></span></a>
-                            <ul class="nav sub">
-                                <li>
-                                    <a href="ui-sliders-progress.html">
-                                        <i class="fa fa-align-left"></i>
-                                        <span class="text"> 商品入库</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="ui-sliders-progress.html">
-                                        <i class="fa fa-align-left"></i>
-                                        <span class="text"> 商品出库</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="ui-sliders-progress.html">
-                                        <i class="fa fa-random"></i>
-                                        <span class="text"> 商品移库</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="sidebar-footer">
-                <div class="copyright text-center">
-                </div>
-            </div>
-
-        </div>
+        <s:include value="/pages/menu.jsp"/>
         <!-- end: Main Menu -->
 
         <!-- start: Content -->
@@ -154,7 +61,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header"><i class="fa fa-table"></i>Tables</h3>
+                    <h3 class="page-header"><i class="fa fa-table"></i>员工管理</h3>
                     <ol class="breadcrumb">
                         <li><i class="fa fa-home"></i>首页</li>
                         <li><i class="fa fa-table"></i>员工管理</li>
@@ -183,13 +90,21 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <s:iterator var="user" value="#session.findAllUser">
                                 <tr>
-                                    <td>Willson</td>
-                                    <td>男</td>
-                                    <td></td>
-                                    <td>ssss</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td><s:property value="#user.username"/> </td>
+                                    <td><s:property value="#user.gender"/> </td>
+                                    <td><s:property value="#user.birth"/> </td>
+                                    <td><s:property value="#user.address"/></td>
+                                    <td><s:property value="#user.phone"/> </td>
+                                    <td>
+                                        <s:if test="#user.remark == null'">
+                                            无
+                                        </s:if>
+                                        <s:else>
+                                            <s:property value="#user.remark"/>
+                                        </s:else>
+                                    </td>
                                     <td>
                                         <a class="btn btn-info" href="table.html#">
                                             <i class="fa fa-edit "></i>
@@ -200,6 +115,7 @@
                                         </a>
                                     </td>
                                 </tr>
+                                </s:iterator>
                                 </tbody>
                             </table>
                             <ul class="pagination">
