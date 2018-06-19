@@ -13,7 +13,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Proton - Admin Template</title>
+    <title>员工管理</title>
 
     <!-- Import google fonts - Heading first/ text second -->
     <link rel='stylesheet' type='text/css' href='http://fonts.useso.com/css?family=Open+Sans:400,700|Droid+Sans:400,700' />
@@ -41,7 +41,6 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-</head>
 
 <body>
 <!-- start: Header -->
@@ -63,7 +62,7 @@
                 <div class="col-lg-12">
                     <h3 class="page-header"><i class="fa fa-table"></i>员工管理</h3>
                     <ol class="breadcrumb">
-                        <li><i class="fa fa-home"></i>首页</li>
+                        <li><a href="/index.jsp"><i class="fa fa-home"></i>首页</a></li>
                         <li><i class="fa fa-table"></i>员工管理</li>
                     </ol>
                 </div>
@@ -97,14 +96,7 @@
                                     <td><s:property value="#user.birth"/> </td>
                                     <td><s:property value="#user.address"/></td>
                                     <td><s:property value="#user.phone"/> </td>
-                                    <td>
-                                        <s:if test="#user.remark == null'">
-                                            无
-                                        </s:if>
-                                        <s:else>
-                                            <s:property value="#user.remark"/>
-                                        </s:else>
-                                    </td>
+                                    <td><s:property value="#user.remark"/></td>
                                     <td>
                                         <a class="btn btn-info" href="table.html#">
                                             <i class="fa fa-edit "></i>
@@ -161,6 +153,7 @@
     </div><!-- /.modal -->
 
     <div class="clearfix"></div>
+</div>
 
 
     <!-- start: JavaScript-->
@@ -197,8 +190,6 @@
 
     <!-- page scripts -->
     <script src="assets/plugins/jquery-ui/js/jquery-ui-1.10.4.min.js"></script>
-    <script src="assets/plugins/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="assets/plugins/datatables/js/dataTables.bootstrap.min.js"></script>
 
     <!-- theme scripts -->
     <script src="/assets/js/SmoothScroll.js"></script>

@@ -83,24 +83,4 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
         String hql = "FROM " + entityClass.getSimpleName();
         return (List<T>) this.getHibernateTemplate().find(hql);
     }
-
-    /**
-     * 通用修改方法
-     *
-     * @param queryName
-     * @param objects
-     */
-    @Override
-    public void executeUpdate(String queryName, Object... objects) {
-        // 获取Session对象
-        Session session = mySessionFactory.openSession();
-        // 获取查询对象
-        Query query = session.getNamedQuery(queryName);
-        // 为HQL语句赋值
-        int  i = 0;
-        for (Object arg : objects) {
-            query.setParameter(i++, arg);
-        }
-        query.executeUpdate();
-    }
 }

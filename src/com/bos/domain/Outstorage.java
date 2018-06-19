@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-public class Instorage {
+public class Outstorage {
     private int id;
     private Date date;
     private Integer materialid;
@@ -90,14 +90,14 @@ public class Instorage {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Instorage instorage = (Instorage) o;
-        return id == instorage.id &&
-                Objects.equals(date, instorage.date) &&
-                Objects.equals(materialid, instorage.materialid) &&
-                Objects.equals(number, instorage.number) &&
-                Objects.equals(userid, instorage.userid) &&
-                Objects.equals(storageid, instorage.storageid) &&
-                Objects.equals(remark, instorage.remark);
+        Outstorage that = (Outstorage) o;
+        return id == that.id &&
+                Objects.equals(date, that.date) &&
+                Objects.equals(materialid, that.materialid) &&
+                Objects.equals(number, that.number) &&
+                Objects.equals(userid, that.userid) &&
+                Objects.equals(storageid, that.storageid) &&
+                Objects.equals(remark, that.remark);
     }
 
     @Override

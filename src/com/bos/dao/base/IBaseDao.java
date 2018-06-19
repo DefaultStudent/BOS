@@ -34,11 +34,4 @@ public interface IBaseDao<T> {
      * @return
      */
     public List<T> findAll();
-
-    /**
-     * 通用修改方法
-     * @param queryName
-     * @param objects
-     */
-    public void executeUpdate(String queryName, Object ...objects);
 }

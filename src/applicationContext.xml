@@ -31,10 +31,16 @@
                 <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
             </props>
         </property>
+
         <!-- 配置Hibernate的映射文件 -->
-        <property name="mappingDirectoryLocations">
+        <property name="annotatedClasses">
             <list>
-                <value>classpath:com/bos/domain</value>
+                <value>com.bos.domain.Instorage</value>
+                <value>com.bos.domain.Material</value>
+                <value>com.bos.domain.Outstorage</value>
+                <value>com.bos.domain.Storage</value>
+                <value>com.bos.domain.Supplier</value>
+                <value>com.bos.domain.User</value>
             </list>
         </property>
     </bean>

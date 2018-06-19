@@ -43,7 +43,7 @@
         <div class="col-lg-12">
             <h3 class="page-header"><i class="fa fa-heart-o"></i>个人信息</h3>
             <ol class="breadcrumb">
-                <li><i class="fa fa-home"></i>首页</li>
+                <li><a href="index.jsp"><i class="fa fa-home"></i>首页</a></li>
                 <li><i class="fa fa-heart-o"></i>查看个人信息</li>
             </ol>
         </div>
@@ -60,7 +60,17 @@
                     <hr>
                     <div class="row text-center">
                         <div class="col-xs-4">
-                            <div><strong>1.256</strong></div>
+                            <div><strong>
+                                <s:if test="#session.profile.role==0">
+                                    系统管理员
+                                </s:if>
+                                <s:elseif test="#session.profile.role==1">
+                                    仓库管理员
+                                </s:elseif>
+                                <s:else>
+                                    普通员工
+                                </s:else>
+                            </strong></div>
                             <div><small>职位</small></div>
                         </div><!--/.col-->
                         <div class="col-xs-4">
@@ -104,6 +114,7 @@
                 <div class="panel-body">
                     <form class="form-vertical hover-stripped" role="form" method="post" action="updateUser.action">
                         <input name="id" type="hidden" value="<s:property value="%{#session.profile.id}"/>">
+                        <input name="password" value="<s:property value="%{#session.profile.password}"/>" type="hidden" class="form-control"/>
                         <div class="form-group">
                             <label class="control-label">姓名</label><br>
                             <input name="username" value="<s:property value="%{#session.profile.username}"/>" required="required" class="form-control"/>
@@ -116,6 +127,21 @@
                         <div class="form-group">
                             <label class="control-label">出生日期</label><br>
                             <input type="date" name="birth" value="<s:property value="%{#session.profile.birth}"/>"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">职位</label><br>
+                            <s:if test="#session.profile.role==0">
+                                <input name="role" value="<s:property value="%{#session.profile.role}"/>" type="hidden" class="form-control"/>
+                                <input name="role" value="系统管理员" disabled="disabled" class="form-control"/>
+                            </s:if>
+                            <s:elseif test="#session.profile.role==1">
+                                <input name="role" value="<s:property value="%{#session.profile.role}"/>" type="hidden" class="form-control"/>
+                                <input name="role" value="仓库管理员" disabled="disabled" class="form-control"/>
+                            </s:elseif>
+                            <s:else>
+                                <input name="role" value="<s:property value="%{#session.profile.role}"/>" type="hidden" class="form-control"/>
+                                <input name="role" value="普通员工" disabled="disabled" class="form-control"/>
+                            </s:else>
                         </div>
                         <div class="form-group">
                             <label class="control-label">住址</label>
@@ -132,12 +158,8 @@
                             <input name="phone" value="<s:property value="%{#session.profile.phone}"/>" required="required" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label class="control-label">新密码</label>
-                            <input name="password" required="required" type="password" class="form-control" value="<s:property value="%{#session.profile.password}"/>">
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">重复密码</label>
-                            <input name="repwd" required="required" type="password" class="form-control" value="<s:property value="%{#session.profile.password}"/>">
+                            <label class="control-label">备注</label>
+                            <textarea type="" value="<s:property value="%{#session.profile.remark}"/>" class="form-control" rows="9" placeholder="备注..."></textarea>
                         </div>
 
                         <div class="form-group pull-right">
