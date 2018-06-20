@@ -29,11 +29,37 @@
             <result type="chain">profile</result>
         </action>
         <action name="findAllUser" class="com.bos.web.action.UserAction" method="findAll">
-            <result name="success">/pages/user/user.jsp</result>
+            <result name="success">/pages/staff/user.jsp</result>
         </action>
         <!-- StaffAction -->
         <action name="addStaff" class="com.bos.web.action.StaffAction" method="addStaff">
             <result type="chain" name="success">findAllUser</result>
+        </action>
+        <action name="findStaffById" class="com.bos.web.action.StaffAction" method="findStaffById">
+            <result name="success">/pages/staff/editStaff.jsp</result>
+        </action>
+        <action name="updateStaff" class="com.bos.web.action.StaffAction" method="updateStaff">
+            <result type="chain" name="success">findAllUser</result>
+        </action>
+        <action name="deleteStaff" class="com.bos.web.action.StaffAction" method="deleteStaff">
+            <result type="chain" name="success">findAllUser</result>
+        </action>
+        <!-- StorageAction -->
+        <action name="findAllStorage" class="com.bos.web.action.StorageAction" method="findAllStorage">
+            <result name="success">/pages/storage/storageIndex.jsp</result>
+            <result name="none">/404.jsp</result>
+        </action>
+        <action name="addStorage" class="com.bos.web.action.StorageAction" method="addStorage">
+            <result name="success" type="chain">findAllStorage</result>
+        </action>
+        <action name="findStorageById" class="com.bos.web.action.StorageAction" method="findStorageById">
+            <result name="success">/pages/storage/storageEdit.jsp</result>
+        </action>
+        <action name="updateStorage" class="com.bos.web.action.StorageAction" method="updateStorage">
+            <result name="success" type="chain">findAllStorage</result>
+        </action>
+        <action name="deleteStorage" class="com.bos.web.action.StorageAction" method="deleteStorage">
+            <result name="success" type="chain">findAllStorage</result>
         </action>
     </package>
 </struts>

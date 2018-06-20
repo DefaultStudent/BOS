@@ -25,4 +25,35 @@ public class StaffServiceImpl implements IStaffService {
     public void addStaff(User user) {
         userDao.save(user);
     }
+
+    /**
+     * 根据id查询员工
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public User findStaffById(int id) {
+        return userDao.findById(id);
+    }
+
+    /**
+     * 更新员工信息
+     *
+     * @param user
+     */
+    @Override
+    public void updateStaff(User user) {
+        userDao.update(user);
+    }
+
+    /**
+     * 删除员工信息
+     *
+     * @param user
+     */
+    @Override
+    public void deleteStaff(User user) {
+        userDao.delete(user);
+    }
 }

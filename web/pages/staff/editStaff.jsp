@@ -1,15 +1,18 @@
-<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: vodka
-  Date: 2018/6/19
-  Time: 下午1:58
+  Date: 2018/6/20
+  Time: 上午10:06
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
 <head>
-    <title>员工信息添加</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>编辑员工</title>
     <!-- Import google fonts - Heading first/ text second -->
     <link rel='stylesheet' type='text/css' href='http://fonts.useso.com/css?family=Open+Sans:400,700|Droid+Sans:400,700' />
     <!--[if lt IE 9]>
@@ -47,6 +50,7 @@
 <!-- start: Header -->
 <s:include value="/pages/header.jsp"/>
 <!-- end: Header -->
+
 <div class="container-fluid content">
 
     <div class="row">
@@ -54,53 +58,66 @@
         <!-- start: Main Menu -->
         <s:include value="/pages/menu.jsp"/>
         <!-- end: Main Menu -->
-    </div>
-    <div class="main ">
-        <div class="row">
-            <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa-indent"></i>员工信息添加</h3>
-                <ol class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="/index.jsp">首页</a></li>
-                    <li><i class="fa fa-list-alt"></i><a href="#">员工管理</a></li>
-                    <li><i class="fa fa-indent"></i>员工信息添加</li>
-                </ol>
-            </div>
-        </div>
-        <div class="col-lg-12">
+        <div class="main ">
             <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header"><i class="fa fa-indent"></i>修改员工信息</h3>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home"></i><a href="/index.jsp">首页</a></li>
+                        <li><i class="fa fa-list-alt"></i><a href="findAllUser.action">员工管理</a></li>
+                        <li><i class="fa fa-indent"></i>员工信息修改</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="row">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <form action="addStaff.action" method="post" enctype="multipart/form-data" class="form-horizontal ">
+                            <form action="updateStaff.action" method="post" enctype="multipart/form-data" class="form-horizontal ">
+                                <input type="hidden" name="id" value="<s:property value="%{#session.staff.id}"/>">
                                 <input type="hidden" value="123" name="password">
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">员工姓名</label>
                                     <div class="col-md-9">
-                                        <input name="username" type="text" class="form-control" required="required">
+                                        <input name="username" type="text" value="<s:property value="%{#session.staff.username}"/>" class="form-control" required="required">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">性别</label>
                                     <div class="col-md-9">
                                         <label class="checkbox-inline">
-                                            <input type="radio" name="inline-checkbox1" value="男" checked="checked"> 男
+                                            <input type="radio" name="gender" value="男" checked="checked"> 男
                                         </label>
                                         <label class="checkbox-inline">
-                                            <input type="radio" name="inline-checkbox2" value="女"> 女
+                                            <input type="radio" name="gender" value="女"> 女
                                         </label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">出生日期</label>
                                     <div class="col-md-9">
-                                        <input type="date" name="birth">
+                                        <input type="date" name="birth" value="<s:property value="%{#session.staff.birth}"/>">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">员工职位</label>
                                     <div class="col-md-9">
                                         <select name="role" class="form-control" size="1">
-                                            <option value="1">仓库管理员</option>
-                                            <option value="2">普通员工</option>
+                                            <s:if test="#session.staff.role==0">
+                                                <option value="0" selected="selected">系统管理员</option>
+                                                <option value="1">仓库管理员</option>
+                                                <option value="2">普通员工</option>
+                                            </s:if>
+                                            <s:elseif test="#session.staff.role==1">
+                                                <option value="0">系统管理员</option>
+                                                <option value="1" selected="selected">仓库管理员</option>
+                                                <option value="2">普通员工</option>
+                                            </s:elseif>
+                                            <s:else>
+                                                <option value="0">系统管理员</option>
+                                                <option value="1">仓库管理员</option>
+                                                <option value="2" selected="selected">普通员工</option>
+                                            </s:else>
                                         </select>
                                     </div>
                                 </div>
@@ -110,7 +127,7 @@
                                         <div id="distpicker">
                                             <div class="form-group">
                                                 <div style="position: relative;">
-                                                    <input id="city-picker3" name="address" class="form-control" readonly type="text" data-toggle="city-picker">
+                                                    <input id="city-picker3" name="address" class="form-control" readonly type="text" data-toggle="city-picker" value="<s:property value="#session.staff.address"/>">
                                                 </div>
                                             </div>
                                         </div>
@@ -119,16 +136,16 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label" for="disabled-input">联系电话</label>
                                     <div class="col-md-9">
-                                        <input type="tel" id="disabled-input" name="phone" class="form-control" placeholder="联系电话" required="required">
+                                        <input type="tel" id="disabled-input" name="phone" value="<s:property value="%{#session.staff.phone}"/>" class="form-control" placeholder="联系电话" required="required">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label" for="textarea-input">备注</label>
                                     <div class="col-md-9">
-                                        <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control" placeholder="备注..."></textarea>
+                                        <textarea id="textarea-input" name="remark" rows="9" class="form-control" placeholder="备注..."></textarea>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-dot-circle-o"></i> 添加</button>
+                                <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-dot-circle-o"></i> 修改</button>
                                 <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> 重置</button>
                             </form>
                         </div>
@@ -139,8 +156,6 @@
         </div>
     </div>
 </div>
-
-
 
 <!-- start: JavaScript-->
 <!--[if !IE]>-->
@@ -186,6 +201,5 @@
 <script src="/assets/js/pages/table.js"></script>
 
 <!-- end: JavaScript-->
-
 </body>
 </html>

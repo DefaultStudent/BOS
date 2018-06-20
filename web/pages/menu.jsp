@@ -22,13 +22,15 @@
                 <li>
                     <a href="#"><i class="fa fa-file-text"></i><span class="text"> 仓库管理</span> <span class="fa fa-angle-down pull-right"></span></a>
                     <ul class="nav sub">
-                        <li><a href="#"><i class="fa fa-car"></i><span class="text"> 仓库信息添加</span></a></li>
+                        <li><a href="findAllStorage.action"><i class="fa fa-hdd-o"></i><span class="text"> 仓库信息概览</span></a></li>
+                        <li><a href="/pages/storage/storageadd.jsp"><i class="fa fa-car"></i><span class="text"> 仓库信息添加</span></a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-list-alt"></i><span class="text"> 分区管理</span> <span class="fa fa-angle-down pull-right"></span></a>
+                    <a href="#"><i class="fa fa-list-alt"></i><span class="text"> 进货管理</span> <span class="fa fa-angle-down pull-right"></span></a>
                     <ul class="nav sub">
-                        <li><a href="form-elements.html"><i class="fa fa-indent"></i><span class="text"> 分区信息添加</span></a></li>
+                        <li><a href="form-elements.html"><i class="fa fa-indent"></i><span class="text"> 进货信息概览</span></a></li>
+                        <li><a href="form-elements.html"><i class="fa fa-indent"></i><span class="text"> 进货信息添加</span></a></li>
                     </ul>
                 </li>
                 <li>
@@ -39,7 +41,7 @@
                             <i class="fa fa-random"></i>
                             <span class="text"> 员工信息概览</span></a>
                         </li>
-                        <li><a href="/pages/user/useradd.jsp">
+                        <li><a href="/pages/staff/useradd.jsp">
                             <i class="fa fa-random"></i>
                             <span class="text"> 员工信息添加</span></a>
                         </li>

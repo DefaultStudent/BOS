@@ -11,4 +11,23 @@ public interface IStaffService {
      * @param model
      */
     public void addStaff(User model);
+
+    /**
+     * 根据id查询员工
+     * @param id
+     * @return
+     */
+    public User findStaffById(int id);
+
+    /**
+     * 更新员工信息
+     * @param model
+     */
+    public void updateStaff(User model);
+
+    /**
+     * 删除员工信息
+     * @param model
+     */
+    public void deleteStaff(User model);
 }

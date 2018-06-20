@@ -40,6 +40,13 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script language="javascript">
+        function delcfm() {
+            if (!confirm("确认要删除？")) {
+                window.event.returnValue = false;
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -79,11 +86,13 @@
                             <table class="table table-bordered">
                                 <thead>
                                 <tr>
+                                    <th>员工编号</th>
                                     <th>员工姓名</th>
                                     <th>性别</th>
                                     <th>生日</th>
                                     <th>住址</th>
                                     <th>联系方式</th>
+                                    <th>职位</th>
                                     <th>备注</th>
                                     <th>操作</th>
                                 </tr>
@@ -91,20 +100,32 @@
                                 <tbody>
                                 <s:iterator var="user" value="#session.findAllUser">
                                 <tr>
+                                    <td><s:property value="#user.id"/></td>
                                     <td><s:property value="#user.username"/> </td>
                                     <td><s:property value="#user.gender"/> </td>
                                     <td><s:property value="#user.birth"/> </td>
                                     <td><s:property value="#user.address"/></td>
                                     <td><s:property value="#user.phone"/> </td>
+                                    <td>
+                                        <s:if test="#user.role==0">
+                                            系统管理员
+                                        </s:if>
+                                        <s:elseif test="#user.role==1">
+                                            仓库管理员
+                                        </s:elseif>
+                                        <s:else>
+                                            普通员工
+                                        </s:else>
+                                    </td>
                                     <td><s:property value="#user.remark"/></td>
                                     <td>
-                                        <a class="btn btn-info" href="table.html#">
+                                        <s:a class="btn btn-info" href="findStaffById?id=%{#user.id}">
                                             <i class="fa fa-edit "></i>
-                                        </a>
-                                        <a class="btn btn-danger" href="table.html#">
+                                        </s:a>
+                                        <s:a class="btn btn-danger" href="deleteStaff.action?id=%{#user.id}" onclick="delcfm()">
                                             <i class="fa fa-trash-o "></i>
 
-                                        </a>
+                                        </s:a>
                                     </td>
                                 </tr>
                                 </s:iterator>
