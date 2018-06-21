@@ -45,6 +45,13 @@
     <script src="http://hovertree.com/texiao/bootstrap/4/js/city-picker.data.js"></script>
     <script src="http://hovertree.com/texiao/bootstrap/4/js/city-picker.js"></script>
     <script src="http://hovertree.com/texiao/bootstrap/4/js/main.js"></script>
+    <script language="javascript">
+        function crmedit() {
+            if (!confirm("确认要修改？")) {
+                window.event.returnValue = false;
+            }
+        }
+    </script>
 </head>
 <body>
 <!-- start: Header -->
@@ -85,12 +92,22 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">性别</label>
                                     <div class="col-md-9">
-                                        <label class="checkbox-inline">
-                                            <input type="radio" name="gender" value="男" checked="checked"> 男
-                                        </label>
-                                        <label class="checkbox-inline">
-                                            <input type="radio" name="gender" value="女"> 女
-                                        </label>
+                                        <s:if test='#session.staff.gender=="男"'>
+                                            <label class="checkbox-inline">
+                                                <input type="radio" name="gender" value="男" checked="checked"> 男
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="radio" name="gender" value="女"> 女
+                                            </label>
+                                        </s:if>
+                                        <s:else>
+                                            <label class="checkbox-inline">
+                                                <input type="radio" name="gender" value="男"> 男
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="radio" name="gender" value="女" checked="checked"> 女
+                                            </label>
+                                        </s:else>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -142,10 +159,10 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label" for="textarea-input">备注</label>
                                     <div class="col-md-9">
-                                        <textarea id="textarea-input" name="remark" rows="9" class="form-control" placeholder="备注..."></textarea>
+                                        <textarea id="textarea-input" name="remark" rows="9" class="form-control" placeholder="备注..."><s:property value="%{#session.staff.remark}"/></textarea>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-dot-circle-o"></i> 修改</button>
+                                <button type="submit" class="btn btn-sm btn-success" onclick="crmedit()"><i class="fa fa-dot-circle-o"></i> 修改</button>
                                 <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> 重置</button>
                             </form>
                         </div>

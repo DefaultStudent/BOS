@@ -61,5 +61,25 @@
         <action name="deleteStorage" class="com.bos.web.action.StorageAction" method="deleteStorage">
             <result name="success" type="chain">findAllStorage</result>
         </action>
+        <!-- MaterialAction -->
+        <action name="findAllMaterial" class="com.bos.web.action.MaterialAction" method="findAllMaterial">
+
+        </action>
+        <!-- SupplierAction -->
+        <action name="findAllSupplier" class="com.bos.web.action.SupplierAction" method="findAllSupplier">
+            <result name="success">/pages/supplier/supplierIdex.jsp</result>
+        </action>
+        <action name="saveSupplier" class="com.bos.web.action.SupplierAction" method="saveSupplier">
+            <result name="success" type="chain">findAllSupplier</result>
+        </action>
+        <action name="findSupplierById" class="com.bos.web.action.SupplierAction" method="findSupplierById">
+            <result name="success">/pages/supplier/supplieredit.jsp</result>
+        </action>
+        <action name="updateSupplier" class="com.bos.web.action.SupplierAction" method="updateSupplier">
+            <result name="success" type="chain">findAllSupplier</result>
+        </action>
+        <action name="deleteSupplier" class="com.bos.web.action.SupplierAction" method="deleteSupplier">
+            <result name="success" type="chain">findAllSupplier</result>
+        </action>
     </package>
 </struts>

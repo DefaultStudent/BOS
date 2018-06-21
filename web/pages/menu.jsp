@@ -48,9 +48,10 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-briefcase"></i><span class="text"> 地区管理</span> <span class="fa fa-angle-down pull-right"></span></a>
+                    <a href="#"><i class="fa fa-briefcase"></i><span class="text"> 供应商管理</span> <span class="fa fa-angle-down pull-right"></span></a>
                     <ul class="nav sub">
-                        <li><a href="ui-sliders-progress.html"><i class="fa fa-align-left"></i><span class="text"> 地区信息添加</span></a></li>
+                        <li><a href="findAllSupplier.action"><i class="fa fa-align-left"></i><span class="text"> 供应商信息概览</span></a></li>
+                        <li><a href="/pages/supplier/supplieradd.jsp"><i class="fa fa-align-left"></i><span class="text"> 供应商信息添加</span></a></li>
                     </ul>
                 </li>
                 <li>

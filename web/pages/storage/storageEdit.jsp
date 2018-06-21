@@ -75,6 +75,7 @@
                         <li><i class="fa fa-indent"></i>仓库信息修改</li>
                     </ol>
                 </div>
+            </div>
                 <div class="col-lg-12">
                     <div class="row">
                         <div class="panel panel-default">
@@ -103,16 +104,126 @@
                                         <label class="col-md-3 control-label">货物数量</label>
                                         <div class="col-md-9">
                                             <select name="materialnum" class="form-control" size="1">
-                                                <option value="10">10件</option>
-                                                <option value="20">20件</option>
-                                                <option value="30">30件</option>
-                                                <option value="40">40件</option>
-                                                <option value="50">50件</option>
-                                                <option value="60">60件</option>
-                                                <option value="70">70件</option>
-                                                <option value="80">80件</option>
-                                                <option value="90">90件</option>
-                                                <option value="100">100件</option>
+                                                <s:if test='#session.storageById.materialnum=="10" '>
+                                                    <option value="10" selected="selected">10件</option>
+                                                    <option value="20">20件</option>
+                                                    <option value="30">30件</option>
+                                                    <option value="40">40件</option>
+                                                    <option value="50">50件</option>
+                                                    <option value="60">60件</option>
+                                                    <option value="70">70件</option>
+                                                    <option value="80">80件</option>
+                                                    <option value="90">90件</option>
+                                                    <option value="100">100件</option>
+                                                </s:if>
+                                                <s:elseif test='#session.storageById.materialnum=="20" '>
+                                                    <option value="10">10件</option>
+                                                    <option value="20" selected="selected">20件</option>
+                                                    <option value="30">30件</option>
+                                                    <option value="40">40件</option>
+                                                    <option value="50">50件</option>
+                                                    <option value="60">60件</option>
+                                                    <option value="70">70件</option>
+                                                    <option value="80">80件</option>
+                                                    <option value="90">90件</option>
+                                                    <option value="100">100件</option>
+                                                </s:elseif>
+                                                <s:elseif test='#session.storageById.materialnum=="30" '>
+                                                    <option value="10">10件</option>
+                                                    <option value="20">20件</option>
+                                                    <option value="30" selected="selected">30件</option>
+                                                    <option value="40">40件</option>
+                                                    <option value="50">50件</option>
+                                                    <option value="60">60件</option>
+                                                    <option value="70">70件</option>
+                                                    <option value="80">80件</option>
+                                                    <option value="90">90件</option>
+                                                    <option value="100">100件</option>
+                                                </s:elseif>
+                                                <s:elseif test='#session.storageById.materialnum=="40" '>
+                                                    <option value="10">10件</option>
+                                                    <option value="20">20件</option>
+                                                    <option value="30">30件</option>
+                                                    <option value="40" selected="selected">40件</option>
+                                                    <option value="50">50件</option>
+                                                    <option value="60">60件</option>
+                                                    <option value="70">70件</option>
+                                                    <option value="80">80件</option>
+                                                    <option value="90">90件</option>
+                                                    <option value="100">100件</option>
+                                                </s:elseif>
+                                                <s:elseif test='#session.storageById.materialnum=="50" '>
+                                                    <option value="10">10件</option>
+                                                    <option value="20">20件</option>
+                                                    <option value="30">30件</option>
+                                                    <option value="40">40件</option>
+                                                    <option value="50" selected="selected">50件</option>
+                                                    <option value="60">60件</option>
+                                                    <option value="70">70件</option>
+                                                    <option value="80">80件</option>
+                                                    <option value="90">90件</option>
+                                                    <option value="100">100件</option>
+                                                </s:elseif>
+                                                <s:elseif test='#session.storageById.materialnum=="60" '>
+                                                    <option value="10">10件</option>
+                                                    <option value="20">20件</option>
+                                                    <option value="30">30件</option>
+                                                    <option value="40">40件</option>
+                                                    <option value="50">50件</option>
+                                                    <option value="60" selected="selected">60件</option>
+                                                    <option value="70">70件</option>
+                                                    <option value="80">80件</option>
+                                                    <option value="90">90件</option>
+                                                    <option value="100">100件</option>
+                                                </s:elseif>
+                                                <s:elseif test='#session.storageById.materialnum=="70" '>
+                                                    <option value="10">10件</option>
+                                                    <option value="20">20件</option>
+                                                    <option value="30">30件</option>
+                                                    <option value="40">40件</option>
+                                                    <option value="50">50件</option>
+                                                    <option value="60">60件</option>
+                                                    <option value="70" selected="selected">70件</option>
+                                                    <option value="80">80件</option>
+                                                    <option value="90">90件</option>
+                                                    <option value="100">100件</option>
+                                                </s:elseif>
+                                                <s:elseif test='#session.storageById.materialnum=="80" '>
+                                                    <option value="10">10件</option>
+                                                    <option value="20">20件</option>
+                                                    <option value="30">30件</option>
+                                                    <option value="40">40件</option>
+                                                    <option value="50">50件</option>
+                                                    <option value="60">60件</option>
+                                                    <option value="70">70件</option>
+                                                    <option value="80" selected="selected">80件</option>
+                                                    <option value="90">90件</option>
+                                                    <option value="100">100件</option>
+                                                </s:elseif>
+                                                <s:elseif test='#session.storageById.materialnum=="90" '>
+                                                    <option value="10">10件</option>
+                                                    <option value="20">20件</option>
+                                                    <option value="30">30件</option>
+                                                    <option value="40">40件</option>
+                                                    <option value="50">50件</option>
+                                                    <option value="60">60件</option>
+                                                    <option value="70">70件</option>
+                                                    <option value="80">80件</option>
+                                                    <option value="90" selected="selected">90件</option>
+                                                    <option value="100">100件</option>
+                                                </s:elseif>
+                                                <s:else>
+                                                    <option value="10">10件</option>
+                                                    <option value="20">20件</option>
+                                                    <option value="30">30件</option>
+                                                    <option value="40">40件</option>
+                                                    <option value="50">50件</option>
+                                                    <option value="60">60件</option>
+                                                    <option value="70">70件</option>
+                                                    <option value="80">80件</option>
+                                                    <option value="90">90件</option>
+                                                    <option value="100" selected="selected">100件</option>
+                                                </s:else>
                                             </select>
                                         </div>
                                     </div>

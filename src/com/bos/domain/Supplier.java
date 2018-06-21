@@ -45,7 +45,7 @@ public class Supplier {
     }
 
     @Basic
-    @Column(name = "E-mail", nullable = true, length = 50)
+    @Column(name = "email", nullable = true, length = 50)
     public String geteMail() {
         return eMail;
     }
