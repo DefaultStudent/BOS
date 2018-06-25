@@ -63,7 +63,22 @@
         </action>
         <!-- MaterialAction -->
         <action name="findAllMaterial" class="com.bos.web.action.MaterialAction" method="findAllMaterial">
-
+            <result name="success">/pages/material/materialIndex.jsp</result>
+        </action>
+        <action name="findMaterialById" class="com.bos.web.action.MaterialAction" method="findMaterialById">
+            <result name="success">/pages/material/materialIndex.jsp</result>
+        </action>
+        <action name="findSupplier" class="com.bos.web.action.SupplierAction" method="findAllSupplier">
+            <result name="success" type="chain">findStorage</result>
+        </action>
+        <action name="saveMaterial" class="com.bos.web.action.MaterialAction" method="saveMaterial">
+            <result name="success" type="chain">findAllMaterial</result>
+        </action>
+        <action name="findStorage" class="com.bos.web.action.StorageAction" method="findAllStorage">
+            <result name="success">/pages/material/materialAdd.jsp</result>
+        </action>
+        <action name="deleteMaterial" class="com.bos.web.action.MaterialAction" method="deleteMaterial">
+            <result name="success" type="chain">findAllMaterial</result>
         </action>
         <!-- SupplierAction -->
         <action name="findAllSupplier" class="com.bos.web.action.SupplierAction" method="findAllSupplier">

@@ -1,6 +1,7 @@
 package com.bos.service;
 
 import com.bos.domain.Material;
+import com.bos.domain.MaterialAndSupplier;
 
 import java.util.List;
 
@@ -12,27 +13,29 @@ public interface IMaterialService {
     /**
      * 添加商品
      * @param model
+     * @param id
      */
-    public void addMaterial(Material model);
+    public void addMaterial(Material model, int id);
 
     /**
      * 删除商品
      * @param model
+     * @param id
      */
-    public void deleteMaterial(Material model);
+    public void deleteMaterial(Material model, int id);
 
     /**
      * 查询全部商品信息
      * @return
      */
-    public List<Material> findAllMaterial();
+    public List<MaterialAndSupplier> findAllMaterial();
 
     /**
      * 根据id查询商品信息
      * @param id
      * @return
      */
-    public Material findMaterialById(int id);
+    public List<MaterialAndSupplier> findMaterialById(int id);
 
     /**
      * 更新商品

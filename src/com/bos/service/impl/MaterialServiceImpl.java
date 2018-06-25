@@ -2,6 +2,7 @@ package com.bos.service.impl;
 
 import com.bos.dao.IMaterialDao;
 import com.bos.domain.Material;
+import com.bos.domain.MaterialAndSupplier;
 import com.bos.service.IMaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,9 +24,11 @@ public class MaterialServiceImpl implements IMaterialService {
      * 添加商品
      *
      * @param material
+     * @param id
      */
     @Override
-    public void addMaterial(Material material) {
+    public void addMaterial(Material material, int id) {
+        materialDao.numAdd(id);
         materialDao.save(material);
     }
 
@@ -33,9 +36,11 @@ public class MaterialServiceImpl implements IMaterialService {
      * 删除商品
      *
      * @param material
+     * @param id
      */
     @Override
-    public void deleteMaterial(Material material) {
+    public void deleteMaterial(Material material, int id) {
+        materialDao.numSub(id);
         materialDao.delete(material);
     }
 
@@ -45,8 +50,8 @@ public class MaterialServiceImpl implements IMaterialService {
      * @return
      */
     @Override
-    public List<Material> findAllMaterial() {
-        List list = materialDao.findAll();
+    public List<MaterialAndSupplier> findAllMaterial() {
+        List<MaterialAndSupplier> list = materialDao.findAllMaterial();
         if (list.size() > 0) {
             return list;
         } else {
@@ -61,8 +66,13 @@ public class MaterialServiceImpl implements IMaterialService {
      * @return
      */
     @Override
-    public Material findMaterialById(int id) {
-        return materialDao.findById(id);
+    public List<MaterialAndSupplier> findMaterialById(int id) {
+        List<MaterialAndSupplier> list = materialDao.findMaterialById(id);
+        if (list.size() > 0) {
+            return list;
+        } else {
+            return null;
+        }
     }
 
     /**

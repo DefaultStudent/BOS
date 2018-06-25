@@ -2,14 +2,14 @@
 <%--
   Created by IntelliJ IDEA.
   User: vodka
-  Date: 2018/6/21
-  Time: 下午2:37
+  Date: 2018/6/25
+  Time: 上午9:45
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>供应商修改</title>
+    <title>商品信息添加</title>
     <!-- Import google fonts - Heading first/ text second -->
     <link rel='stylesheet' type='text/css' href='http://fonts.useso.com/css?family=Open+Sans:400,700|Droid+Sans:400,700' />
     <!--[if lt IE 9]>
@@ -58,11 +58,11 @@
     <div class="main ">
         <div class="row">
             <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa-indent"></i>供应商信息添加</h3>
+                <h3 class="page-header"><i class="fa fa-indent"></i>进货信息</h3>
                 <ol class="breadcrumb">
                     <li><i class="fa fa-home"></i><a href="/index.jsp">首页</a></li>
-                    <li><i class="fa fa-list-alt"></i><a href="findAllSupplier.action">供应商管理</a></li>
-                    <li><i class="fa fa-indent"></i>供应商信息修改</li>
+                    <li><i class="fa fa-list-alt"></i><a href="findAllUser.action">商品管理</a></li>
+                    <li><i class="fa fa-indent"></i>进货信息添加</li>
                 </ol>
             </div>
         </div>
@@ -70,45 +70,59 @@
             <div class="row">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <form action="updateSupplier.action" method="post" enctype="multipart/form-data" class="form-horizontal ">
-                            <input type="hidden" name="supplyid" value="<s:property value="%{#session.supplierById.supplyid}"/>">
+                        <form action="saveMaterial.action" method="post" enctype="multipart/form-data" class="form-horizontal ">
+                            <input type="hidden" value="123" name="password">
                             <div class="form-group">
-                                <label class="col-md-3 control-label">供应商名称</label>
+                                <label class="col-md-3 control-label">商品编号</label>
                                 <div class="col-md-9">
-                                    <input name="sname" type="text" class="form-control" required="required" value="<s:property value="%{#session.supplierById.sname}"/>">
+                                    <input name="id" type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">联系电话</label>
+                                <label class="col-md-3 control-label">商品名称</label>
                                 <div class="col-md-9">
-                                    <input name="phone" type="tel" class="form-control" required="required" value="<s:property value="%{#session.supplierById.phone}"/>">
+                                    <input name="name" type="text" class="form-control" required="required">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">邮箱地址</label>
+                                <label class="col-md-3 control-label">商品类型</label>
                                 <div class="col-md-9">
-                                    <input type="email" name="eMail" class="form-control" required="required" value="<s:property value="%{#session.supplierById.eMail}"/>">
+                                    <input name="type" type="text" class="form-control" required="required">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">公司地址</label>
+                                <label class="col-md-3 control-label">进货日期</label>
                                 <div class="col-md-9">
-                                    <div id="distpicker">
-                                        <div class="form-group">
-                                            <div style="position: relative;">
-                                                <input id="city-picker3" name="address" class="form-control" readonly type="text" data-toggle="city-picker" value="<s:property value="%{#session.supplierById.address}"/>">
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <input type="date" name="date" class="form-control" required="required">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="disabled-input">邮编</label>
+                                <label class="col-md-3 control-label">供应商</label>
                                 <div class="col-md-9">
-                                    <input id="disabled-input" name="code" class="form-control" placeholder="邮编" required="required" value="<s:property value="%{#session.supplierById.code}"/>">
+                                    <select name="supplyid" class="form-control">
+                                        <s:iterator var="s" value="#session.findAllSupplier">
+                                            <option value="<s:property value="#s.supplyid"/>"><s:property value="#s.sname"/></option>
+                                        </s:iterator>
+                                    </select>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-dot-circle-o"></i> 修改</button>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">添加至仓库</label>
+                                <div class="col-md-9">
+                                    <select name="storageid" class="form-control">
+                                        <s:iterator var="st" value="#session.storage">
+                                            <option value="<s:property value="#st.id"/>"><s:property value="#st.name"/></option>
+                                        </s:iterator>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="textarea-input">备注</label>
+                                <div class="col-md-9">
+                                    <textarea id="textarea-input" name="remark" rows="9" class="form-control" placeholder="备注..."></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-dot-circle-o"></i> 添加</button>
                             <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> 重置</button>
                         </form>
                     </div>
@@ -118,6 +132,10 @@
         </div>
     </div>
 </div>
+</div>
+
+
+
 <!-- start: JavaScript-->
 <!--[if !IE]>-->
 
@@ -162,5 +180,6 @@
 <script src="/assets/js/pages/table.js"></script>
 
 <!-- end: JavaScript-->
+
 </body>
 </html>

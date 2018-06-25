@@ -74,7 +74,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">供应商名称</label>
                                 <div class="col-md-9">
-                                    <input name="name" type="text" class="form-control" required="required">
+                                    <input name="sname" type="text" class="form-control" required="required">
                                 </div>
                             </div>
                             <div class="form-group">

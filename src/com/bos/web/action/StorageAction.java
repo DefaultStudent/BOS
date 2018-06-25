@@ -20,6 +20,10 @@ public class StorageAction extends BaseAction<Storage> {
     @Resource
     private IStorageService storageService;
 
+    /**
+     * 查询仓库信息
+     * @return
+     */
     public String findAllStorage() {
         List list = storageService.findAllStorage();
         if (list.size() > 0) {

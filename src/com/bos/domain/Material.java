@@ -10,11 +10,10 @@ public class Material {
     private int id;
     private String name;
     private String type;
-    private Date date;
-    private Integer supplyid;
+    private String date;
+    private int supplyid;
     private String remark;
     private Collection<Instorage> instoragesById;
-    private Supplier supplierBySupplyid;
     private Collection<Outstorage> outstoragesById;
 
     @Id
@@ -49,21 +48,21 @@ public class Material {
 
     @Basic
     @Column(name = "date", nullable = true)
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
     @Basic
-    @Column(name = "supplyid", nullable = true, insertable = false, updatable = false)
-    public Integer getSupplyid() {
+    @Column(name = "supplyid", nullable = true)
+    public int getSupplyid() {
         return supplyid;
     }
 
-    public void setSupplyid(Integer supplyid) {
+    public void setSupplyid(int supplyid) {
         this.supplyid = supplyid;
     }
 
@@ -103,16 +102,6 @@ public class Material {
 
     public void setInstoragesById(Collection<Instorage> instoragesById) {
         this.instoragesById = instoragesById;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "supplyid", referencedColumnName = "supplyid")
-    public Supplier getSupplierBySupplyid() {
-        return supplierBySupplyid;
-    }
-
-    public void setSupplierBySupplyid(Supplier supplierBySupplyid) {
-        this.supplierBySupplyid = supplierBySupplyid;
     }
 
     @OneToMany(mappedBy = "materialByMaterialid")

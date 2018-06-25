@@ -58,7 +58,13 @@
                     <a href="#"><i class="fa fa-list-alt"></i><span class="text"> 商品管理</span> <span class="fa fa-angle-down pull-right"></span></a>
                     <ul class="nav sub">
                         <li>
-                            <a href="ui-sliders-progress.html">
+                            <a href="findAllMaterial.action">
+                                <i class="fa fa-align-left"></i>
+                                <span class="text"> 全部商品信息</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="findSupplier.action">
                                 <i class="fa fa-align-left"></i>
                                 <span class="text"> 商品入库</span>
                             </a>

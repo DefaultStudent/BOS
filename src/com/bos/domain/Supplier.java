@@ -1,18 +1,19 @@
 package com.bos.domain;
 
-import javax.persistence.*;
-import java.util.Collection;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
 public class Supplier {
     private int supplyid;
-    private String name;
+    private String sname;
     private String phone;
-    private String eMail;
+    private String email;
     private String address;
     private Integer code;
-    private Collection<Material> materialsBySupplyid;
 
     @Id
     @Column(name = "supplyid", nullable = false)
@@ -25,13 +26,13 @@ public class Supplier {
     }
 
     @Basic
-    @Column(name = "name", nullable = false, length = 50)
-    public String getName() {
-        return name;
+    @Column(name = "sname", nullable = false, length = 50)
+    public String getSname() {
+        return sname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSname(String sname) {
+        this.sname = sname;
     }
 
     @Basic
@@ -46,12 +47,12 @@ public class Supplier {
 
     @Basic
     @Column(name = "email", nullable = true, length = 50)
-    public String geteMail() {
-        return eMail;
+    public String getEmail() {
+        return email;
     }
 
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Basic
@@ -80,9 +81,9 @@ public class Supplier {
         if (o == null || getClass() != o.getClass()) return false;
         Supplier supplier = (Supplier) o;
         return supplyid == supplier.supplyid &&
-                Objects.equals(name, supplier.name) &&
+                Objects.equals(sname, supplier.sname) &&
                 Objects.equals(phone, supplier.phone) &&
-                Objects.equals(eMail, supplier.eMail) &&
+                Objects.equals(email, supplier.email) &&
                 Objects.equals(address, supplier.address) &&
                 Objects.equals(code, supplier.code);
     }
@@ -90,15 +91,6 @@ public class Supplier {
     @Override
     public int hashCode() {
 
-        return Objects.hash(supplyid, name, phone, eMail, address, code);
-    }
-
-    @OneToMany(mappedBy = "supplierBySupplyid")
-    public Collection<Material> getMaterialsBySupplyid() {
-        return materialsBySupplyid;
-    }
-
-    public void setMaterialsBySupplyid(Collection<Material> materialsBySupplyid) {
-        this.materialsBySupplyid = materialsBySupplyid;
+        return Objects.hash(supplyid, sname, phone, email, address, code);
     }
 }

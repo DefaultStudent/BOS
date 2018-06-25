@@ -1,9 +1,11 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.bos.domain.MaterialAndSupplier" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: vodka
-  Date: 2018/6/21
-  Time: 上午11:38
+  Date: 2018/6/22
+  Time: 上午10:03
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -13,7 +15,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>供应商管理</title>
+    <title>商品管理</title>
 
     <!-- Import google fonts - Heading first/ text second -->
     <link rel='stylesheet' type='text/css' href='http://fonts.useso.com/css?family=Open+Sans:400,700|Droid+Sans:400,700' />
@@ -67,10 +69,10 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header"><i class="fa fa-table"></i>供应商管理</h3>
+                    <h3 class="page-header"><i class="fa fa-table"></i>商品管理</h3>
                     <ol class="breadcrumb">
                         <li><a href="/index.jsp"><i class="fa fa-home"></i>首页</a></li>
-                        <li><i class="fa fa-table"></i>供应商管理管理</li>
+                        <li><i class="fa fa-table"></i>商品管理管理</li>
                     </ol>
                 </div>
             </div>
@@ -78,7 +80,7 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h2><i class="fa fa-table red"></i><span class="break"></span><strong>员工列表</strong></h2>
+                        <h2><i class="fa fa-table red"></i><span class="break"></span><strong>商品信息列表</strong></h2>
                         <div class="panel-actions">
                         </div>
                     </div>
@@ -86,29 +88,31 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th>供应商编号</th>
-                                <th>供应商名称</th>
-                                <th>联系电话</th>
-                                <th>邮箱地址</th>
-                                <th>公司地址</th>
-                                <th>邮编</th>
+                                <th>商品编号</th>
+                                <th>商品名称</th>
+                                <th>商品类型</th>
+                                <th>进货日期</th>
+                                <th>存储仓库</th>
+                                <th>供应商</th>
+                                <th>备注</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <s:iterator var="supplier" value="#session.findAllSupplier">
+
+                            <s:iterator var="ma" value="#session.ma">
                                 <tr>
-                                    <td><s:property value="#supplier.supplyid"/></td>
-                                    <td><s:property value="#supplier.sname"/></td>
-                                    <td><s:property value="#supplier.phone"/> </td>
-                                    <td><s:property value="#supplier.eMail"/> </td>
-                                    <td><s:property value="#supplier.address"/></td>
-                                    <td><s:property value="#supplier.code"/> </td>
+                                    <td><s:property value="#ma.id"/></td>
+                                    <td><s:property value="#ma.name"/> </td>
+                                    <td><s:property value="#ma.type"/> </td>
+                                    <td><s:property value="#ma.date"/> </td>
+                                    <td><s:property value="#ma.sname"/></td>
+                                    <td><s:property value="#ma.remark"/></td>
                                     <td>
-                                        <s:a class="btn btn-info" href="findSupplierById?supplyid=%{#supplier.supplyid}">
+                                        <s:a class="btn btn-info" href="findMaterialById?id=%{#ma.id}">
                                             <i class="fa fa-edit "></i>
                                         </s:a>
-                                        <s:a class="btn btn-danger" href="deleteSupplier?supplyid=%{#supplier.supplyid}" onclick="delcfm()">
+                                        <s:a class="btn btn-danger" href="deleteMatetial.action?id=%{#ma.id}" onclick="delcfm()">
                                             <i class="fa fa-trash-o "></i>
 
                                         </s:a>
