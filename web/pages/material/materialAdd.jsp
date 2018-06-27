@@ -71,13 +71,6 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <form action="saveMaterial.action" method="post" enctype="multipart/form-data" class="form-horizontal ">
-                            <input type="hidden" value="123" name="password">
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">商品编号</label>
-                                <div class="col-md-9">
-                                    <input name="id" type="text" class="form-control">
-                                </div>
-                            </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">商品名称</label>
                                 <div class="col-md-9">

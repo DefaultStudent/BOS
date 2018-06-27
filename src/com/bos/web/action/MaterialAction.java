@@ -87,9 +87,11 @@ public class MaterialAction extends BaseAction<Material> {
      * @return
      */
     public String deleteMaterial() {
-        String id = ServletActionContext.getRequest().getParameter("");
-        int storageId = Integer.parseInt(id);
-        materialService.deleteMaterial(model, storageId);
+        int instorageid = Integer.parseInt(ServletActionContext.getRequest().getParameter("ind"));
+        int number = Integer.parseInt(ServletActionContext.getRequest().getParameter("number"));
+        int storageid = Integer.parseInt(ServletActionContext.getRequest().getParameter("stid"));
+        Long num = new Long(number);
+        materialService.deleteMaterial(model, instorageid, storageid, num);
         return SUCCESS;
     }
 

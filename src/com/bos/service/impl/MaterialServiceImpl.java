@@ -10,13 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
  * @author Simon
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = SQLException.class)
 public class MaterialServiceImpl implements IMaterialService {
 
     @Autowired
@@ -42,7 +43,7 @@ public class MaterialServiceImpl implements IMaterialService {
         // 增加库存
         materialDao.numAdd(storageid, num);
         // 保存货物信息
-        materialDao.save(material);
+        materialDao.saveMaterial(material);
 
         // 设置进货信息
         instorage.setDate(material.getDate());
@@ -52,18 +53,22 @@ public class MaterialServiceImpl implements IMaterialService {
         instorage.setStorageid(storageid);
         instorage.setRemark(remark);
         // 保存进货消息
-        instorageDao.save(instorage);
+        instorageDao.saveInstorage(instorage);
     }
 
     /**
      * 删除商品
      *
      * @param material
-     * @param id
+     * @param instorageid
+     * @param storageid
+     * @param num
      */
     @Override
-    public void deleteMaterial(Material material, int id) {
-        materialDao.numSub(id);
+    public void deleteMaterial(Material material, int instorageid, int storageid, Long num) {
+        int number = new Long(num).intValue();
+        instorageDao.deleteInstorageById(instorageid);
+        materialDao.numSub(storageid, number);
         materialDao.delete(material);
     }
 

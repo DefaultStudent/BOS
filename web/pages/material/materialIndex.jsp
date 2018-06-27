@@ -91,9 +91,9 @@
                                 <th>商品编号</th>
                                 <th>商品名称</th>
                                 <th>商品类型</th>
-                                <th>进货日期</th>
                                 <th>存储仓库</th>
                                 <th>供应商</th>
+                                <th>数量</th>
                                 <th>备注</th>
                                 <th>操作</th>
                             </tr>
@@ -105,14 +105,15 @@
                                     <td><s:property value="#ma.id"/></td>
                                     <td><s:property value="#ma.name"/> </td>
                                     <td><s:property value="#ma.type"/> </td>
-                                    <td><s:property value="#ma.date"/> </td>
+                                    <td><s:property value="#ma.storagename"/></td>
                                     <td><s:property value="#ma.sname"/></td>
+                                    <td><s:property value="#ma.materialnum"/></td>
                                     <td><s:property value="#ma.remark"/></td>
                                     <td>
                                         <s:a class="btn btn-info" href="findMaterialById?id=%{#ma.id}">
                                             <i class="fa fa-edit "></i>
                                         </s:a>
-                                        <s:a class="btn btn-danger" href="deleteMatetial.action?id=%{#ma.id}" onclick="delcfm()">
+                                        <s:a class="btn btn-danger" href="deleteMaterial.action?id=%{#ma.id}&ind=%{#ma.instorage}&number=%{#ma.materialnum}&stid=%{#ma.storageid}" onclick="delcfm()">
                                             <i class="fa fa-trash-o "></i>
 
                                         </s:a>

@@ -23,9 +23,11 @@ public interface IMaterialService {
     /**
      * 删除商品
      * @param model
-     * @param id
+     * @param instorageid
+     * @param storageid
+     * @param number
      */
-    public void deleteMaterial(Material model, int id);
+    public void deleteMaterial(Material model, int instorageid, int storageid, Long number);
 
     /**
      * 查询全部商品信息

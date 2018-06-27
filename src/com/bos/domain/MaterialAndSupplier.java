@@ -13,6 +13,10 @@ public class MaterialAndSupplier {
     private Integer supplyid;
     private String remark;
     private String sname;
+    private int storageid;
+    private String storagename;
+    private Long materialnum;
+    private int instorage;
 
     public int getId() {
         return id;
@@ -68,5 +72,37 @@ public class MaterialAndSupplier {
 
     public void setSname(String sname) {
         this.sname = sname;
+    }
+
+    public int getStorageid() {
+        return storageid;
+    }
+
+    public void setStorageid(int storageid) {
+        this.storageid = storageid;
+    }
+
+    public String getStoragename() {
+        return storagename;
+    }
+
+    public void setStoragename(String storagename) {
+        this.storagename = storagename;
+    }
+
+    public Long getMaterialnum() {
+        return materialnum;
+    }
+
+    public void setMaterialnum(Long materialnum) {
+        this.materialnum = materialnum;
+    }
+
+    public int getInstorage() {
+        return instorage;
+    }
+
+    public void setInstorage(int instorage) {
+        this.instorage = instorage;
     }
 }

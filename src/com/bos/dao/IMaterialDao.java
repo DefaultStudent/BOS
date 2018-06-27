@@ -26,14 +26,22 @@ public interface IMaterialDao extends IBaseDao<Material>{
     public List<MaterialAndSupplier> findMaterialById(int id);
 
     /**
-     * 库存加一
+     * 库存增加
      * @param id
+     * @param num
      */
     public void numAdd(int id, int num);
 
     /**
-     * 库存减一
+     * 库存减少
      * @param id
+     * @param num
      */
-    public void numSub(int id);
+    public void numSub(int id, int num);
+
+    /**
+     * 添加商品
+     * @param model
+     */
+    public void saveMaterial(Material model);
 }
