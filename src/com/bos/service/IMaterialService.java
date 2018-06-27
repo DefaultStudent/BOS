@@ -46,5 +46,5 @@ public interface IMaterialService {
      * 更新商品
      * @param model
      */
-    public void updateMaterial(Material model);
+    public void updateMaterial(Material model, Long num, int reid, int adid);
 }

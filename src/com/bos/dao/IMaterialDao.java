@@ -44,4 +44,13 @@ public interface IMaterialDao extends IBaseDao<Material>{
      * @param model
      */
     public void saveMaterial(Material model);
+
+    /**
+     * 更新商品库存信息
+     * @param num
+     * @param reid
+     * @param adid
+     * @return
+     */
+    public int updateMaterialNum(Long num, int reid, int adid);
 }

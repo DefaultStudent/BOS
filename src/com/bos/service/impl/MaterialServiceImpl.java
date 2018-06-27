@@ -109,7 +109,15 @@ public class MaterialServiceImpl implements IMaterialService {
      * @param material
      */
     @Override
-    public void updateMaterial(Material material) {
-
+    public void updateMaterial(Material material, Long num, int reid, int adid) {
+        // 判断是否成功
+        if (materialDao.updateMaterialNum(num, reid, adid) == 0) {
+            // 成功
+            materialDao.update(material);
+            System.out.println("移库执行状态：成功");
+        } else {
+            // 失败
+            System.out.println("移库执行状态：失败");
+        }
     }
 }

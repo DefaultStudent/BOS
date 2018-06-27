@@ -44,8 +44,9 @@ public class MaterialDaoImpl extends BaseDaoImpl<Material> implements IMaterialD
      */
     @Override
     public List<MaterialAndSupplier> findAllMaterial() {
-        String hql = "SELECT m.id, m.name, m.type, m.date, s.sname, m.remark, st.name, ss.number, ss.id, st.id FROM Material m, Supplier s, Storage st, Instorage ss " +
-                "where s.supplyid = m.supplyid and ss.storageid = st.id and ss.materialid=m.id";
+        String hql = "SELECT m.id, m.name, m.type, m.date, s.sname, m.remark, st.name, ss.number, ss.id, st.id " +
+                "FROM Material m, Supplier s, Storage st, Instorage ss where s.supplyid = m.supplyid and " +
+                "ss.storageid = st.id and ss.materialid=m.id";
         List<Object[]> list = (List<Object[]>) this.getHibernateTemplate().find(hql);
         List<MaterialAndSupplier> materialAndSupplierList = new ArrayList<MaterialAndSupplier>();
         for (int i = 0; i < list.size(); i++) {
@@ -74,8 +75,9 @@ public class MaterialDaoImpl extends BaseDaoImpl<Material> implements IMaterialD
      */
     @Override
     public List<MaterialAndSupplier> findMaterialById(int id) {
-        String hql = "SELECT m.id, m.name, m.type, m.date, s.sname, m.remark, m.supplyid, st.id, st.name FROM " +
-                "Material m, Supplier s, Storage st where s.supplyid = m.supplyid and m.id =" + id;
+        String hql = "SELECT m.id, m.name, m.type, m.date, s.id, s.sname, m.remark, st.name, ss.number, ss.id, st.id " +
+                "FROM Material m, Supplier s, Storage st, Instorage ss where s.supplyid = m.supplyid and " +
+                "ss.storageid = st.id and ss.materialid=m.id and m.id = " + id;
         List<Object[]> list = (List<Object[]>) this.getHibernateTemplate().find(hql);
         List<MaterialAndSupplier> materialAndSupplierList = new ArrayList<MaterialAndSupplier>();
         for (int i = 0; i < list.size(); i++) {
@@ -83,10 +85,15 @@ public class MaterialDaoImpl extends BaseDaoImpl<Material> implements IMaterialD
             MaterialAndSupplier materialAndSupplier = new MaterialAndSupplier();
             materialAndSupplier.setId((Integer) objects[0]);
             materialAndSupplier.setName((String) objects[1]);
+            materialAndSupplier.setType((String) objects[2]);
             materialAndSupplier.setDate((String) objects[3]);
-            materialAndSupplier.setSname((String) objects[4]);
-            materialAndSupplier.setRemark((String) objects[5]);
-            materialAndSupplier.setSupplyid((Integer) objects[6]);
+            materialAndSupplier.setSupplyid((Integer) objects[4]);
+            materialAndSupplier.setSname((String) objects[5]);
+            materialAndSupplier.setRemark((String) objects[6]);
+            materialAndSupplier.setStoragename((String) objects[7]);
+            materialAndSupplier.setMaterialnum((Long) objects[8]);
+            materialAndSupplier.setInstorage((Integer) objects[9]);
+            materialAndSupplier.setStorageid((Integer) objects[10]);
             materialAndSupplierList.add(materialAndSupplier);
         }
         return materialAndSupplierList;
@@ -131,6 +138,64 @@ public class MaterialDaoImpl extends BaseDaoImpl<Material> implements IMaterialD
         } catch (Exception e) {
             System.out.println("删除失败");
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * 更新商品库存信息
+     *
+     * @param num
+     * @param reid  移出仓库编号
+     * @param adid  移至仓库编号
+     */
+    @Override
+    public int updateMaterialNum(Long num, int reid, int adid) {
+        /**
+         * 作为传递是否成功的标志
+         * 1 失败
+         * 0 成功
+         */
+        int flag;
+
+        /**
+         * 设置仓库最大容量为100
+         *
+         * 这里设计数据库时欠考虑，只能将库存最大值写死为100
+         * 日后可扩展为动态
+         */
+        int maxNum = 100;
+
+        // 查询将要移出货物的仓库的库存
+        String hql = "SELECT materialnum FROM Storage WHERE id = " + reid;
+        List list = this.getHibernateTemplate().find(hql);
+        String reNowNum = list.get(0).toString();
+        // 减少相应的库存
+        Long delNum = Integer.parseInt(reNowNum) - num;
+        String removeHql = "UPDATE Storage SET materialnum = " + delNum + " WHERE id = " + reid;
+
+        // 获取将要移至的仓库的库存
+        String hql1 = "SELECT materialnum FROM Storage WHERE id = " + adid;
+        List list1 = this.getHibernateTemplate().find(hql1);
+        String adNowNum = list1.get(0).toString();
+        // 添加相应的库存
+        Long adNum = Integer.parseInt(adNowNum) + num;
+        // 是否大于仓库容量
+        if (adNum > maxNum) {
+            // 大于最大值，不执行任何更新语句，返回失败状态值
+            flag = 1;
+            return flag;
+        } else {
+            // 添加相应的库存
+            String addHql = "UPDATE Storage SET materialnum = " + adNum + " WHERE id = " + adid;
+
+            // 更新两个仓库的库存
+            Session session = this.getSessionFactory().getCurrentSession();
+            session.createQuery(removeHql).executeUpdate();
+            session.createQuery(addHql).executeUpdate();
+
+            // 返回成功状态值
+            flag = 0;
+            return flag;
         }
     }
 }

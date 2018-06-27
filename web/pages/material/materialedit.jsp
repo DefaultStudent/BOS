@@ -2,8 +2,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: vodka
-  Date: 2018/6/25
-  Time: 上午9:45
+  Date: 2018/6/27
+  Time: 下午8:25
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -42,7 +42,6 @@
     <script src="http://hovertree.com/texiao/bootstrap/4/js/city-picker.data.js"></script>
     <script src="http://hovertree.com/texiao/bootstrap/4/js/city-picker.js"></script>
     <script src="http://hovertree.com/texiao/bootstrap/4/js/main.js"></script>
-</head>
 <body>
 <!-- start: Header -->
 <s:include value="/pages/header.jsp"/>
@@ -62,7 +61,7 @@
                 <ol class="breadcrumb">
                     <li><i class="fa fa-home"></i><a href="/index.jsp">首页</a></li>
                     <li><i class="fa fa-list-alt"></i><a href="findAllMaterial.action">商品管理</a></li>
-                    <li><i class="fa fa-indent"></i>进货信息添加</li>
+                    <li><i class="fa fa-indent"></i>商品信息管理</li>
                 </ol>
             </div>
         </div>
@@ -70,29 +69,36 @@
             <div class="row">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <form action="saveMaterial.action" method="post" enctype="multipart/form-data" class="form-horizontal ">
+                        <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal ">
+                            <input type="hidden" value="<s:property value="%{#session.mas.id}"/>">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">进货编号</label>
+                                <div class="col-md-9">
+                                    <input name="name" type="text" class="form-control" value="<s:property value="%{#session.mas.instorage}"/>" required="required">
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">商品名称</label>
                                 <div class="col-md-9">
-                                    <input name="name" type="text" class="form-control" required="required">
+                                    <input name="name" type="text" class="form-control" value="<s:property value="%{#session.mas.name}"/>" required="required">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">商品类型</label>
                                 <div class="col-md-9">
-                                    <input name="type" type="text" class="form-control" required="required">
+                                    <input name="type" type="text" class="form-control" value="<s:property value="%{#session.mas.type}"/>" required="required">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">商品数量</label>
                                 <div class="col-md-9">
-                                    <input name="number" type="text" class="form-control" required="required">
+                                    <input name="number" type="text" class="form-control" value="<s:property value="%{#session.mas.materialnum}"/>" required="required">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">进货日期</label>
                                 <div class="col-md-9">
-                                    <input type="date" name="date" class="form-control" required="required">
+                                    <input type="date" name="date" class="form-control" value="<s:property value="%{#session.mas.date}"/>" required="required">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -100,17 +106,33 @@
                                 <div class="col-md-9">
                                     <select name="supplyid" class="form-control">
                                         <s:iterator var="s" value="#session.findAllSupplier">
-                                            <option value="<s:property value="#s.supplyid"/>"><s:property value="#s.sname"/></option>
+                                            <s:if test="#s.supplyid==#session.mas.supplyid">
+                                                <option value="<s:property value="#s.supplyid"/>" selected="selected">
+                                                    <s:property value="%{#session.mas.sname}"/>
+                                                </option>
+                                            </s:if>
+                                            <s:else>
+                                                <option value="<s:property value="#s.supplyid"/>">
+                                                    <s:property value="#s.sname"/>
+                                                </option>
+                                            </s:else>
                                         </s:iterator>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">添加至仓库</label>
+                                <label class="col-md-3 control-label">移至仓库</label>
                                 <div class="col-md-9">
                                     <select name="storageid" class="form-control">
                                         <s:iterator var="st" value="#session.storage">
-                                            <option value="<s:property value="#st.id"/>"><s:property value="#st.name"/></option>
+                                            <s:if test="#st.id==#session.mas.storageid">
+                                                <option value="<s:property value="#st.id"/>" selected="selected">
+                                                    <s:property value="%{#session.mas.storagename}"/>
+                                                </option>
+                                            </s:if>
+                                            <s:else>
+                                                <option value="<s:property value="#st.id"/>"><s:property value="#st.name"/></option>
+                                            </s:else>
                                         </s:iterator>
                                     </select>
                                 </div>

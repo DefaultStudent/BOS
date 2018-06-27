@@ -45,13 +45,30 @@ public class MaterialAction extends BaseAction<Material> {
         MaterialAndSupplier materialAndSupplier = new MaterialAndSupplier();
         List<MaterialAndSupplier> list = materialService.findMaterialById(id);
         for (MaterialAndSupplier materialAndSuppliers : list) {
+            // 进货单编号
+            materialAndSupplier.setInstorage(materialAndSuppliers.getInstorage());
+            // 商品编号
             materialAndSupplier.setId(materialAndSuppliers.getId());
+            // 商品名称
             materialAndSupplier.setName(materialAndSuppliers.getName());
+            // 商品类型
             materialAndSupplier.setType(materialAndSuppliers.getType());
+            // 进货日期
             materialAndSupplier.setDate(materialAndSuppliers.getDate());
-            materialAndSupplier.setSname(materialAndSuppliers.getSname());
-            materialAndSupplier.setRemark(materialAndSuppliers.getRemark());
+            // 仓库编号
+            materialAndSupplier.setStorageid(materialAndSuppliers.getStorageid());
+            // 仓库名称
+            materialAndSupplier.setStoragename(materialAndSuppliers.getStoragename());
+            // 供应商编号
             materialAndSupplier.setSupplyid(materialAndSuppliers.getSupplyid());
+            // 供应商名称
+            materialAndSupplier.setSname(materialAndSuppliers.getSname());
+            // 备注
+            materialAndSupplier.setRemark(materialAndSuppliers.getRemark());
+            // 供货商编号
+            materialAndSupplier.setSupplyid(materialAndSuppliers.getSupplyid());
+            // 数量
+            materialAndSupplier.setMaterialnum(materialAndSuppliers.getMaterialnum());
         }
         ServletActionContext.getRequest().getSession().setAttribute("mas", materialAndSupplier);
         return SUCCESS;
