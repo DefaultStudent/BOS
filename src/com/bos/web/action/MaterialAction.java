@@ -2,6 +2,7 @@ package com.bos.web.action;
 
 import com.bos.domain.Material;
 import com.bos.domain.MaterialAndSupplier;
+import com.bos.domain.User;
 import com.bos.service.IMaterialService;
 import com.bos.web.action.base.BaseAction;
 import org.apache.struts2.ServletActionContext;
@@ -61,9 +62,23 @@ public class MaterialAction extends BaseAction<Material> {
      * @return
      */
     public String saveMaterial() {
+        // 获取仓库id
         String id = ServletActionContext.getRequest().getParameter("storageid");
         int storageId = Integer.parseInt(id);
-        materialService.addMaterial(model, storageId);
+
+        // 获取操作人员id
+        User user = (User) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
+        int userid = user.getId();
+
+        // 获取添加数量
+        int number = Integer.parseInt(ServletActionContext.getRequest().getParameter("number"));
+        Long num = new Long(number);
+
+        // 获取备注
+        String remark = ServletActionContext.getRequest().getParameter("remark");
+
+        // 添加信息
+        materialService.addMaterial(model, userid,storageId, num, remark);
         return SUCCESS;
     }
 

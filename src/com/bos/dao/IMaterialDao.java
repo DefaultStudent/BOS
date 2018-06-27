@@ -29,7 +29,7 @@ public interface IMaterialDao extends IBaseDao<Material>{
      * 库存加一
      * @param id
      */
-    public void numAdd(int id);
+    public void numAdd(int id, int num);
 
     /**
      * 库存减一

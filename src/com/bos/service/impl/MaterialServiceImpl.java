@@ -1,6 +1,8 @@
 package com.bos.service.impl;
 
 import com.bos.dao.IMaterialDao;
+import com.bos.dao.InstorageDao;
+import com.bos.domain.Instorage;
 import com.bos.domain.Material;
 import com.bos.domain.MaterialAndSupplier;
 import com.bos.service.IMaterialService;
@@ -20,16 +22,37 @@ public class MaterialServiceImpl implements IMaterialService {
     @Autowired
     private IMaterialDao materialDao;
 
+    @Autowired
+    private InstorageDao instorageDao;
+
     /**
      * 添加商品
      *
      * @param material
-     * @param id
+     * @param userid
+     * @param storageid
+     * @param number
+     * @param remark
      */
     @Override
-    public void addMaterial(Material material, int id) {
-        materialDao.numAdd(id);
+    public void addMaterial(Material material, int userid, int storageid, Long number, String remark) {
+        Instorage instorage = new Instorage();
+        // 将Long转换为int
+        int num = new Long(number).intValue();
+        // 增加库存
+        materialDao.numAdd(storageid, num);
+        // 保存货物信息
         materialDao.save(material);
+
+        // 设置进货信息
+        instorage.setDate(material.getDate());
+        instorage.setMaterialid(material.getId());
+        instorage.setNumber(number);
+        instorage.setUserid(userid);
+        instorage.setStorageid(storageid);
+        instorage.setRemark(remark);
+        // 保存进货消息
+        instorageDao.save(instorage);
     }
 
     /**

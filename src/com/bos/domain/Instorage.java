@@ -7,14 +7,12 @@ import java.util.Objects;
 @Entity
 public class Instorage {
     private int id;
-    private Date date;
-    private Integer materialid;
+    private String date;
+    private int materialid;
     private Long number;
-    private Integer userid;
-    private Integer storageid;
+    private int userid;
+    private int storageid;
     private String remark;
-    private Material materialByMaterialid;
-    private Storage storageByStorageid;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -28,21 +26,21 @@ public class Instorage {
 
     @Basic
     @Column(name = "date", nullable = true)
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
     @Basic
-    @Column(name = "materialid", nullable = true, insertable = false, updatable = false)
-    public Integer getMaterialid() {
+    @Column(name = "materialid", nullable = true)
+    public int getMaterialid() {
         return materialid;
     }
 
-    public void setMaterialid(Integer materialid) {
+    public void setMaterialid(int materialid) {
         this.materialid = materialid;
     }
 
@@ -58,21 +56,21 @@ public class Instorage {
 
     @Basic
     @Column(name = "userid", nullable = true)
-    public Integer getUserid() {
+    public int getUserid() {
         return userid;
     }
 
-    public void setUserid(Integer userid) {
+    public void setUserid(int userid) {
         this.userid = userid;
     }
 
     @Basic
-    @Column(name = "storageid", nullable = true, insertable = false, updatable = false)
-    public Integer getStorageid() {
+    @Column(name = "storageid", nullable = true)
+    public int getStorageid() {
         return storageid;
     }
 
-    public void setStorageid(Integer storageid) {
+    public void setStorageid(int storageid) {
         this.storageid = storageid;
     }
 
@@ -104,25 +102,5 @@ public class Instorage {
     public int hashCode() {
 
         return Objects.hash(id, date, materialid, number, userid, storageid, remark);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "materialid", referencedColumnName = "id")
-    public Material getMaterialByMaterialid() {
-        return materialByMaterialid;
-    }
-
-    public void setMaterialByMaterialid(Material materialByMaterialid) {
-        this.materialByMaterialid = materialByMaterialid;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "storageid", referencedColumnName = "id")
-    public Storage getStorageByStorageid() {
-        return storageByStorageid;
-    }
-
-    public void setStorageByStorageid(Storage storageByStorageid) {
-        this.storageByStorageid = storageByStorageid;
     }
 }

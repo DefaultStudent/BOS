@@ -13,9 +13,12 @@ public interface IMaterialService {
     /**
      * 添加商品
      * @param model
-     * @param id
+     * @param userid
+     * @param storageid
+     * @param number
+     * @param remark
      */
-    public void addMaterial(Material model, int id);
+    public void addMaterial(Material model, int userid, int storageid, Long number, String remark);
 
     /**
      * 删除商品

@@ -91,6 +91,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="col-md-3 control-label">商品数量</label>
+                                <div class="col-md-9">
+                                    <input name="number" type="text" class="form-control" required="required">
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-md-3 control-label">进货日期</label>
                                 <div class="col-md-9">
                                     <input type="date" name="date" class="form-control" required="required">

@@ -11,8 +11,6 @@ public class Storage {
     private String address;
     private String materialnum;
     private String remark;
-    private Collection<Instorage> instoragesById;
-    private Collection<Outstorage> outstoragesById;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -80,23 +78,5 @@ public class Storage {
     public int hashCode() {
 
         return Objects.hash(id, name, address, materialnum, remark);
-    }
-
-    @OneToMany(mappedBy = "storageByStorageid")
-    public Collection<Instorage> getInstoragesById() {
-        return instoragesById;
-    }
-
-    public void setInstoragesById(Collection<Instorage> instoragesById) {
-        this.instoragesById = instoragesById;
-    }
-
-    @OneToMany(mappedBy = "storageByStorageid")
-    public Collection<Outstorage> getOutstoragesById() {
-        return outstoragesById;
-    }
-
-    public void setOutstoragesById(Collection<Outstorage> outstoragesById) {
-        this.outstoragesById = outstoragesById;
     }
 }

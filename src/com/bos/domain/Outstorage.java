@@ -13,8 +13,6 @@ public class Outstorage {
     private Integer userid;
     private Integer storageid;
     private String remark;
-    private Material materialByMaterialid;
-    private Storage storageByStorageid;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -104,25 +102,5 @@ public class Outstorage {
     public int hashCode() {
 
         return Objects.hash(id, date, materialid, number, userid, storageid, remark);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "materialid", referencedColumnName = "id")
-    public Material getMaterialByMaterialid() {
-        return materialByMaterialid;
-    }
-
-    public void setMaterialByMaterialid(Material materialByMaterialid) {
-        this.materialByMaterialid = materialByMaterialid;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "storageid", referencedColumnName = "id")
-    public Storage getStorageByStorageid() {
-        return storageByStorageid;
-    }
-
-    public void setStorageByStorageid(Storage storageByStorageid) {
-        this.storageByStorageid = storageByStorageid;
     }
 }

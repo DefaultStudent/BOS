@@ -74,11 +74,11 @@ public class MaterialDaoImpl extends BaseDaoImpl<Material> implements IMaterialD
      * @param id
      */
     @Override
-    public void numAdd(int id) {
+    public void numAdd(int id, int num) {
         String hql = "SELECT materialnum FROM Storage WHERE id = " + id;
         List list = this.getHibernateTemplate().find(hql);
-        String num = list.get(0).toString();
-        int numAdd = Integer.parseInt(num) + 1;
+        String num_1 = list.get(0).toString();
+        int numAdd = Integer.parseInt(num_1) + num;
         String hql_1 = "UPDATE Storage SET materialnum = " + numAdd + " WHERE id = " + id;
         Session session = this.getSessionFactory().getCurrentSession();
         session.createQuery(hql_1).executeUpdate();
