@@ -1,8 +1,10 @@
 package com.bos.domain;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Date;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -11,7 +13,7 @@ public class Material {
     private String name;
     private String type;
     private String date;
-    private int supplyid;
+    private Integer supplyid;
     private String remark;
 
     @Id
@@ -56,11 +58,11 @@ public class Material {
 
     @Basic
     @Column(name = "supplyid", nullable = true)
-    public int getSupplyid() {
+    public Integer getSupplyid() {
         return supplyid;
     }
 
-    public void setSupplyid(int supplyid) {
+    public void setSupplyid(Integer supplyid) {
         this.supplyid = supplyid;
     }
 

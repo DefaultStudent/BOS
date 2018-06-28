@@ -1,6 +1,9 @@
 package com.bos.domain;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Date;
 import java.util.Objects;
 
@@ -8,10 +11,10 @@ import java.util.Objects;
 public class Instorage {
     private int id;
     private String date;
-    private int materialid;
+    private Integer materialid;
     private Long number;
-    private int userid;
-    private int storageid;
+    private Integer userid;
+    private Integer storageid;
     private String remark;
 
     @Id
@@ -36,11 +39,11 @@ public class Instorage {
 
     @Basic
     @Column(name = "materialid", nullable = true)
-    public int getMaterialid() {
+    public Integer getMaterialid() {
         return materialid;
     }
 
-    public void setMaterialid(int materialid) {
+    public void setMaterialid(Integer materialid) {
         this.materialid = materialid;
     }
 
@@ -56,21 +59,21 @@ public class Instorage {
 
     @Basic
     @Column(name = "userid", nullable = true)
-    public int getUserid() {
+    public Integer getUserid() {
         return userid;
     }
 
-    public void setUserid(int userid) {
+    public void setUserid(Integer userid) {
         this.userid = userid;
     }
 
     @Basic
     @Column(name = "storageid", nullable = true)
-    public int getStorageid() {
+    public Integer getStorageid() {
         return storageid;
     }
 
-    public void setStorageid(int storageid) {
+    public void setStorageid(Integer storageid) {
         this.storageid = storageid;
     }
 

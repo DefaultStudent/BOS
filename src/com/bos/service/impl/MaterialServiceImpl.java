@@ -1,6 +1,7 @@
 package com.bos.service.impl;
 
 import com.bos.dao.IMaterialDao;
+import com.bos.dao.IStockDao;
 import com.bos.dao.InstorageDao;
 import com.bos.domain.Instorage;
 import com.bos.domain.Material;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,101 +25,25 @@ public class MaterialServiceImpl implements IMaterialService {
     @Autowired
     private IMaterialDao materialDao;
 
-    @Autowired
-    private InstorageDao instorageDao;
-
     /**
-     * 添加商品
+     * 添加商品信息
      *
      * @param material
-     * @param userid
-     * @param storageid
-     * @param number
-     * @param remark
      */
     @Override
-    public void addMaterial(Material material, int userid, int storageid, Long number, String remark) {
-        Instorage instorage = new Instorage();
-        // 将Long转换为int
-        int num = new Long(number).intValue();
-        // 增加库存
-        materialDao.numAdd(storageid, num);
-        // 保存货物信息
-        materialDao.saveMaterial(material);
-
-        // 设置进货信息
-        instorage.setDate(material.getDate());
-        instorage.setMaterialid(material.getId());
-        instorage.setNumber(number);
-        instorage.setUserid(userid);
-        instorage.setStorageid(storageid);
-        instorage.setRemark(remark);
-        // 保存进货消息
-        instorageDao.saveInstorage(instorage);
+    public void save(Material material) {
+        // 将商品信息添加至商品表
+        materialDao.save(material);
     }
 
     /**
-     * 删除商品
+     * 根据name查询id
      *
-     * @param material
-     * @param instorageid
-     * @param storageid
-     * @param num
-     */
-    @Override
-    public void deleteMaterial(Material material, int instorageid, int storageid, Long num) {
-        int number = new Long(num).intValue();
-        instorageDao.deleteInstorageById(instorageid);
-        materialDao.numSub(storageid, number);
-        materialDao.delete(material);
-    }
-
-    /**
-     * 查询全部商品信息
-     *
+     * @param materialName
      * @return
      */
     @Override
-    public List<MaterialAndSupplier> findAllMaterial() {
-        List<MaterialAndSupplier> list = materialDao.findAllMaterial();
-        if (list.size() > 0) {
-            return list;
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * 根据id查询商品信息
-     *
-     * @param id
-     * @return
-     */
-    @Override
-    public List<MaterialAndSupplier> findMaterialById(int id) {
-        List<MaterialAndSupplier> list = materialDao.findMaterialById(id);
-        if (list.size() > 0) {
-            return list;
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * 更新商品
-     *
-     * @param material
-     */
-    @Override
-    public void updateMaterial(Material material, Long num, int reid, int adid) {
-        // 判断是否成功
-        if (materialDao.updateMaterialNum(num, reid, adid) == 0) {
-            // 成功
-            materialDao.update(material);
-            System.out.println("移库执行状态：成功");
-        } else {
-            // 失败
-            System.out.println("移库执行状态：失败");
-        }
+    public List findMaterialByName(String materialName) {
+        return materialDao.findMaterialByName(materialName);
     }
 }

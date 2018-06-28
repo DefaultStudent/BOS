@@ -8,8 +8,13 @@ import com.bos.domain.Instorage;
 public interface InStorageService {
 
     /**
-     * 添加进货信息
-     * @param model
+     * 添加入库明细
+     * @param date
+     * @param materialid
+     * @param number
+     * @param userid
+     * @param storageid
+     * @param remark
      */
-    public void saveInstorage(Instorage model);
+    public void saveInstorage(String date, int materialid, Long number, int userid, int storageid, String remark);
 }

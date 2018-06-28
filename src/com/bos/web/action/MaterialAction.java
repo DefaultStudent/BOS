@@ -1,16 +1,17 @@
 package com.bos.web.action;
 
 import com.bos.domain.Material;
-import com.bos.domain.MaterialAndSupplier;
 import com.bos.domain.User;
 import com.bos.service.IMaterialService;
+import com.bos.service.IStockService;
+import com.bos.service.IStorageStockService;
+import com.bos.service.InStorageService;
 import com.bos.web.action.base.BaseAction;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * @author Simon
@@ -22,94 +23,51 @@ public class MaterialAction extends BaseAction<Material> {
     @Resource
     private IMaterialService materialService;
 
-    /**
-     * 查询全部商品信息
-     * @return
-     */
-    public String findAllMaterial() {
-        List<MaterialAndSupplier> list = materialService.findAllMaterial();
-        if (list.size() > 0) {
-            ServletActionContext.getRequest().getSession().setAttribute("ma", list);
-            return SUCCESS;
-        } else {
-            return NONE;
-        }
-    }
+    @Resource
+    private InStorageService storageService;
+
+    @Resource
+    private IStockService stockService;
+
+    @Resource
+    private IStorageStockService storageStockService;
 
     /**
-     * 根据id查询
-     * @return
-     */
-    public String findMaterialById() {
-        int id = model.getId();
-        MaterialAndSupplier materialAndSupplier = new MaterialAndSupplier();
-        List<MaterialAndSupplier> list = materialService.findMaterialById(id);
-        for (MaterialAndSupplier materialAndSuppliers : list) {
-            // 进货单编号
-            materialAndSupplier.setInstorage(materialAndSuppliers.getInstorage());
-            // 商品编号
-            materialAndSupplier.setId(materialAndSuppliers.getId());
-            // 商品名称
-            materialAndSupplier.setName(materialAndSuppliers.getName());
-            // 商品类型
-            materialAndSupplier.setType(materialAndSuppliers.getType());
-            // 进货日期
-            materialAndSupplier.setDate(materialAndSuppliers.getDate());
-            // 仓库编号
-            materialAndSupplier.setStorageid(materialAndSuppliers.getStorageid());
-            // 仓库名称
-            materialAndSupplier.setStoragename(materialAndSuppliers.getStoragename());
-            // 供应商编号
-            materialAndSupplier.setSupplyid(materialAndSuppliers.getSupplyid());
-            // 供应商名称
-            materialAndSupplier.setSname(materialAndSuppliers.getSname());
-            // 备注
-            materialAndSupplier.setRemark(materialAndSuppliers.getRemark());
-            // 供货商编号
-            materialAndSupplier.setSupplyid(materialAndSuppliers.getSupplyid());
-            // 数量
-            materialAndSupplier.setMaterialnum(materialAndSuppliers.getMaterialnum());
-        }
-        ServletActionContext.getRequest().getSession().setAttribute("mas", materialAndSupplier);
-        return SUCCESS;
-    }
-
-    /**
-     * 添加商品信息
+     * 添加商品
      * @return
      */
     public String saveMaterial() {
-        // 获取仓库id
-        String id = ServletActionContext.getRequest().getParameter("storageid");
-        int storageId = Integer.parseInt(id);
-
+        // 获取日期
+        String date = model.getDate();
+        // 获取商品名称
+        String materialName = model.getName();
+        // 获取进货数量
+        int number = Integer.parseInt(ServletActionContext.getRequest().getParameter("number"));
+        Long numberLong = new Long(number);
         // 获取操作人员id
         User user = (User) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
         int userid = user.getId();
-
-        // 获取添加数量
-        int number = Integer.parseInt(ServletActionContext.getRequest().getParameter("number"));
-        Long num = new Long(number);
-
+        // 获取仓库编号
+        int storageid = Integer.parseInt(ServletActionContext.getRequest().getParameter("storageid"));
         // 获取备注
-        String remark = ServletActionContext.getRequest().getParameter("remark");
+        String remark = model.getRemark();
+        // 设置出库表id
+        int outstorageid = 0;
 
-        // 添加信息
-        materialService.addMaterial(model, userid,storageId, num, remark);
+        // 添加商品信息
+        materialService.save(model);
+
+        // 获取materialid
+        String id = materialService.findMaterialByName(materialName).get(0).toString();
+        int materialid = Integer.parseInt(id);
+
+        // 添加入库明细信息
+        storageService.saveInstorage(date, materialid, numberLong, userid, storageid, remark);
+        // 添加盘存信息
+        stockService.saveStock(date, outstorageid, remark);
+        // 添加仓库-盘存信息
+        storageStockService.saveStorageStock(storageid, materialName, number);
+
         return SUCCESS;
     }
-
-    /**
-     * 删除商品信息
-     * @return
-     */
-    public String deleteMaterial() {
-        int instorageid = Integer.parseInt(ServletActionContext.getRequest().getParameter("ind"));
-        int number = Integer.parseInt(ServletActionContext.getRequest().getParameter("number"));
-        int storageid = Integer.parseInt(ServletActionContext.getRequest().getParameter("stid"));
-        Long num = new Long(number);
-        materialService.deleteMaterial(model, instorageid, storageid, num);
-        return SUCCESS;
-    }
-
 }

@@ -69,14 +69,8 @@
             <div class="row">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal ">
-                            <input type="hidden" value="<s:property value="%{#session.mas.id}"/>">
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">进货编号</label>
-                                <div class="col-md-9">
-                                    <input name="name" type="text" class="form-control" value="<s:property value="%{#session.mas.instorage}"/>" required="required">
-                                </div>
-                            </div>
+                        <form action="updateMaterial.action" method="post" enctype="multipart/form-data" class="form-horizontal ">
+                            <input type="hidden" name="id" value="<s:property value="%{#session.mas.id}"/>">
                             <div class="form-group">
                                 <label class="col-md-3 control-label">商品名称</label>
                                 <div class="col-md-9">
@@ -89,12 +83,7 @@
                                     <input name="type" type="text" class="form-control" value="<s:property value="%{#session.mas.type}"/>" required="required">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">商品数量</label>
-                                <div class="col-md-9">
-                                    <input name="number" type="text" class="form-control" value="<s:property value="%{#session.mas.materialnum}"/>" required="required">
-                                </div>
-                            </div>
+                            <input name="number" type="hidden" class="form-control" value="<s:property value="%{#session.mas.materialnum}"/>" required="required">
                             <div class="form-group">
                                 <label class="col-md-3 control-label">进货日期</label>
                                 <div class="col-md-9">
@@ -120,10 +109,11 @@
                                     </select>
                                 </div>
                             </div>
+                            <input type="hidden" name="reid" value="<s:property value="%{#session.mas.storageid}"/>">
                             <div class="form-group">
                                 <label class="col-md-3 control-label">移至仓库</label>
                                 <div class="col-md-9">
-                                    <select name="storageid" class="form-control">
+                                    <select name="adid" class="form-control">
                                         <s:iterator var="st" value="#session.storage">
                                             <s:if test="#st.id==#session.mas.storageid">
                                                 <option value="<s:property value="#st.id"/>" selected="selected">
@@ -140,10 +130,12 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="textarea-input">备注</label>
                                 <div class="col-md-9">
-                                    <textarea id="textarea-input" name="remark" rows="9" class="form-control" placeholder="备注..."></textarea>
+                                    <textarea id="textarea-input" name="remark" rows="9" class="form-control" placeholder="备注...">
+                                        <s:property value="%{#session.mas.remark}"/>
+                                    </textarea>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-dot-circle-o"></i> 添加</button>
+                            <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-dot-circle-o"></i> 修改</button>
                             <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> 重置</button>
                         </form>
                     </div>

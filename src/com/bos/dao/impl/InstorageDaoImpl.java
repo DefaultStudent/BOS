@@ -13,32 +13,22 @@ import java.util.List;
  */
 @Repository
 public class InstorageDaoImpl extends BaseDaoImpl<Instorage> implements InstorageDao {
-
     /**
-     * 添加
-     *
-     * @param instorage
+     * 查询进货单编号
+     * @return
      */
     @Override
-    public void saveInstorage(Instorage instorage) {
+    public int findInstorageId() {
         // 获取当前仓库编号最大值
         String hql = " select max(id) FROM Instorage ";
+        String hql1 = "SELECT id FROM Instorage";
         List list = this.getHibernateTemplate().find(hql);
-        // 将新增仓库的编号加一
-        int id = (Integer) list.get(0) + 1;
-        instorage.setId(id);
-        this.getHibernateTemplate().save(instorage);
-    }
-
-    /**
-     * 根据id删除进货信息
-     *
-     * @param id
-     */
-    @Override
-    public void deleteInstorageById(int id) {
-        String hql = "delete from Instorage where id = " + id;
-        Session session = this.getSessionFactory().getCurrentSession();
-        session.createQuery(hql).executeUpdate();
+        List list1 = this.getHibernateTemplate().find(hql1);
+        if (list.isEmpty()) {
+            return 0;
+        } else {
+            int id = (Integer) list.get(0);
+            return id;
+        }
     }
 }

@@ -41,6 +41,8 @@
                 <value>com.bos.domain.Storage</value>
                 <value>com.bos.domain.Supplier</value>
                 <value>com.bos.domain.User</value>
+                <value>com.bos.domain.Storagestock</value>
+                <value>com.bos.domain.Stock</value>
             </list>
         </property>
     </bean>

@@ -66,9 +66,12 @@
             <result name="success">/pages/material/materialIndex.jsp</result>
         </action>
         <action name="findMaterialById" class="com.bos.web.action.MaterialAction" method="findMaterialById">
-            <result name="success" type="chain">findSupplier</result>
+            <result name="success" type="chain">findSupplier_1</result>
         </action>
         <action name="findSupplier" class="com.bos.web.action.SupplierAction" method="findAllSupplier">
+            <result name="success" type="chain">findStorage</result>
+        </action>
+        <action name="findSupplier_1" class="com.bos.web.action.SupplierAction" method="findAllSupplier">
             <result name="success" type="chain">findStorage_1</result>
         </action>
         <action name="saveMaterial" class="com.bos.web.action.MaterialAction" method="saveMaterial">
@@ -81,6 +84,9 @@
             <result name="success">/pages/material/materialedit.jsp</result>
         </action>
         <action name="deleteMaterial" class="com.bos.web.action.MaterialAction" method="deleteMaterial">
+            <result name="success" type="chain">findAllMaterial</result>
+        </action>
+        <action name="updateMaterial" class="com.bos.web.action.MaterialAction" method="updateMaterial">
             <result name="success" type="chain">findAllMaterial</result>
         </action>
         <!-- SupplierAction -->

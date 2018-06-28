@@ -11,40 +11,15 @@ import java.util.List;
 public interface IMaterialService {
 
     /**
-     * 添加商品
-     * @param model
-     * @param userid
-     * @param storageid
-     * @param number
-     * @param remark
+     * 添加商品信息
+     * @param material
      */
-    public void addMaterial(Material model, int userid, int storageid, Long number, String remark);
+    public void save(Material material);
 
     /**
-     * 删除商品
-     * @param model
-     * @param instorageid
-     * @param storageid
-     * @param number
-     */
-    public void deleteMaterial(Material model, int instorageid, int storageid, Long number);
-
-    /**
-     * 查询全部商品信息
+     * 根据name查询id
+     * @param materialName
      * @return
      */
-    public List<MaterialAndSupplier> findAllMaterial();
-
-    /**
-     * 根据id查询商品信息
-     * @param id
-     * @return
-     */
-    public List<MaterialAndSupplier> findMaterialById(int id);
-
-    /**
-     * 更新商品
-     * @param model
-     */
-    public void updateMaterial(Material model, Long num, int reid, int adid);
+    public List findMaterialByName(String materialName);
 }
