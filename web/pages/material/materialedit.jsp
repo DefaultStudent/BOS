@@ -70,17 +70,17 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <form action="updateMaterial.action" method="post" enctype="multipart/form-data" class="form-horizontal ">
-                            <input type="hidden" name="id" value="<s:property value="%{#session.mas.id}"/>">
+                            <input type="hidden" name="id" value="<s:property value="%{#session.mas.materialId}"/>">
                             <div class="form-group">
                                 <label class="col-md-3 control-label">商品名称</label>
                                 <div class="col-md-9">
-                                    <input name="name" type="text" class="form-control" value="<s:property value="%{#session.mas.name}"/>" required="required">
+                                    <input name="name" type="text" class="form-control" value="<s:property value="%{#session.mas.materialName}"/>" required="required">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">商品类型</label>
                                 <div class="col-md-9">
-                                    <input name="type" type="text" class="form-control" value="<s:property value="%{#session.mas.type}"/>" required="required">
+                                    <input name="type" type="text" class="form-control" value="<s:property value="%{#session.mas.materialType}"/>" required="required">
                                 </div>
                             </div>
                             <input name="number" type="hidden" class="form-control" value="<s:property value="%{#session.mas.materialnum}"/>" required="required">
@@ -97,31 +97,13 @@
                                         <s:iterator var="s" value="#session.findAllSupplier">
                                             <s:if test="#s.supplyid==#session.mas.supplyid">
                                                 <option value="<s:property value="#s.supplyid"/>" selected="selected">
-                                                    <s:property value="%{#session.mas.sname}"/>
+                                                    <s:property value="%{#session.mas.supplierName}"/>
                                                 </option>
                                             </s:if>
                                             <s:else>
                                                 <option value="<s:property value="#s.supplyid"/>">
                                                     <s:property value="#s.sname"/>
                                                 </option>
-                                            </s:else>
-                                        </s:iterator>
-                                    </select>
-                                </div>
-                            </div>
-                            <input type="hidden" name="reid" value="<s:property value="%{#session.mas.storageid}"/>">
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">移至仓库</label>
-                                <div class="col-md-9">
-                                    <select name="adid" class="form-control">
-                                        <s:iterator var="st" value="#session.storage">
-                                            <s:if test="#st.id==#session.mas.storageid">
-                                                <option value="<s:property value="#st.id"/>" selected="selected">
-                                                    <s:property value="%{#session.mas.storagename}"/>
-                                                </option>
-                                            </s:if>
-                                            <s:else>
-                                                <option value="<s:property value="#st.id"/>"><s:property value="#st.name"/></option>
                                             </s:else>
                                         </s:iterator>
                                     </select>

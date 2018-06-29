@@ -1,61 +1,76 @@
 package com.bos.domain;
 
-import java.sql.Date;
-
 /**
  * @author Simon
+ *
+ * 中间类
  */
 public class MaterialAndSupplier {
-    private int id;
-    private String name;
-    private String type;
+
+    private int materialId;
+    private int supplyid;
+    private String materialName;
+    private String materialType;
+    private String supplierName;
+    private int number;
+    private String storageName;
     private String date;
-    private Integer supplyid;
     private String remark;
-    private String sname;
-    private int storageid;
-    private String storagename;
-    private Long materialnum;
-    private int instorage;
 
-    public int getId() {
-        return id;
+    public int getMaterialId() {
+        return materialId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setMaterialId(int materialId) {
+        this.materialId = materialId;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public Integer getSupplyid() {
+    public int getSupplyid() {
         return supplyid;
     }
 
-    public void setSupplyid(Integer supplyid) {
+    public void setSupplyid(int supplyid) {
         this.supplyid = supplyid;
+    }
+
+    public String getMaterialName() {
+        return materialName;
+    }
+
+    public void setMaterialName(String materialName) {
+        this.materialName = materialName;
+    }
+
+    public String getMaterialType() {
+        return materialType;
+    }
+
+    public void setMaterialType(String materialType) {
+        this.materialType = materialType;
+    }
+
+    public String getSupplierName() {
+        return supplierName;
+    }
+
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public String getStorageName() {
+        return storageName;
+    }
+
+    public void setStorageName(String storageName) {
+        this.storageName = storageName;
     }
 
     public String getRemark() {
@@ -66,43 +81,11 @@ public class MaterialAndSupplier {
         this.remark = remark;
     }
 
-    public String getSname() {
-        return sname;
+    public String getDate() {
+        return date;
     }
 
-    public void setSname(String sname) {
-        this.sname = sname;
-    }
-
-    public int getStorageid() {
-        return storageid;
-    }
-
-    public void setStorageid(int storageid) {
-        this.storageid = storageid;
-    }
-
-    public String getStoragename() {
-        return storagename;
-    }
-
-    public void setStoragename(String storagename) {
-        this.storagename = storagename;
-    }
-
-    public Long getMaterialnum() {
-        return materialnum;
-    }
-
-    public void setMaterialnum(Long materialnum) {
-        this.materialnum = materialnum;
-    }
-
-    public int getInstorage() {
-        return instorage;
-    }
-
-    public void setInstorage(int instorage) {
-        this.instorage = instorage;
+    public void setDate(String date) {
+        this.date = date;
     }
 }

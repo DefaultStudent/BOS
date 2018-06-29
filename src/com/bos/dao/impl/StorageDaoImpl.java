@@ -3,6 +3,7 @@ package com.bos.dao.impl;
 import com.bos.dao.IStorageDao;
 import com.bos.dao.base.impl.BaseDaoImpl;
 import com.bos.domain.Storage;
+import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -26,5 +27,18 @@ public class StorageDaoImpl extends BaseDaoImpl<Storage> implements IStorageDao 
         int id = (Integer) list.get(0) + 1;
         storage.setId(id);
         this.getHibernateTemplate().save(storage);
+    }
+
+    /**
+     * 更新库存
+     *
+     * @param number
+     * @param storageId
+     */
+    @Override
+    public void updateStorageNum(String number, int storageId) {
+        String sql = "update storage set materialnum = " + number + " where id = " + storageId;
+        Session session = this.getSessionFactory().getCurrentSession();
+        session.createQuery(sql).executeUpdate();
     }
 }

@@ -27,11 +27,11 @@ public class StorageStockServiceImpl implements IStorageStockService {
      * 添加仓库-盘存信息
      *
      * @param storageid
-     * @param materialName
+     * @param materialId
      * @param number
      */
     @Override
-    public void saveStorageStock(int storageid, String materialName, int number) {
+    public void saveStorageStock(int storageid, int materialId, int number) {
 
         Storagestock storagestock = new Storagestock();
 
@@ -40,7 +40,7 @@ public class StorageStockServiceImpl implements IStorageStockService {
         storagestock.setStockid(stockid);
 
         storagestock.setStorageid(storageid);
-        storagestock.setMaterialname(materialName);
+        storagestock.setMaterialid(materialId);
         storagestock.setNumber(number);
 
         // 添加仓库-盘存信息

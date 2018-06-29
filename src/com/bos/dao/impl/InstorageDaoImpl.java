@@ -21,9 +21,7 @@ public class InstorageDaoImpl extends BaseDaoImpl<Instorage> implements Instorag
     public int findInstorageId() {
         // 获取当前仓库编号最大值
         String hql = " select max(id) FROM Instorage ";
-        String hql1 = "SELECT id FROM Instorage";
         List list = this.getHibernateTemplate().find(hql);
-        List list1 = this.getHibernateTemplate().find(hql1);
         if (list.isEmpty()) {
             return 0;
         } else {

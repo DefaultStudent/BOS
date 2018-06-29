@@ -71,4 +71,42 @@ public class StorageServiceImpl implements IStorageService{
     public void updateStorage(Storage storage) {
         storageDao.update(storage);
     }
+
+    /**
+     * 增加库存
+     *
+     * @param storageId
+     * @param number
+     */
+    @Override
+    public void addStorageMaterialNum(int storageId, String number) {
+        int max = 100;
+        String nowNumber = storageDao.findById(storageId).getMaterialnum();
+        int newNumber = Integer.parseInt(nowNumber) + Integer.parseInt(number);
+        if (newNumber < max ) {
+            storageDao.updateStorageNum(Integer.toString(newNumber), storageId);
+        } else {
+            String message = "更新失败";
+            System.out.println(message);
+        }
+    }
+
+    /**
+     * 减少库存
+     *
+     * @param storageId
+     * @param number
+     */
+    @Override
+    public void delStorageMaterialNum(int storageId, String number) {
+        int min = 0;
+        String nowNumber = storageDao.findById(storageId).getMaterialnum();
+        int newNumber = Integer.parseInt(nowNumber) - Integer.parseInt(number);
+        if (newNumber > min ) {
+            storageDao.updateStorageNum(Integer.toString(newNumber), storageId);
+        } else {
+            String message = "更新失败";
+            System.out.println(message);
+        }
+    }
 }

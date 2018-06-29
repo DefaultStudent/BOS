@@ -46,4 +46,45 @@ public class MaterialServiceImpl implements IMaterialService {
     public List findMaterialByName(String materialName) {
         return materialDao.findMaterialByName(materialName);
     }
+
+    /**
+     * 查询商品信息
+     *
+     * @return
+     */
+    @Override
+    public List<MaterialAndSupplier> findAllMaterialInform() {
+        List<MaterialAndSupplier> list = materialDao.findAllMaterialInform();
+        if (list.size() > 0) {
+            return list;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 根据id查询商品信息
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public List<MaterialAndSupplier> findMaterialInformById(int id) {
+        List<MaterialAndSupplier> materialAndSupplierList = materialDao.findMaterialById(id);
+        if (materialAndSupplierList.size() > 0) {
+            return materialAndSupplierList;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 更新商品信息
+     *
+     * @param material
+     */
+    @Override
+    public void updateMaterial(Material material) {
+        this.materialDao.update(material);
+    }
 }

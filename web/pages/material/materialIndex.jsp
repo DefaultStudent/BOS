@@ -102,15 +102,15 @@
 
                             <s:iterator var="ma" value="#session.ma">
                                 <tr>
-                                    <td><s:property value="#ma.id"/></td>
-                                    <td><s:property value="#ma.name"/> </td>
-                                    <td><s:property value="#ma.type"/> </td>
-                                    <td><s:property value="#ma.storagename"/></td>
-                                    <td><s:property value="#ma.sname"/></td>
-                                    <td><s:property value="#ma.materialnum"/></td>
+                                    <td><s:property value="#ma.materialId"/></td>
+                                    <td><s:property value="#ma.materialName"/> </td>
+                                    <td><s:property value="#ma.materialType"/> </td>
+                                    <td><s:property value="#ma.storageName"/></td>
+                                    <td><s:property value="#ma.supplierName"/></td>
+                                    <td><s:property value="#ma.number"/></td>
                                     <td><s:property value="#ma.remark"/></td>
                                     <td>
-                                        <s:a class="btn btn-info" href="findMaterialById?id=%{#ma.id}">
+                                        <s:a class="btn btn-info" href="findMaterialById?id=%{#ma.materialId}">
                                             <i class="fa fa-edit "></i>
                                         </s:a>
                                         <s:a class="btn btn-danger" href="deleteMaterial.action?id=%{#ma.id}&ind=%{#ma.instorage}&number=%{#ma.materialnum}&stid=%{#ma.storageid}" onclick="delcfm()">

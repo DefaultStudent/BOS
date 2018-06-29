@@ -40,4 +40,18 @@ public interface IStorageService {
      * @return
      */
     public void updateStorage(Storage model);
+
+    /**
+     * 添加库存
+     * @param storageId
+     * @param number
+     */
+    public void addStorageMaterialNum(int storageId, String number);
+
+    /**
+     * 减少库存
+     * @param storageId
+     * @param number
+     */
+    public void delStorageMaterialNum(int storageId, String number);
 }

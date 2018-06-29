@@ -25,4 +25,10 @@ public interface IMaterialDao extends IBaseDao<Material>{
      * @return
      */
     public List<Material> findMaterialByName(String name);
+
+    /**
+     * 查询全部商品信息
+     * @return
+     */
+    public List<MaterialAndSupplier> findAllMaterialInform();
 }

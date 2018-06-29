@@ -10,4 +10,11 @@ public interface IStorageDao extends IBaseDao<Storage> {
      * @param model
      */
     public void saveStorage(Storage model);
+
+    /**
+     * 更新库存
+     * @param number
+     * @param storageId
+     */
+    public void updateStorageNum(String number, int storageId);
 }

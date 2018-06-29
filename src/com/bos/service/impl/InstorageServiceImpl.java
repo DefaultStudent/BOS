@@ -34,7 +34,6 @@ public class InstorageServiceImpl implements InStorageService {
 
         Instorage instorage = new Instorage();
 
-
         // 设置添加值
         instorage.setDate(date);
         instorage.setMaterialid(materialid);

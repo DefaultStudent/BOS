@@ -1,6 +1,7 @@
 package com.bos.web.action;
 
 import com.bos.domain.Material;
+import com.bos.domain.MaterialAndSupplier;
 import com.bos.domain.User;
 import com.bos.service.IMaterialService;
 import com.bos.service.IStockService;
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author Simon
@@ -66,8 +68,48 @@ public class MaterialAction extends BaseAction<Material> {
         // 添加盘存信息
         stockService.saveStock(date, outstorageid, remark);
         // 添加仓库-盘存信息
-        storageStockService.saveStorageStock(storageid, materialName, number);
+        storageStockService.saveStorageStock(storageid, materialid, number);
 
+        return SUCCESS;
+    }
+
+    /**
+     * 查询全部商品信息
+     * @return
+     */
+    public String findAllMaterial() {
+        List<MaterialAndSupplier> list = materialService.findAllMaterialInform();
+        if (list.size() > 0) {
+            ServletActionContext.getRequest().getSession().setAttribute("ma", list);
+            return SUCCESS;
+        } else {
+            return  NONE;
+        }
+    }
+
+    /**
+     * 根据id查询商品信息
+     * @return
+     */
+    public String findMaterialInformById() {
+        int id = model.getId();
+        MaterialAndSupplier materialAndSupplier = new MaterialAndSupplier();
+        List<MaterialAndSupplier> list = materialService.findMaterialInformById(id);
+        for (MaterialAndSupplier materialAndSuppliers : list) {
+            materialAndSupplier.setMaterialId(materialAndSuppliers.getMaterialId());
+            materialAndSupplier.setMaterialName(materialAndSuppliers.getMaterialName());
+            materialAndSupplier.setMaterialType(materialAndSuppliers.getMaterialType());
+            materialAndSupplier.setSupplierName(materialAndSuppliers.getSupplierName());
+            materialAndSupplier.setDate(materialAndSuppliers.getDate());
+            materialAndSupplier.setSupplyid(materialAndSuppliers.getSupplyid());
+            materialAndSupplier.setRemark(materialAndSuppliers.getRemark());
+        }
+        ServletActionContext.getRequest().getSession().setAttribute("mas", materialAndSupplier);
+        return SUCCESS;
+    }
+
+    public String updateMaterial() {
+        materialService.updateMaterial(model);
         return SUCCESS;
     }
 }

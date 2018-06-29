@@ -11,7 +11,7 @@ public class Storagestock {
     private int stid;
     private int stockid;
     private int storageid;
-    private String materialname;
+    private int materialid;
     private int number;
     private int systemnumber;
 
@@ -46,13 +46,13 @@ public class Storagestock {
     }
 
     @Basic
-    @Column(name = "materialname", nullable = false, length = 50)
-    public String getMaterialname() {
-        return materialname;
+    @Column(name = "materialid", nullable = false)
+    public int getMaterialid() {
+        return materialid;
     }
 
-    public void setMaterialname(String materialname) {
-        this.materialname = materialname;
+    public void setMaterialid(int materialid) {
+        this.materialid = materialid;
     }
 
     @Basic
@@ -83,14 +83,14 @@ public class Storagestock {
         return stid == that.stid &&
                 stockid == that.stockid &&
                 storageid == that.storageid &&
+                materialid == that.materialid &&
                 number == that.number &&
-                systemnumber == that.systemnumber &&
-                Objects.equals(materialname, that.materialname);
+                systemnumber == that.systemnumber;
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(stid, stockid, storageid, materialname, number, systemnumber);
+        return Objects.hash(stid, stockid, storageid, materialid, number, systemnumber);
     }
 }
