@@ -19,7 +19,7 @@ import java.util.List;
  * @author Simon
  */
 @Service
-@Transactional(rollbackFor = SQLException.class)
+@Transactional(rollbackFor = Exception.class)
 public class MaterialServiceImpl implements IMaterialService {
 
     @Autowired

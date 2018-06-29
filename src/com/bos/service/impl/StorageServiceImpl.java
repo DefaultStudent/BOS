@@ -13,7 +13,7 @@ import java.util.List;
  * @author Simon
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class StorageServiceImpl implements IStorageService{
 
     @Autowired

@@ -2,11 +2,9 @@ package com.bos.web.action;
 
 import com.bos.domain.Material;
 import com.bos.domain.MaterialAndSupplier;
+import com.bos.domain.Storage;
 import com.bos.domain.User;
-import com.bos.service.IMaterialService;
-import com.bos.service.IStockService;
-import com.bos.service.IStorageStockService;
-import com.bos.service.InStorageService;
+import com.bos.service.*;
 import com.bos.web.action.base.BaseAction;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
@@ -26,7 +24,10 @@ public class MaterialAction extends BaseAction<Material> {
     private IMaterialService materialService;
 
     @Resource
-    private InStorageService storageService;
+    private InStorageService inStorageService;
+
+    @Resource
+    private IStorageService storageService;
 
     @Resource
     private IStockService stockService;
@@ -46,6 +47,7 @@ public class MaterialAction extends BaseAction<Material> {
         // 获取进货数量
         int number = Integer.parseInt(ServletActionContext.getRequest().getParameter("number"));
         Long numberLong = new Long(number);
+        String numberString = String.valueOf(number);
         // 获取操作人员id
         User user = (User) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
         int userid = user.getId();
@@ -64,7 +66,11 @@ public class MaterialAction extends BaseAction<Material> {
         int materialid = Integer.parseInt(id);
 
         // 添加入库明细信息
-        storageService.saveInstorage(date, materialid, numberLong, userid, storageid, remark);
+        inStorageService.saveInstorage(date, materialid, numberLong, userid, storageid, remark);
+
+        // 更新仓库库存
+        storageService.addStorageMaterialNum(storageid, numberString);
+
         // 添加盘存信息
         stockService.saveStock(date, outstorageid, remark);
         // 添加仓库-盘存信息

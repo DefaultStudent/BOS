@@ -13,7 +13,7 @@ import java.sql.SQLException;
  * @author Simon
  */
 @Service
-@Transactional(rollbackFor = SQLException.class)
+@Transactional(rollbackFor = Exception.class)
 public class InstorageServiceImpl implements InStorageService {
 
     @Autowired

@@ -37,7 +37,7 @@ public class StorageDaoImpl extends BaseDaoImpl<Storage> implements IStorageDao 
      */
     @Override
     public void updateStorageNum(String number, int storageId) {
-        String sql = "update storage set materialnum = " + number + " where id = " + storageId;
+        String sql = "update Storage set materialnum = " + number + " where id = " + storageId;
         Session session = this.getSessionFactory().getCurrentSession();
         session.createQuery(sql).executeUpdate();
     }
