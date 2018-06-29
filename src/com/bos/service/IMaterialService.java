@@ -18,10 +18,9 @@ public interface IMaterialService {
 
     /**
      * 根据name查询id
-     * @param materialName
      * @return
      */
-    public List findMaterialByName(String materialName);
+    public List findMaterialByName();
 
     /**
      * 根据id查询商品信息
@@ -41,4 +40,10 @@ public interface IMaterialService {
      * @param model
      */
     public void updateMaterial(Material model);
+
+    /**
+     * 删除商品信息
+     * @param model
+     */
+    public void deleteMaterial(Material model);
 }

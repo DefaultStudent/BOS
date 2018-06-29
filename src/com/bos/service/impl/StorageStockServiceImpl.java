@@ -8,13 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.SQLException;
-
 /**
  * @author Simon
  */
 @Service
-@Transactional(rollbackFor = SQLException.class)
+@Transactional(rollbackFor = Exception.class)
 public class StorageStockServiceImpl implements IStorageStockService {
 
     @Autowired
@@ -45,5 +43,15 @@ public class StorageStockServiceImpl implements IStorageStockService {
 
         // 添加仓库-盘存信息
         storageStockDao.save(storagestock);
+    }
+
+    /**
+     * 更新仓库-盘存信息
+     *
+     * @param materialid
+     */
+    @Override
+    public void updateStorageStock(int materialid) {
+        storageStockDao.updateStorageStock(materialid);
     }
 }

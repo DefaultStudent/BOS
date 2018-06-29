@@ -56,8 +56,8 @@ public class MaterialDaoImpl extends BaseDaoImpl<Material> implements IMaterialD
      * @return
      */
     @Override
-    public List<Material> findMaterialByName(String name) {
-        String hql = "select id from Material";
+    public List<Material> findMaterialByName() {
+        String hql = "select max(id) from Material";
         List list = this.getHibernateTemplate().find(hql);
         return list;
     }
@@ -69,9 +69,9 @@ public class MaterialDaoImpl extends BaseDaoImpl<Material> implements IMaterialD
      */
     @Override
     public List<MaterialAndSupplier> findAllMaterialInform() {
-        String hql = "select m.id, m.name, m.type, su.sname, ss.number, st.name, m.remark " +
-                "from Material m, Supplier su ,Storagestock ss, Storage st " +
-                "where m.supplyid = su.supplyid and st.id = ss.storageid and ss.materialid = m.id";
+        String hql = "select m.id, m.name, m.type, st.name, su.sname, ss.number, m.remark, sto.outstorageid, st.id, m.date " +
+                "from Storagestock ss, Material m, Supplier su , Storage st, Stock sto " +
+                "where ss.materialid = m.id and su.supplyid = m.supplyid and ss.storageid = st.id and sto.id = ss.stockid";
         List<Object[]> list = (List<Object[]>) this.getHibernateTemplate().find(hql);
         List<MaterialAndSupplier> materialAndSupplierList = new ArrayList<MaterialAndSupplier>();
         for (int i = 0; i < list.size(); i++) {
@@ -80,10 +80,13 @@ public class MaterialDaoImpl extends BaseDaoImpl<Material> implements IMaterialD
             materialAndSupplier.setMaterialId((Integer) objects[0]);
             materialAndSupplier.setMaterialName((String) objects[1]);
             materialAndSupplier.setMaterialType((String) objects[2]);
-            materialAndSupplier.setSupplierName((String) objects[3]);
-            materialAndSupplier.setNumber((Integer) objects[4]);
-            materialAndSupplier.setStorageName((String) objects[5]);
+            materialAndSupplier.setStorageName((String) objects[3]);
+            materialAndSupplier.setSupplierName((String) objects[4]);
+            materialAndSupplier.setNumber((Integer) objects[5]);
             materialAndSupplier.setRemark((String) objects[6]);
+            materialAndSupplier.setOutstorageId((Integer) objects[7]);
+            materialAndSupplier.setStorageid((Integer) objects[8]);
+            materialAndSupplier.setDate((String) objects[9]);
             materialAndSupplierList.add(materialAndSupplier);
         }
         return materialAndSupplierList;

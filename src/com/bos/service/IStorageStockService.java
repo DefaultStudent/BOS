@@ -12,4 +12,10 @@ public interface IStorageStockService {
      * @param number
      */
     public void saveStorageStock(int storageid, int materialId, int number);
+
+    /**
+     * 更新仓库-盘存信息
+     * @param materialid
+     */
+    public void updateStorageStock(int materialid);
 }

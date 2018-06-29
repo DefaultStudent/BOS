@@ -113,9 +113,8 @@
                                         <s:a class="btn btn-info" href="findMaterialById?id=%{#ma.materialId}">
                                             <i class="fa fa-edit "></i>
                                         </s:a>
-                                        <s:a class="btn btn-danger" href="deleteMaterial.action?id=%{#ma.id}&ind=%{#ma.instorage}&number=%{#ma.materialnum}&stid=%{#ma.storageid}" onclick="delcfm()">
+                                        <s:a class="btn btn-danger" href="deleteMaterial.action?id=%{#ma.materialId}&number=%{#ma.number}&sotrageid=%{#ma.storageid}&outsotrageid=%{#ma.outstorageId}&date=%{#ma.date}&remark=%{#ma.remark}" onclick="delcfm()">
                                             <i class="fa fa-trash-o "></i>
-
                                         </s:a>
                                     </td>
                                 </tr>

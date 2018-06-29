@@ -39,12 +39,11 @@ public class MaterialServiceImpl implements IMaterialService {
     /**
      * 根据name查询id
      *
-     * @param materialName
      * @return
      */
     @Override
-    public List findMaterialByName(String materialName) {
-        return materialDao.findMaterialByName(materialName);
+    public List findMaterialByName() {
+        return materialDao.findMaterialByName();
     }
 
     /**
@@ -86,5 +85,15 @@ public class MaterialServiceImpl implements IMaterialService {
     @Override
     public void updateMaterial(Material material) {
         this.materialDao.update(material);
+    }
+
+    /**
+     * 删除商品信息
+     *
+     * @param material
+     */
+    @Override
+    public void deleteMaterial(Material material) {
+        this.materialDao.delete(material);
     }
 }

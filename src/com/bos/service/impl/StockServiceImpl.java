@@ -44,6 +44,10 @@ public class StockServiceImpl implements IStockService {
             // 商品为首次入库
             stock.setOutstorageid(instorageid);
             stock.setRemark("首次入库");
+        } else if (instorageid == outstorageid) {
+            // 商品进行移库操作
+            stock.setOutstorageid(outstorageid);
+            stock.setRemark("商品已删除");
         } else {
             // 商品进行移库操作
             stock.setOutstorageid(outstorageid);

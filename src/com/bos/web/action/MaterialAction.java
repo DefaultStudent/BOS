@@ -62,7 +62,7 @@ public class MaterialAction extends BaseAction<Material> {
         materialService.save(model);
 
         // 获取materialid
-        String id = materialService.findMaterialByName(materialName).get(0).toString();
+        String id = materialService.findMaterialByName().get(0).toString();
         int materialid = Integer.parseInt(id);
 
         // 添加入库明细信息
@@ -114,8 +114,31 @@ public class MaterialAction extends BaseAction<Material> {
         return SUCCESS;
     }
 
+    /**
+     * 更新商品信息
+     * @return
+     */
     public String updateMaterial() {
         materialService.updateMaterial(model);
+        return SUCCESS;
+    }
+
+    /**
+     * 删除商品信息
+     * @return
+     */
+    public String deleteMaterial() {
+        String date = ServletActionContext.getRequest().getParameter("date");
+        String remrak = ServletActionContext.getRequest().getParameter("remark");
+        String number = ServletActionContext.getRequest().getParameter("number");
+        int materialid = model.getId();
+        int storageid = Integer.parseInt(ServletActionContext.getRequest().getParameter("sotrageid"));
+        int outstorageid = Integer.parseInt(ServletActionContext.getRequest().getParameter("outsotrageid"));
+
+        materialService.deleteMaterial(model);
+        storageService.delStorageMaterialNum(storageid, number);
+        stockService.saveStock(date, outstorageid, remrak);
+        storageStockService.updateStorageStock(materialid);
         return SUCCESS;
     }
 }
