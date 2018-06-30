@@ -52,7 +52,6 @@ public class MaterialDaoImpl extends BaseDaoImpl<Material> implements IMaterialD
     /**
      * 根据Name查询
      *
-     * @param name
      * @return
      */
     @Override

@@ -17,7 +17,9 @@ public class MaterialAndSupplier {
     private String storageName;
     private String date;
     private String remark;
+    private int instorageId;
     private int outstorageId;
+    private String username;
 
     public int getMaterialId() {
         return materialId;
@@ -105,5 +107,21 @@ public class MaterialAndSupplier {
 
     public void setStorageid(int storageid) {
         this.storageid = storageid;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public int getInstorageId() {
+        return instorageId;
+    }
+
+    public void setInstorageId(int instorageId) {
+        this.instorageId = instorageId;
     }
 }

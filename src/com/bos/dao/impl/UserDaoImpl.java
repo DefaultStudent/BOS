@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * @author Simon
+ */
 @Repository
 public class UserDaoImpl extends BaseDaoImpl<User> implements IUserDao{
     @Override

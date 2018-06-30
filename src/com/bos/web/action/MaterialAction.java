@@ -141,4 +141,13 @@ public class MaterialAction extends BaseAction<Material> {
         storageStockService.updateStorageStock(materialid);
         return SUCCESS;
     }
+
+    public String findAll() {
+        // 获取已经存在的商品信息
+        List list = materialService.findAll();
+        if (list.size() > 0) {
+            ServletActionContext.getRequest().getSession().setAttribute("findAllMaterial", list);
+        }
+        return SUCCESS;
+    }
 }

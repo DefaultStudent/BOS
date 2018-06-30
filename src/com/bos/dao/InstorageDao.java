@@ -2,6 +2,9 @@ package com.bos.dao;
 
 import com.bos.dao.base.IBaseDao;
 import com.bos.domain.Instorage;
+import com.bos.domain.MaterialAndSupplier;
+
+import java.util.List;
 
 /**
  * @author Simon
@@ -13,4 +16,10 @@ public interface InstorageDao extends IBaseDao<Instorage> {
      * @return
      */
     public int findInstorageId();
+
+    /**
+     * 查询全部进货信息
+     * @return
+     */
+    public List<MaterialAndSupplier> findAllInstorage();
 }

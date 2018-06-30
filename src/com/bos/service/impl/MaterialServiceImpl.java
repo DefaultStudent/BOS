@@ -96,4 +96,14 @@ public class MaterialServiceImpl implements IMaterialService {
     public void deleteMaterial(Material material) {
         this.materialDao.delete(material);
     }
+
+    /**
+     * 只查询商品表中的全部信息
+     *
+     * @return
+     */
+    @Override
+    public List<Material> findAll() {
+        return materialDao.findAll();
+    }
 }

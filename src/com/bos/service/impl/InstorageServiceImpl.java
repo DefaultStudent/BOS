@@ -2,12 +2,14 @@ package com.bos.service.impl;
 
 import com.bos.dao.InstorageDao;
 import com.bos.domain.Instorage;
+import com.bos.domain.MaterialAndSupplier;
 import com.bos.service.InStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @author Simon
@@ -44,5 +46,19 @@ public class InstorageServiceImpl implements InStorageService {
 
         // 添加入库明细信息
         instorageDao.save(instorage);
+    }
+
+    /**
+     * 查询全部进货表信息
+     *
+     * @return
+     */
+    @Override
+    public List<MaterialAndSupplier> findAll() {
+        List<MaterialAndSupplier> list = instorageDao.findAllInstorage();
+        if (list.size() > 0) {
+            return list;
+        }
+        return null;
     }
 }

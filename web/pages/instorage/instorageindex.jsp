@@ -1,11 +1,9 @@
-<%@ page import="java.util.List" %>
-<%@ page import="com.bos.domain.MaterialAndSupplier" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: vodka
-  Date: 2018/6/22
-  Time: 上午10:03
+  Date: 2018/6/30
+  Time: 下午7:54
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -88,35 +86,26 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th>商品编号</th>
+                                <th>进货编号</th>
+                                <th>进货日期</th>
                                 <th>商品名称</th>
-                                <th>商品类型</th>
-                                <th>存储仓库</th>
-                                <th>供应商</th>
-                                <th>数量</th>
+                                <th>进货数量</th>
+                                <th>操作人员</th>
+                                <th>放入仓库</th>
                                 <th>备注</th>
-                                <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
 
-                            <s:iterator var="ma" value="#session.ma">
+                            <s:iterator var="fai" value="#session.findAllInstorage">
                                 <tr>
-                                    <td><s:property value="#ma.materialId"/></td>
-                                    <td><s:property value="#ma.materialName"/> </td>
-                                    <td><s:property value="#ma.materialType"/> </td>
-                                    <td><s:property value="#ma.storageName"/></td>
-                                    <td><s:property value="#ma.supplierName"/></td>
-                                    <td><s:property value="#ma.number"/></td>
-                                    <td><s:property value="#ma.remark"/></td>
-                                    <td>
-                                        <s:a class="btn btn-info" href="findMaterialById?id=%{#ma.materialId}">
-                                            <i class="fa fa-edit "></i>
-                                        </s:a>
-                                        <s:a class="btn btn-danger" href="deleteMaterial.action?id=%{#ma.materialId}&number=%{#ma.number}&sotrageid=%{#ma.storageid}&outsotrageid=%{#ma.outstorageId}&date=%{#ma.date}&remark=%{#ma.remark}" onclick="delcfm()">
-                                            <i class="fa fa-trash-o "></i>
-                                        </s:a>
-                                    </td>
+                                    <td><s:property value="#fai.instorageId"/></td>
+                                    <td><s:property value="#fai.date"/></td>
+                                    <td><s:property value="#fai.materialName"/></td>
+                                    <td><s:property value="#fai.number"/></td>
+                                    <td><s:property value="#fai.username"/></td>
+                                    <td><s:property value="#fai.storageName"/></td>
+                                    <td><s:property value="#fai.remark"/></td>
                                 </tr>
                             </s:iterator>
                             </tbody>

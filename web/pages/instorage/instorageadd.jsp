@@ -2,14 +2,14 @@
 <%--
   Created by IntelliJ IDEA.
   User: vodka
-  Date: 2018/6/25
-  Time: 上午9:45
+  Date: 2018/6/30
+  Time: 下午7:53
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>商品信息添加</title>
+    <title>进货</title>
     <!-- Import google fonts - Heading first/ text second -->
     <link rel='stylesheet' type='text/css' href='http://fonts.useso.com/css?family=Open+Sans:400,700|Droid+Sans:400,700' />
     <!--[if lt IE 9]>
@@ -70,23 +70,15 @@
             <div class="row">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <form action="saveMaterial.action" method="post" enctype="multipart/form-data" class="form-horizontal ">
+                        <form action="saveInstorage.action" method="post" enctype="multipart/form-data" class="form-horizontal ">
                             <div class="form-group">
                                 <label class="col-md-3 control-label">商品名称</label>
                                 <div class="col-md-9">
-                                    <input name="name" type="text" class="form-control" required="required">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">商品类型</label>
-                                <div class="col-md-9">
-                                    <input name="type" type="text" class="form-control" required="required">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">商品数量</label>
-                                <div class="col-md-9">
-                                    <input name="number" type="text" class="form-control" required="required">
+                                    <select name="materialid" class="form-control">
+                                        <s:iterator var="fam" value="#session.findAllMaterial">
+                                            <option value="<s:property value="#fam.id"/>"<s:property value="#fam.name"/></option>
+                                        </s:iterator>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -96,13 +88,15 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">供应商</label>
+                                <label class="col-md-3 control-label">进货数量</label>
                                 <div class="col-md-9">
-                                    <select name="supplyid" class="form-control">
-                                        <s:iterator var="s" value="#session.findAllSupplier">
-                                            <option value="<s:property value="#s.supplyid"/>"><s:property value="#s.sname"/></option>
-                                        </s:iterator>
-                                    </select>
+                                    <input name="number" type="text" class="form-control" required="required">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">商品数量</label>
+                                <div class="col-md-9">
+                                    <input name="number" type="text" class="form-control" required="required">
                                 </div>
                             </div>
                             <div class="form-group">

@@ -46,4 +46,10 @@ public interface IMaterialService {
      * @param model
      */
     public void deleteMaterial(Material model);
+
+    /**
+     * 只查询商品表中的全部信息
+     * @return
+     */
+    public List<Material> findAll();
 }

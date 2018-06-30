@@ -64,27 +64,27 @@
                             </a>
                         </li>
                         <li>
+                            <a href="findSupplier.action">
+                                <i class="fa fa-align-left"></i>
+                                <span class="text"> 商品信息添加</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="#">
                                 <i class="fa fa-align-left"></i>
                                 <span class="text"> 进货信息</span>
                             </a>
                             <ul class="nav sub">
                                 <li>
-                                    <a href="findSupplier.action">
+                                    <a href="findAllInstorage.action">
                                         <i class="fa fa-align-left"></i>
-                                        <span class="text"> 商品信息添加</span>
+                                        <span class="text"> 进货信息概览</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="findAllSupplier_Ins.action">
                                         <i class="fa fa-align-left"></i>
-                                        <span class="text"> 进货</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-align-left"></i>
-                                        <span class="text"> 进货信息修改</span>
+                                        <span class="text"> 添加进货</span>
                                     </a>
                                 </li>
                             </ul>
