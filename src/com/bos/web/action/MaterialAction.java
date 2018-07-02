@@ -2,7 +2,6 @@ package com.bos.web.action;
 
 import com.bos.domain.Material;
 import com.bos.domain.MaterialAndSupplier;
-import com.bos.domain.Storage;
 import com.bos.domain.User;
 import com.bos.service.*;
 import com.bos.web.action.base.BaseAction;
@@ -55,8 +54,6 @@ public class MaterialAction extends BaseAction<Material> {
         int storageid = Integer.parseInt(ServletActionContext.getRequest().getParameter("storageid"));
         // 获取备注
         String remark = model.getRemark();
-        // 设置出库表id
-        int outstorageid = 0;
 
         // 添加商品信息
         materialService.save(model);
@@ -72,7 +69,7 @@ public class MaterialAction extends BaseAction<Material> {
         storageService.addStorageMaterialNum(storageid, numberString);
 
         // 添加盘存信息
-        stockService.saveStock(date, outstorageid, remark);
+        stockService.saveStock(date, remark);
         // 添加仓库-盘存信息
         storageStockService.saveStorageStock(storageid, materialid, number);
 
@@ -133,11 +130,10 @@ public class MaterialAction extends BaseAction<Material> {
         String number = ServletActionContext.getRequest().getParameter("number");
         int materialid = model.getId();
         int storageid = Integer.parseInt(ServletActionContext.getRequest().getParameter("sotrageid"));
-        int outstorageid = Integer.parseInt(ServletActionContext.getRequest().getParameter("outsotrageid"));
 
         materialService.deleteMaterial(model);
         storageService.delStorageMaterialNum(storageid, number);
-        stockService.saveStock(date, outstorageid, remrak);
+        stockService.saveStock(date, remrak);
         storageStockService.updateStorageStock(materialid);
         return SUCCESS;
     }

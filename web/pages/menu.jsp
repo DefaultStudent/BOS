@@ -29,8 +29,8 @@
                 <li>
                     <a href="#"><i class="fa fa-list-alt"></i><span class="text"> 进货管理</span> <span class="fa fa-angle-down pull-right"></span></a>
                     <ul class="nav sub">
-                        <li><a href="form-elements.html"><i class="fa fa-indent"></i><span class="text"> 进货信息概览</span></a></li>
-                        <li><a href="form-elements.html"><i class="fa fa-indent"></i><span class="text"> 进货信息添加</span></a></li>
+                        <li><a href="findAllInstorage.action"><i class="fa fa-indent"></i><span class="text"> 进货信息概览</span></a></li>
+                        <li><a href="findAllSupplier_Ins.action"><i class="fa fa-indent"></i><span class="text"> 进货信息添加</span></a></li>
                     </ul>
                 </li>
                 <li>
@@ -68,26 +68,6 @@
                                 <i class="fa fa-align-left"></i>
                                 <span class="text"> 商品信息添加</span>
                             </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-align-left"></i>
-                                <span class="text"> 进货信息</span>
-                            </a>
-                            <ul class="nav sub">
-                                <li>
-                                    <a href="findAllInstorage.action">
-                                        <i class="fa fa-align-left"></i>
-                                        <span class="text"> 进货信息概览</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="findAllSupplier_Ins.action">
-                                        <i class="fa fa-align-left"></i>
-                                        <span class="text"> 添加进货</span>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                         <li>
                             <a href="ui-sliders-progress.html">

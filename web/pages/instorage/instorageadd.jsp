@@ -76,7 +76,7 @@
                                 <div class="col-md-9">
                                     <select name="materialid" class="form-control">
                                         <s:iterator var="fam" value="#session.findAllMaterial">
-                                            <option value="<s:property value="#fam.id"/>"<s:property value="#fam.name"/></option>
+                                            <option value="<s:property value="#fam.id"/>"><s:property value="#fam.name"/></option>
                                         </s:iterator>
                                     </select>
                                 </div>
@@ -89,12 +89,6 @@
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">进货数量</label>
-                                <div class="col-md-9">
-                                    <input name="number" type="text" class="form-control" required="required">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">商品数量</label>
                                 <div class="col-md-9">
                                     <input name="number" type="text" class="form-control" required="required">
                                 </div>

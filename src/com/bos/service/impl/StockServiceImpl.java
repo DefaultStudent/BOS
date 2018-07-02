@@ -27,14 +27,14 @@ public class StockServiceImpl implements IStockService {
     /**
      * 添加盘存信息
      *
-     * @param date\
-     * @param outstorageid
+     * @param date
      * @param remark
      */
     @Override
-    public void saveStock(String date, int outstorageid, String remark) {
+    public void saveStock(String date, String remark) {
 
         Stock stock = new Stock();
+        int outstorageid = 0;
         // 设置盘存信息
         stock.setDate(date);
         int instorageid = instorageDao.findInstorageId();
@@ -43,11 +43,7 @@ public class StockServiceImpl implements IStockService {
         if (outstorageid == 0) {
             // 商品为首次入库
             stock.setOutstorageid(instorageid);
-            stock.setRemark("首次入库");
-        } else if (instorageid == outstorageid) {
-            // 商品进行移库操作
-            stock.setOutstorageid(outstorageid);
-            stock.setRemark("商品已删除");
+            stock.setRemark("无");
         } else {
             // 商品进行移库操作
             stock.setOutstorageid(outstorageid);

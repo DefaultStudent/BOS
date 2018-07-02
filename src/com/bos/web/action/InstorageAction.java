@@ -47,7 +47,7 @@ public class InstorageAction extends BaseAction<Instorage> {
 
         int materialId = Integer.parseInt(ServletActionContext.getRequest().getParameter("materialid"));
 
-        int storageId = model.getId();
+        int storageId = Integer.parseInt(ServletActionContext.getRequest().getParameter("storageid"));
 
         String remark = model.getRemark();
 
@@ -55,14 +55,11 @@ public class InstorageAction extends BaseAction<Instorage> {
         User user = (User) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
         int userid = user.getId();
 
-        // 代表本批次商品首次入库
-        int outstorageId = 0;
-
         inStorageService.saveInstorage(date, materialId, number, userid, storageId, remark);
 
         storageService.addStorageMaterialNum(storageId, numberString);
 
-        stockService.saveStock(date, outstorageId, remark);
+        stockService.saveStock(date, remark);
 
         storageStockService.saveStorageStock(storageId, materialId, numberInt);
 

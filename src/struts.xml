@@ -118,7 +118,7 @@
         <action name="findAllMaterial_Ins" class="com.bos.web.action.MaterialAction" method="findAll">
             <result name="success">/pages/instorage/instorageadd.jsp</result>
         </action>
-        <action name="findAllSupplier_Ins" class="com.bos.web.action.SupplierAction" method="findAllSupplier">
+        <action name="findAllSupplier_Ins" class="com.bos.web.action.StorageAction" method="findAllStorage">
             <result name="success" type="chain">findAllMaterial_Ins</result>
         </action>
     </package>

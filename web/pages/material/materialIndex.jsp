@@ -93,7 +93,6 @@
                                 <th>商品类型</th>
                                 <th>存储仓库</th>
                                 <th>供应商</th>
-                                <th>数量</th>
                                 <th>备注</th>
                                 <th>操作</th>
                             </tr>
@@ -107,13 +106,12 @@
                                     <td><s:property value="#ma.materialType"/> </td>
                                     <td><s:property value="#ma.storageName"/></td>
                                     <td><s:property value="#ma.supplierName"/></td>
-                                    <td><s:property value="#ma.number"/></td>
                                     <td><s:property value="#ma.remark"/></td>
                                     <td>
                                         <s:a class="btn btn-info" href="findMaterialById?id=%{#ma.materialId}">
                                             <i class="fa fa-edit "></i>
                                         </s:a>
-                                        <s:a class="btn btn-danger" href="deleteMaterial.action?id=%{#ma.materialId}&number=%{#ma.number}&sotrageid=%{#ma.storageid}&outsotrageid=%{#ma.outstorageId}&date=%{#ma.date}&remark=%{#ma.remark}" onclick="delcfm()">
+                                        <s:a class="btn btn-danger" href="deleteMaterial.action?id=%{#ma.materialId}&number=%{#ma.number}&sotrageid=%{#ma.storageid}&date=%{#ma.date}&remark=%{#ma.remark}" onclick="delcfm()">
                                             <i class="fa fa-trash-o "></i>
                                         </s:a>
                                     </td>
