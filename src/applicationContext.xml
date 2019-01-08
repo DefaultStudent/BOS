@@ -27,7 +27,7 @@
                 <prop key="hibernate.format_sql">true</prop>
                 <prop key="hibernate.connection.autocommit">true</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
-                <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/aistorage</prop>
+                <prop key="hibernate.connection.url">jdbc:mysql://172.16.119.132:3306/Store?useSSL=false</prop>
                 <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
             </props>
         </property>
