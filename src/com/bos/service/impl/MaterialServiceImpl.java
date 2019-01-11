@@ -6,9 +6,7 @@ import com.bos.dao.InstorageDao;
 import com.bos.domain.Instorage;
 import com.bos.domain.Material;
 import com.bos.domain.MaterialAndSupplier;
-import com.bos.service.IMaterialService;
-import com.bos.service.IStockService;
-import com.bos.service.IStorageStockService;
+import com.bos.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,8 +27,11 @@ public class MaterialServiceImpl implements IMaterialService {
     private IMaterialDao materialDao;
 
     @Resource
+    private InStorageService inStorageService;
+    @Resource
+    private IStorageService storageService;
+    @Resource
     private IStockService stockService;
-
     @Resource
     private IStorageStockService storageStockService;
 
@@ -42,9 +43,6 @@ public class MaterialServiceImpl implements IMaterialService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void save(Material material, int userId, int number, int storageId, int materialId) {
-
-        InstorageServiceImpl instorageService = new InstorageServiceImpl();
-        StorageServiceImpl storageService = new StorageServiceImpl();
 
         // 获取前台添加的商品信息
         String date = material.getDate();
@@ -68,7 +66,7 @@ public class MaterialServiceImpl implements IMaterialService {
         if (name != existMaterialName && supplyId != existSupplyId) {
             try{
                 materialDao.save(material);
-                instorageService.saveInstorage(date, materialId, num, userId, storageId, remark);
+                inStorageService.saveInstorage(date, materialId, num, userId, storageId, remark);
                 storageService.addStorageMaterialNum(storageId, numString);
                 stockService.saveStock(date, remark);
                 storageStockService.saveStorageStock(storageId, materialId, number);

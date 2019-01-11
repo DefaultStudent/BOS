@@ -1,15 +1,15 @@
-<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: vodka
-  Date: 2018/6/30
-  Time: 下午7:53
+  Date: 2019-01-11
+  Time: 21:59
   To change this template use File | Settings | File Templates.
 --%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>进货</title>
+    <title>出货</title>
     <!-- Import google fonts - Heading first/ text second -->
     <link rel='stylesheet' type='text/css' href='http://fonts.useso.com/css?family=Open+Sans:400,700|Droid+Sans:400,700' />
     <!--[if lt IE 9]>
@@ -58,11 +58,11 @@
     <div class="main ">
         <div class="row">
             <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa-indent"></i>进货信息</h3>
+                <h3 class="page-header"><i class="fa fa-indent"></i>出货信息</h3>
                 <ol class="breadcrumb">
                     <li><i class="fa fa-home"></i><a href="/index.jsp">首页</a></li>
-                    <li><i class="fa fa-list-alt"></i><a href="findAllMaterial.action">进货管理</a></li>
-                    <li><i class="fa fa-indent"></i>进货信息添加</li>
+                    <li><i class="fa fa-list-alt"></i><a href="findAllMaterial.action">出货管理</a></li>
+                    <li><i class="fa fa-indent"></i>出货信息添加</li>
                 </ol>
             </div>
         </div>
@@ -82,19 +82,19 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">进货日期</label>
+                                <label class="col-md-3 control-label">出货日期</label>
                                 <div class="col-md-9">
                                     <input type="date" name="date" class="form-control" required="required">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">进货数量</label>
+                                <label class="col-md-3 control-label">出货数量</label>
                                 <div class="col-md-9">
                                     <input name="number" type="text" class="form-control" required="required">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">添加至仓库</label>
+                                <label class="col-md-3 control-label">选择出货仓库</label>
                                 <div class="col-md-9">
                                     <select name="storageid" class="form-control">
                                         <s:iterator var="st" value="#session.storage">
@@ -109,7 +109,7 @@
                                     <textarea id="textarea-input" name="remark" rows="9" class="form-control" placeholder="备注..."></textarea>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-dot-circle-o"></i> 添加</button>
+                            <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-dot-circle-o"></i> 确认出货</button>
                             <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> 重置</button>
                         </form>
                     </div>
