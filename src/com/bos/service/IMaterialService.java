@@ -14,7 +14,7 @@ public interface IMaterialService {
      * 添加商品信息
      * @param material
      */
-    public void save(Material material);
+    public void save(Material material, int userId, int number, int storageId, int materialId);
 
     /**
      * 根据name查询id

@@ -4,12 +4,8 @@ import com.bos.dao.IMaterialDao;
 import com.bos.dao.base.impl.BaseDaoImpl;
 import com.bos.domain.Material;
 import com.bos.domain.MaterialAndSupplier;
-import com.bos.domain.Storage;
-import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Date;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,5 +84,27 @@ public class MaterialDaoImpl extends BaseDaoImpl<Material> implements IMaterialD
             materialAndSupplierList.add(materialAndSupplier);
         }
         return materialAndSupplierList;
+    }
+
+    /**
+     * 根据商品名称查询
+     *
+     * @param name
+     * @return
+     */
+    @Override
+    public List<Material> findMaterialByName(String name) {
+        String hql = "SELECT id, name, supplyid FROM Material WHERE name = ?";
+        List<Object[]> list = (List<Object[]>) this.getHibernateTemplate().find(hql, name);
+        List<Material> materialList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            Object[] objects = list.get(i);
+            Material material = new Material();
+            material.setId((Integer) objects[0]);
+            material.setName((String) objects[1]);
+            material.setSupplyid((Integer) objects[2]);
+            materialList.add(material);
+        }
+        return materialList;
     }
 }
