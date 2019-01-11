@@ -31,6 +31,7 @@ public class MaterialServiceImpl implements IMaterialService {
      * @param material
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void save(Material material) {
         // 将商品信息添加至商品表
         materialDao.save(material);

@@ -31,6 +31,7 @@ public class StockServiceImpl implements IStockService {
      * @param remark
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void saveStock(String date, String remark) {
 
         Stock stock = new Stock();

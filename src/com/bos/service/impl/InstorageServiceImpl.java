@@ -32,6 +32,7 @@ public class InstorageServiceImpl implements InStorageService {
      * @param remark
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void saveInstorage(String date, int materialid, Long number, int userid, int storageid, String remark) {
 
         Instorage instorage = new Instorage();

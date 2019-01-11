@@ -54,24 +54,28 @@ public class MaterialAction extends BaseAction<Material> {
         int storageid = Integer.parseInt(ServletActionContext.getRequest().getParameter("storageid"));
         // 获取备注
         String remark = model.getRemark();
+        try {
+            // 添加商品信息
+            materialService.save(model);
 
-        // 添加商品信息
-        materialService.save(model);
+            // 获取materialid
+            String id = materialService.findMaterialByName().get(0).toString();
+            int materialid = Integer.parseInt(id);
 
-        // 获取materialid
-        String id = materialService.findMaterialByName().get(0).toString();
-        int materialid = Integer.parseInt(id);
+            // 添加入库明细信息
+            inStorageService.saveInstorage(date, materialid, numberLong, userid, storageid, remark);
 
-        // 添加入库明细信息
-        inStorageService.saveInstorage(date, materialid, numberLong, userid, storageid, remark);
+            // 更新仓库库存
+            storageService.addStorageMaterialNum(storageid, numberString);
 
-        // 更新仓库库存
-        storageService.addStorageMaterialNum(storageid, numberString);
+            // 添加盘存信息
+            stockService.saveStock(date, remark);
+            // 添加仓库-盘存信息
+            storageStockService.saveStorageStock(storageid, materialid, number);
 
-        // 添加盘存信息
-        stockService.saveStock(date, remark);
-        // 添加仓库-盘存信息
-        storageStockService.saveStorageStock(storageid, materialid, number);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return SUCCESS;
     }

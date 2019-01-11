@@ -4,7 +4,6 @@ import com.bos.dao.InstorageDao;
 import com.bos.dao.base.impl.BaseDaoImpl;
 import com.bos.domain.Instorage;
 import com.bos.domain.MaterialAndSupplier;
-import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
