@@ -106,4 +106,21 @@ public class MaterialDaoImpl extends BaseDaoImpl<Material> implements IMaterialD
         }
         return materialList;
     }
+
+    /**
+     * 返回id最大值
+     *
+     * @return
+     */
+    @Override
+    public int maxId() {
+        String hql = "SELECT max(id) FROM Material";
+        List list = this.getHibernateTemplate().find(hql);
+        if (list.isEmpty()) {
+            return 0;
+        } else {
+            int id = (Integer) list.get(0);
+            return id;
+        }
+    }
 }

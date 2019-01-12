@@ -35,7 +35,7 @@ public class Outstorage {
     }
 
     @Basic
-    @Column(name = "materialid", nullable = true, insertable = false, updatable = false)
+    @Column(name = "materialid", nullable = true)
     public Integer getMaterialid() {
         return materialid;
     }
@@ -65,7 +65,7 @@ public class Outstorage {
     }
 
     @Basic
-    @Column(name = "storageid", nullable = true, insertable = false, updatable = false)
+    @Column(name = "storageid", nullable = true)
     public Integer getStorageid() {
         return storageid;
     }

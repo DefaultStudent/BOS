@@ -55,28 +55,24 @@ public class MaterialServiceImpl implements IMaterialService {
         // 获取已经存在的商品名称
         Material material1 = new Material();
         List<Material> list = materialDao.findMaterialByName(name);
-        for (Material material2 : list) {
-            material1.setId(material2.getId());
-            material1.setName(material2.getName());
-            material1.setSupplyid(material2.getSupplyid());
-        }
-        String existMaterialName = material1.getName();
-        int existSupplyId = material1.getSupplyid();
 
-        if (name != existMaterialName && supplyId != existSupplyId) {
-            try{
-                materialDao.save(material);
-                inStorageService.saveInstorage(date, materialId, num, userId, storageId, remark);
-                storageService.addStorageMaterialNum(storageId, numString);
-                stockService.saveStock(date,0, remark);
-                storageStockService.saveStorageStock(storageId, materialId, number);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        // 判断当前商品名称是否存在
+        if (list.size() == 0) {
+            // 如果不存在
+            // 获取当前商品编号的最大值
+            int id = materialDao.maxId();
+
+            // 开始入库操作
+            materialDao.save(material);
+            inStorageService.saveInstorage(date, id + 1, num, userId, storageId, remark);
+            storageService.addStorageMaterialNum(storageId, numString);
+            stockService.saveStock(date,0, remark);
+            storageStockService.saveStorageStock(storageId, id + 1, number);
         } else {
+
+            // 如果存在，则输出：添加失败
             System.out.println("添加失败");
         }
-
     }
 
     /**
