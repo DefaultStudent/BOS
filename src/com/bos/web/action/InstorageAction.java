@@ -57,13 +57,6 @@ public class InstorageAction extends BaseAction<Instorage> {
 
         inStorageService.saveInstorage(date, materialId, number, userid, storageId, remark);
 
-        storageService.addStorageMaterialNum(storageId, numberString);
-
-        stockService.saveStock(date,0 , remark);
-
-        // 有问题
-        storageStockService.saveStorageStock(storageId, materialId, numberInt);
-
         return SUCCESS;
     }
 

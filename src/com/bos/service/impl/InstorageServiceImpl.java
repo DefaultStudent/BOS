@@ -1,13 +1,18 @@
 package com.bos.service.impl;
 
+import com.bos.dao.IMaterialDao;
 import com.bos.dao.InstorageDao;
 import com.bos.domain.Instorage;
 import com.bos.domain.MaterialAndSupplier;
+import com.bos.service.IStockService;
+import com.bos.service.IStorageService;
+import com.bos.service.IStorageStockService;
 import com.bos.service.InStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -20,6 +25,15 @@ public class InstorageServiceImpl implements InStorageService {
 
     @Autowired
     private InstorageDao instorageDao;
+    @Autowired
+    private IMaterialDao materialDao;
+
+    @Resource
+    private IStorageService storageService;
+    @Resource
+    private IStockService stockService;
+    @Resource
+    private IStorageStockService storageStockService;
 
     /**
      * 添加入库明细
@@ -47,6 +61,10 @@ public class InstorageServiceImpl implements InStorageService {
 
         // 添加入库明细信息
         instorageDao.save(instorage);
+        storageService.addStorageMaterialNum(storageid, number.toString());
+        stockService.saveStock(date, 0, remark);
+        int id = materialDao.maxId();
+        storageStockService.saveStorageStock(storageid, id + 1, Integer.parseInt(number.toString()));
     }
 
     /**

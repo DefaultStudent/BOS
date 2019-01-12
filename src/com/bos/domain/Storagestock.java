@@ -1,9 +1,6 @@
 package com.bos.domain;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -17,6 +14,7 @@ public class Storagestock {
 
     @Id
     @Column(name = "stid", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getStid() {
         return stid;
     }

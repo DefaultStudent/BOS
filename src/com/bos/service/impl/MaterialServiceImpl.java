@@ -2,10 +2,9 @@ package com.bos.service.impl;
 
 import com.bos.dao.IMaterialDao;
 import com.bos.dao.IStockDao;
+import com.bos.dao.IStorageStockDao;
 import com.bos.dao.InstorageDao;
-import com.bos.domain.Instorage;
-import com.bos.domain.Material;
-import com.bos.domain.MaterialAndSupplier;
+import com.bos.domain.*;
 import com.bos.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,15 +24,17 @@ public class MaterialServiceImpl implements IMaterialService {
 
     @Autowired
     private IMaterialDao materialDao;
+    @Autowired
+    private IStockDao stockDao;
+    @Autowired
+    private InstorageDao instorageDao;
+    @Autowired
+    private IStorageStockDao storageStockDao;
 
     @Resource
     private InStorageService inStorageService;
     @Resource
     private IStorageService storageService;
-    @Resource
-    private IStockService stockService;
-    @Resource
-    private IStorageStockService storageStockService;
 
     /**
      * 添加商品信息
@@ -49,11 +50,9 @@ public class MaterialServiceImpl implements IMaterialService {
         Long num = new Long(number);
         String numString = String.valueOf(number);
         String name = material.getName();
-        int supplyId = material.getSupplyid();
         String remark = material.getRemark();
 
         // 获取已经存在的商品名称
-        Material material1 = new Material();
         List<Material> list = materialDao.findMaterialByName(name);
 
         // 判断当前商品名称是否存在
@@ -63,12 +62,25 @@ public class MaterialServiceImpl implements IMaterialService {
             int id = materialDao.maxId();
 
             // 开始入库操作
-            materialDao.save(material);
             inStorageService.saveInstorage(date, id + 1, num, userId, storageId, remark);
             storageService.addStorageMaterialNum(storageId, numString);
-            stockService.saveStock(date,0, remark);
+            Stock stock = new Stock();
+            stock.setDate(date);
+            int instorageId = instorageDao.findInstorageId();
+            stock.setInstorageid(instorageId);
+            stock.setOutstorageid(instorageId);
+            stock.setRemark("无");
+            stockDao.save(stock);
             // 仓库-盘存的sysnum默认为0，即「进货」状态
-            storageStockService.saveStorageStock(storageId, id + 1, number);
+            Storagestock storagestock = new Storagestock();
+            int stockId = stockDao.findStockId();
+            storagestock.setStockid(stockId);
+            storagestock.setStorageid(storageId);
+            storagestock.setMaterialid(id + 1);
+            storagestock.setNumber(number);
+            storagestock.setSystemnumber(0);
+            storageStockDao.save(storagestock);
+            materialDao.save(material);
         } else {
             // 如果存在，则输出：添加失败
             System.out.println("添加失败");
