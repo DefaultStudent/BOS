@@ -18,4 +18,18 @@ public interface IStorageStockService {
      * @param materialid
      */
     public void updateStorageStock(int materialid);
+
+    /**
+     * 获取商品是否存在 sysnumber = 0
+     * @param mid
+     * @return
+     */
+    public int sumMaterialNumberIns(int mid);
+
+    /**
+     * 获取商品是否存在 sysnumber = 1
+     * @param mid
+     * @return
+     */
+    public int sumMaterialNumberOut(int mid);
 }

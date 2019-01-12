@@ -124,13 +124,16 @@
         </action>
         <!-- OutstorageAction -->
         <action name="saveOutstorage" class="com.bos.web.action.OutsotrageAction" method="saveOutstorageInfom">
-            <result>index.jsp</result>
+            <result name="success" type="chain">findAllOutstorage</result>
         </action>
         <action name="findAllSupplier_Ons" class="com.bos.web.action.StorageAction" method="findAllStorage">
             <result name="success" type="chain">findAllMaterial_Ons</result>
         </action>
         <action name="findAllMaterial_Ons" class="com.bos.web.action.MaterialAction" method="findAll">
             <result name="success">/pages/outstorage/addoutstorage.jsp</result>
+        </action>
+        <action name="findAllOutstorage" class="com.bos.web.action.OutsotrageAction" method="findAllInstorage">
+            <result name="success">/pages/outstorage/oustorageIndex.jsp</result>
         </action>
     </package>
 </struts>

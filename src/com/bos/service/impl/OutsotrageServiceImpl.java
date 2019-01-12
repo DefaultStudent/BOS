@@ -67,6 +67,7 @@ public class OutsotrageServiceImpl implements IOutStorageService {
         outstorage.setStorageid(storageid);
         outstorage.setRemark(remark);
 
+        // 根据Id查询仓库信息
         Storage storage = new Storage();
         List<Storage> list = storageService.findBySId(storageid);
         for (Storage storage1 : list) {
@@ -75,8 +76,12 @@ public class OutsotrageServiceImpl implements IOutStorageService {
         }
         int numInt = Integer.parseInt(String.valueOf(number));
 
+        int sumIns = storageStockService.sumMaterialNumberIns(materialid);
+        int sumOut = storageStockService.sumMaterialNumberOut(materialid);
+        int restNum = sumIns - sumOut;
+
         // 判断调用仓库内是否有足够库存
-        if ( numInt < Integer.parseInt(storage.getMaterialnum())) {
+        if ( restNum > Integer.parseInt(number.toString())) {
             // 开始进行出库操作
             try {
                 outstorageDao.save(outstorage);

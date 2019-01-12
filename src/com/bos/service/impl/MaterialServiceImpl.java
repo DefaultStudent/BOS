@@ -67,9 +67,9 @@ public class MaterialServiceImpl implements IMaterialService {
             inStorageService.saveInstorage(date, id + 1, num, userId, storageId, remark);
             storageService.addStorageMaterialNum(storageId, numString);
             stockService.saveStock(date,0, remark);
+            // 仓库-盘存的sysnum默认为0，即「进货」状态
             storageStockService.saveStorageStock(storageId, id + 1, number);
         } else {
-
             // 如果存在，则输出：添加失败
             System.out.println("添加失败");
         }

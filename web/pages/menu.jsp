@@ -36,7 +36,7 @@
                 <li>
                     <a href="#"><i class="fa fa-file-text"></i><span class="text"> 出货管理</span> <span class="fa fa-angle-down pull-right"></span></a>
                     <ul class="nav sub">
-                        <li><a href="findAllStorage.action"><i class="fa fa-hdd-o"></i><span class="text"> 出库信息概览</span></a></li>
+                        <li><a href="findAllOutstorage.action"><i class="fa fa-hdd-o"></i><span class="text"> 出库信息概览</span></a></li>
                         <li><a href="findAllSupplier_Ons.action"><i class="fa fa-car"></i><span class="text"> 出库信息添加</span></a></li>
                     </ul>
                 </li>

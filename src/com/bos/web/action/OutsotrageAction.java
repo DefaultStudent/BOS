@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author Simon
@@ -37,9 +38,19 @@ public class OutsotrageAction extends BaseAction<Outstorage> {
         int numInt = Integer.parseInt(numString);
         String remark = model.getRemark();
 
-        int materialId = Integer.parseInt(materialService.findMaterialByName().get(0).toString());
+        int materialId = Integer.parseInt(ServletActionContext.getRequest().getParameter("materialid"));
 
         outStorageService.saveOutstorageInfo(date, materialId, num, userid, storageid, remark);
         return SUCCESS;
+    }
+
+    public String findAllInstorage() {
+        List list = outStorageService.findAllOutStorageInfo();
+        if (list.size() == 0 && list == null) {
+            return ERROR;
+        } else {
+            ServletActionContext.getRequest().getSession().setAttribute("findAllOutstorage", list);
+            return SUCCESS;
+        }
     }
 }

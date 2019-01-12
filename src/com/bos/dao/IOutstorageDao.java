@@ -18,5 +18,9 @@ public interface IOutstorageDao extends IBaseDao<Outstorage> {
      */
     public List<MaterialAndSupplier> findAllOutStorage();
 
+    /**
+     * 获取最大出库编号
+     * @return
+     */
     public int maxOutstorageId();
 }
