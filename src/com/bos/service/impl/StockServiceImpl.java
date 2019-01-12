@@ -32,10 +32,9 @@ public class StockServiceImpl implements IStockService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void saveStock(String date, String remark) {
+    public void saveStock(String date,int outstorageid, String remark) {
 
         Stock stock = new Stock();
-        int outstorageid = 0;
         // 设置盘存信息
         stock.setDate(date);
         int instorageid = instorageDao.findInstorageId();

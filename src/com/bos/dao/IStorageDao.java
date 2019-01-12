@@ -3,6 +3,8 @@ package com.bos.dao;
 import com.bos.dao.base.IBaseDao;
 import com.bos.domain.Storage;
 
+import java.util.List;
+
 public interface IStorageDao extends IBaseDao<Storage> {
 
     /**
@@ -17,4 +19,11 @@ public interface IStorageDao extends IBaseDao<Storage> {
      * @param storageId
      */
     public void updateStorageNum(String number, int storageId);
+
+    /**
+     * 获取仓库信息
+     * @param id
+     * @return
+     */
+    public List<Storage> findBySId(int id);
 }

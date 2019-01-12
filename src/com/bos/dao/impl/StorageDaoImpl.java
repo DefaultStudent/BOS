@@ -41,4 +41,17 @@ public class StorageDaoImpl extends BaseDaoImpl<Storage> implements IStorageDao 
         Session session = this.getSessionFactory().getCurrentSession();
         session.createQuery(sql).executeUpdate();
     }
+
+    /**
+     * 获取仓库信息
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public List<Storage> findBySId(int id) {
+        String hql  = "FROM Storage WHERE id = ?";
+        List<Storage> list = (List<Storage>) this.getHibernateTemplate().find(hql, id);
+        return list;
+    }
 }

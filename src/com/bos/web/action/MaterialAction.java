@@ -123,7 +123,8 @@ public class MaterialAction extends BaseAction<Material> {
 
         materialService.deleteMaterial(model);
         storageService.delStorageMaterialNum(storageid, number);
-        stockService.saveStock(date, remrak);
+        // 此处outstorageid有问题
+        stockService.saveStock(date, 0, remrak);
         storageStockService.updateStorageStock(materialid);
         return SUCCESS;
     }

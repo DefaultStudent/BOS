@@ -59,7 +59,7 @@ public class InstorageAction extends BaseAction<Instorage> {
 
         storageService.addStorageMaterialNum(storageId, numberString);
 
-        stockService.saveStock(date, remark);
+        stockService.saveStock(date,0 , remark);
 
         storageStockService.saveStorageStock(storageId, materialId, numberInt);
 

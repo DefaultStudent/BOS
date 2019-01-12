@@ -15,4 +15,15 @@ public interface IOutStorageService {
      * @return
      */
     public List<MaterialAndSupplier> findAllOutStorageInfo();
+
+    /**
+     * 添加进货信息
+     * @param date
+     * @param materialid
+     * @param number
+     * @param userid
+     * @param storageid
+     * @param remark
+     */
+    public void saveOutstorageInfo(String date, int materialid, Long number, int userid, int storageid, String remark);
 }

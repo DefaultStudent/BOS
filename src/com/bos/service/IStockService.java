@@ -10,5 +10,5 @@ public interface IStockService {
      * @param date
      * @param remark
      */
-    public void saveStock(String date, String remark);
+    public void saveStock(String date, int outstorageid, String remark);
 }

@@ -68,7 +68,7 @@ public class MaterialServiceImpl implements IMaterialService {
                 materialDao.save(material);
                 inStorageService.saveInstorage(date, materialId, num, userId, storageId, remark);
                 storageService.addStorageMaterialNum(storageId, numString);
-                stockService.saveStock(date, remark);
+                stockService.saveStock(date,0, remark);
                 storageStockService.saveStorageStock(storageId, materialId, number);
             } catch (Exception e) {
                 e.printStackTrace();

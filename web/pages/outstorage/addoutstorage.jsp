@@ -70,13 +70,13 @@
             <div class="row">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <form action="saveInstorage.action" method="post" enctype="multipart/form-data" class="form-horizontal ">
+                        <form action="saveOutstorage.action" method="post" enctype="multipart/form-data" class="form-horizontal ">
                             <div class="form-group">
                                 <label class="col-md-3 control-label">商品名称</label>
                                 <div class="col-md-9">
                                     <select name="materialid" class="form-control">
-                                        <s:iterator var="fam" value="#session.findAllMaterial">
-                                            <option value="<s:property value="#fam.id"/>"><s:property value="#fam.name"/></option>
+                                        <s:iterator var="am" value="#session.findAllMaterial">
+                                            <option value="<s:property value="#am.id"/>"><s:property value="#am.name"/></option>
                                         </s:iterator>
                                     </select>
                                 </div>
@@ -97,8 +97,8 @@
                                 <label class="col-md-3 control-label">选择出货仓库</label>
                                 <div class="col-md-9">
                                     <select name="storageid" class="form-control">
-                                        <s:iterator var="st" value="#session.storage">
-                                            <option value="<s:property value="#st.id"/>"><s:property value="#st.name"/></option>
+                                        <s:iterator var="sto" value="#session.storage">
+                                            <option value="<s:property value="#sto.id"/>"><s:property value="#sto.name"/></option>
                                         </s:iterator>
                                     </select>
                                 </div>

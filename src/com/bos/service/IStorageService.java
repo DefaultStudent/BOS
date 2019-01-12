@@ -54,4 +54,11 @@ public interface IStorageService {
      * @param number
      */
     public void delStorageMaterialNum(int storageId, String number);
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    public List<Storage> findBySId(int id);
 }
