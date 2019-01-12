@@ -109,4 +109,14 @@ public class StorageServiceImpl implements IStorageService{
             System.out.println(message);
         }
     }
+
+    /**
+     * @param id
+     * @return
+     */
+    @Override
+    public List<Storage> findBySId(int id) {
+        List list = storageDao.findBySId(id);
+        return list;
+    }
 }

@@ -7,7 +7,7 @@ import java.util.Objects;
 @Entity
 public class Outstorage {
     private int id;
-    private Date date;
+    private String date;
     private Integer materialid;
     private Long number;
     private Integer userid;
@@ -26,11 +26,11 @@ public class Outstorage {
 
     @Basic
     @Column(name = "date", nullable = true)
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

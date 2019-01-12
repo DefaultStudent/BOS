@@ -43,4 +43,17 @@ public class OutstorageDaoImpl extends BaseDaoImpl<Outstorage> implements IOutst
 
         return materialAndSupplierList;
     }
+
+    @Override
+    public int maxOutstorageId() {
+        // 获取当前仓库编号最大值
+        String hql = " select max(id) FROM Outstorage";
+        List list = this.getHibernateTemplate().find(hql);
+        if (list.isEmpty()) {
+            return 0;
+        } else {
+            int id = (Integer) list.get(0);
+            return id;
+        }
+    }
 }
