@@ -39,31 +39,30 @@ public class MaterialAction extends BaseAction<Material> {
      * @return
      */
     public String saveMaterial() {
-        // 获取日期
-        String date = model.getDate();
-        // 获取商品名称
-        String materialName = model.getName();
         // 获取进货数量
         int number = Integer.parseInt(ServletActionContext.getRequest().getParameter("number"));
-        Long numberLong = new Long(number);
-        String numberString = String.valueOf(number);
         // 获取操作人员id
         User user = (User) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
         int userid = user.getId();
         // 获取仓库编号
         int storageid = Integer.parseInt(ServletActionContext.getRequest().getParameter("storageid"));
-        // 获取备注
-        String remark = model.getRemark();
         try {
-            String id = materialService.findMaterialByName().get(0).toString();
-            int materialId = Integer.parseInt(id);
-            // 添加商品信息
-            materialService.save(model, userid, number, storageid, materialId);
+            try {
+                String id = materialService.findMaterialByName().get(0).toString();
+                int materialId = Integer.parseInt(id);
+                materialService.save(model, userid, number, storageid, materialId);
+            } catch (Exception e){
+                int materialId = 0;
+                // 添加商品信息
+                materialService.save(model, userid, number, storageid, materialId);
+            }
+            return SUCCESS;
         } catch (Exception e) {
             e.printStackTrace();
+            return ERROR;
         }
 
-        return SUCCESS;
+
     }
 
     /**

@@ -37,4 +37,10 @@ public interface IMaterialDao extends IBaseDao<Material>{
      * @return
      */
     public List<Material> findMaterialByName(String name);
+
+    /**
+     * 返回id最大值
+     * @return
+     */
+    public int maxId();
 }

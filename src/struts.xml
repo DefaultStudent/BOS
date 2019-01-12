@@ -80,6 +80,7 @@
         </action>
         <action name="saveMaterial" class="com.bos.web.action.MaterialAction" method="saveMaterial">
             <result name="success" type="chain">findAllMaterial</result>
+            <result name="error">/404.jsp</result>
         </action>
         <action name="findStorage" class="com.bos.web.action.StorageAction" method="findAllStorage">
             <result name="success">/pages/material/materialAdd.jsp</result>
@@ -110,7 +111,7 @@
 
         <!-- InstorageAction -->
         <action name="saveInstorage" class="com.bos.web.action.InstorageAction" method="saveInstorageInform">
-            <result>/pages/instorage/instorageindex.jsp</result>
+            <result name="success" type="chain">findAllInstorage</result>
         </action>
         <action name="findAllInstorage" class="com.bos.web.action.InstorageAction" method="findAllInstorage">
             <result>/pages/instorage/instorageindex.jsp</result>
