@@ -62,7 +62,7 @@ public class MaterialServiceImpl implements IMaterialService {
             int id = materialDao.maxId();
 
             // 开始入库操作
-            inStorageService.saveInstorage(date, id + 1, num, userId, storageId, remark);
+            inStorageService.saveFirstInstorage(date, id + 1, num, userId, storageId, remark);
             storageService.addStorageMaterialNum(storageId, numString);
             Stock stock = new Stock();
             stock.setDate(date);

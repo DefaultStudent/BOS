@@ -47,7 +47,7 @@ public class InstorageServiceImpl implements InStorageService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void saveInstorage(String date, int materialid, Long number, int userid, int storageid, String remark) {
+    public void saveFirstInstorage(String date, int materialid, Long number, int userid, int storageid, String remark) {
 
         Instorage instorage = new Instorage();
 
@@ -60,11 +60,39 @@ public class InstorageServiceImpl implements InStorageService {
         instorage.setRemark(remark);
 
         // 添加入库明细信息
-        instorageDao.save(instorage);
         storageService.addStorageMaterialNum(storageid, number.toString());
         stockService.saveStock(date, 0, remark);
         int id = materialDao.maxId();
-        storageStockService.saveStorageStockIns(storageid, id + 1, Integer.parseInt(number.toString()));
+        storageStockService.saveStorageStockIns(storageid, id, Integer.parseInt(number.toString()));
+        instorageDao.save(instorage);
+    }
+
+    /**
+     * 添加入库明细
+     *
+     * @param date
+     * @param materialId
+     * @param number
+     * @param userId
+     * @param storageId
+     * @param remark
+     */
+    @Override
+    public void saveInstorage(String date, int materialId, Long number, int userId, int storageId, String remark) {
+        Instorage instorage = new Instorage();
+
+        // 设置添加值
+        instorage.setDate(date);
+        instorage.setMaterialid(materialId);
+        instorage.setNumber(number);
+        instorage.setUserid(userId);
+        instorage.setStorageid(storageId);
+        instorage.setRemark(remark);
+
+        storageService.addStorageMaterialNum(storageId, number.toString());
+        stockService.saveStock(date, 0, remark);
+        storageStockService.saveStorageStockIns(storageId, materialId, Integer.parseInt(number.toString()));
+        instorageDao.save(instorage);
     }
 
     /**

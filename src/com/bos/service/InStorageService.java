@@ -11,7 +11,7 @@ import java.util.List;
 public interface InStorageService {
 
     /**
-     * 添加入库明细
+     * 添加初次入库明细
      * @param date
      * @param materialid
      * @param number
@@ -19,7 +19,18 @@ public interface InStorageService {
      * @param storageid
      * @param remark
      */
-    public void saveInstorage(String date, int materialid, Long number, int userid, int storageid, String remark);
+    public void saveFirstInstorage(String date, int materialid, Long number, int userid, int storageid, String remark);
+
+    /**
+     * 添加入库明细
+     * @param date
+     * @param materialId
+     * @param number
+     * @param userId
+     * @param storageId
+     * @param remark
+     */
+    public void saveInstorage(String date, int materialId, Long number, int userId, int storageId, String remark);
 
     /**
      * 查询全部进货表信息
