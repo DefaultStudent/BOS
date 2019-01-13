@@ -1,5 +1,6 @@
 package com.bos.service;
 
+import com.bos.domain.MaterialAndSupplier;
 import com.bos.domain.Storage;
 
 import java.util.List;
@@ -61,4 +62,11 @@ public interface IStorageService {
      * @return
      */
     public List<Storage> findBySId(int id);
+
+    /**
+     * 根据Id查询仓库详细存储信息
+     * @param id
+     * @return
+     */
+    public List<MaterialAndSupplier> storageDetail(int id);
 }

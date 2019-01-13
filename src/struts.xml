@@ -55,6 +55,9 @@
         <action name="addStorage" class="com.bos.web.action.StorageAction" method="addStorage">
             <result name="success" type="chain">findAllStorage</result>
         </action>
+        <action name="findDetailById" class="com.bos.web.action.StorageAction" method="strageDetail">
+            <result name="success">/pages/storage/storageDetail.jsp</result>
+        </action>
         <action name="findStorageById" class="com.bos.web.action.StorageAction" method="findStorageById">
             <result name="success">/pages/storage/storageEdit.jsp</result>
         </action>

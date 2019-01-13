@@ -1,5 +1,6 @@
 package com.bos.web.action;
 
+import com.bos.domain.MaterialAndSupplier;
 import com.bos.domain.Storage;
 import com.bos.service.IStorageService;
 import com.bos.web.action.base.BaseAction;
@@ -70,5 +71,21 @@ public class StorageAction extends BaseAction<Storage> {
     public String deleteStorage() {
         storageService.deleteStorage(model);
         return SUCCESS;
+    }
+
+    /**
+     * 查询仓库详细信息
+     * @return
+     */
+    public String strageDetail() {
+        int id = model.getId();
+        try {
+            List<MaterialAndSupplier> list = storageService.storageDetail(id);
+            ServletActionContext.getRequest().getSession().setAttribute("details", list);
+            return SUCCESS;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ERROR;
+        }
     }
 }

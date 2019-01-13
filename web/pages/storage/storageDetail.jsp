@@ -1,18 +1,18 @@
 <%--
   Created by IntelliJ IDEA.
   User: vodka
-  Date: 2018/6/20
-  Time: 下午3:59
+  Date: 2019-01-13
+  Time: 13:57
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@taglib prefix="s" uri="/struts-tags" %>
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>仓库信息概览</title>
+    <title>仓库详细信息页</title>
     <!-- Import google fonts - Heading first/ text second -->
     <link rel='stylesheet' type='text/css' href='http://fonts.useso.com/css?family=Open+Sans:400,700|Droid+Sans:400,700' />
     <!--[if lt IE 9]>
@@ -66,6 +66,7 @@
                     <ol class="breadcrumb">
                         <li><a href="/index.jsp"><i class="fa fa-home"></i>首页</a></li>
                         <li><i class="fa fa-table"></i>仓库管理</li>
+                        <li><i class="fa fa-indent"></i>仓库详细信息</li>
                     </ol>
                 </div>
 
@@ -73,45 +74,21 @@
                     <div class="panel panel-default">
 
                         <div class="panel-body">
-                            <table class="table table-hover">
+                            <table class="table table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>
-                                        仓库编号
-                                    </th>
-                                    <th>仓库名称</th>
-                                    <th>仓库地址</th>
-                                    <th>备注</th>
-                                    <th>已用空间</th>
-                                    <th>操作</th>
+                                    <th>商品编号</th>
+                                    <th>商品名称</th>
+                                    <th>商品总量</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <s:iterator var="storage" value="#session.storage">
-                                <tr>
-                                    <td>
-                                        <s:property value="#storage.id"/>
-                                    </td>
-                                    <td><s:property value="#storage.name"/></td>
-                                    <td><s:property value="#storage.address"/></td>
-                                    <td><s:property value="#storage.remark"/></td>
-                                    <td>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<s:property value="#storage.materialnum"/>" aria-valuemin="0" aria-valuemax="100" style="width: <s:property value="#storage.materialnum"/>%;">
-                                                <s:property value="#storage.materialnum"/>%
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <s:a class="btn btn-info" href="findDetailById?id=%{#storage.id}">
-                                            <i class="fa fa-edit "></i>
-                                        </s:a>
-                                        <s:a class="btn btn-danger" href="deleteStorage?id=%{#storage.id}" onclick="delcfm()">
-                                            <i class="fa fa-trash-o "></i>
-
-                                        </s:a>
-                                    </td>
-                                </tr>
+                                <s:iterator var="detail" value="#session.details">
+                                    <tr>
+                                        <td><s:property value="#detail.materialId"/></td>
+                                        <td><s:property value="#detail.materialName"/></td>
+                                        <td><s:property value="#detail.number"/> </td>
+                                    </tr>
                                 </s:iterator>
                                 </tbody>
                             </table>

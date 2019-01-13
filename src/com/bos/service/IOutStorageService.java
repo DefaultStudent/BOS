@@ -17,7 +17,7 @@ public interface IOutStorageService {
     public List<MaterialAndSupplier> findAllOutStorageInfo();
 
     /**
-     * 添加进货信息
+     * 添加出货信息
      * @param date
      * @param materialid
      * @param number

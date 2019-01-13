@@ -2,10 +2,12 @@ package com.bos.dao.impl;
 
 import com.bos.dao.IStorageDao;
 import com.bos.dao.base.impl.BaseDaoImpl;
+import com.bos.domain.MaterialAndSupplier;
 import com.bos.domain.Storage;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -57,5 +59,51 @@ public class StorageDaoImpl extends BaseDaoImpl<Storage> implements IStorageDao 
         String hql  = "FROM Storage WHERE id = ?";
         List<Storage> list = (List<Storage>) this.getHibernateTemplate().find(hql, id);
         return list;
+    }
+
+    /**
+     * 查询仓库详细信息
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public List<MaterialAndSupplier> storageDetails(int id) {
+        String hql = "SELECT ss.materialid, m.name, SUM(ss.number) FROM Material m, Storagestock ss, Storage s " +
+                "WHERE m.id = ss.materialid AND ss.storageid = s.id AND ss.systemnumber = 0 AND s.id = ? GROUP BY m.id";
+        List<Object[]> list = (List<Object[]>) this.getHibernateTemplate().find(hql, id);
+        List<MaterialAndSupplier> materialAndSupplierList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            Object[] objects = list.get(i);
+            MaterialAndSupplier materialAndSupplier = new MaterialAndSupplier();
+            materialAndSupplier.setMaterialId((Integer) objects[0]);
+            materialAndSupplier.setMaterialName((String) objects[1]);
+            materialAndSupplier.setNumber(Integer.parseInt(String.valueOf(objects[2])));
+            materialAndSupplierList.add(materialAndSupplier);
+        }
+        return materialAndSupplierList;
+    }
+
+    /**
+     * 查询仓库详细信息 systemId = 1
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public List<MaterialAndSupplier> storageOutDetail(int id) {
+        String hql = "SELECT ss.materialid, m.name, SUM(ss.number) FROM Material m, Storagestock ss, Storage s " +
+                "WHERE m.id = ss.materialid AND ss.storageid = s.id AND ss.systemnumber = 1 AND s.id = ? GROUP BY m.id";
+        List<Object[]> list = (List<Object[]>) this.getHibernateTemplate().find(hql, id);
+        List<MaterialAndSupplier> materialAndSupplierList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            Object[] objects = list.get(i);
+            MaterialAndSupplier materialAndSupplier = new MaterialAndSupplier();
+            materialAndSupplier.setMaterialId((Integer) objects[0]);
+            materialAndSupplier.setMaterialName((String) objects[1]);
+            materialAndSupplier.setNumber(Integer.parseInt(String.valueOf(objects[2])));
+            materialAndSupplierList.add(materialAndSupplier);
+        }
+        return materialAndSupplierList;
     }
 }

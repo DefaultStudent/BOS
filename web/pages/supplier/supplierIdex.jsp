@@ -78,7 +78,7 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h2><i class="fa fa-table red"></i><span class="break"></span><strong>员工列表</strong></h2>
+                        <h2><i class="fa fa-table red"></i><span class="break"></span><strong>供应商列表</strong></h2>
                         <div class="panel-actions">
                         </div>
                     </div>

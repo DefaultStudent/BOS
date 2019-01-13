@@ -46,7 +46,7 @@ public class OutsotrageServiceImpl implements IOutStorageService {
     }
 
     /**
-     * 添加进货信息
+     * 添加出货信息
      *
      * @param date
      * @param materialid
