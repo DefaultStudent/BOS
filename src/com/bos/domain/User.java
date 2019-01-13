@@ -1,7 +1,6 @@
 package com.bos.domain;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.util.Objects;
 
 @Entity

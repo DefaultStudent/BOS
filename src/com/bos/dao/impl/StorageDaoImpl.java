@@ -24,8 +24,12 @@ public class StorageDaoImpl extends BaseDaoImpl<Storage> implements IStorageDao 
         String hql = " select max(id) FROM Storage";
         List list = this.getHibernateTemplate().find(hql);
         // 将新增仓库的编号加一
-        int id = (Integer) list.get(0) + 1;
-        storage.setId(id);
+        if (list == null || list.size() == 0) {
+            storage.setId(0);
+        } else {
+            int id = (Integer) list.get(0) + 1;
+            storage.setId(id);
+        }
         this.getHibernateTemplate().save(storage);
     }
 

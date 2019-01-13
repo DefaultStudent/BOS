@@ -64,7 +64,7 @@ public class InstorageServiceImpl implements InStorageService {
         storageService.addStorageMaterialNum(storageid, number.toString());
         stockService.saveStock(date, 0, remark);
         int id = materialDao.maxId();
-        storageStockService.saveStorageStock(storageid, id + 1, Integer.parseInt(number.toString()));
+        storageStockService.saveStorageStockIns(storageid, id + 1, Integer.parseInt(number.toString()));
     }
 
     /**

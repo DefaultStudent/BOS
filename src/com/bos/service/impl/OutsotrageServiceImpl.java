@@ -88,7 +88,7 @@ public class OutsotrageServiceImpl implements IOutStorageService {
                 storageService.delStorageMaterialNum(storageid, String.valueOf(number));
                 int outstorageId = outstorageDao.maxOutstorageId();
                 stockService.saveStock(date, outstorageId, remark);
-                storageStockService.saveStorageStock(storageid, materialid, numInt);
+                storageStockService.saveStorageStockOut(storageid, materialid, numInt);
             } catch (Exception e) {
                 e.printStackTrace();
             }

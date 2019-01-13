@@ -32,7 +32,7 @@ public class StorageStockServiceImpl implements IStorageStockService {
      * @param number
      */
     @Override
-    public void saveStorageStock(int storageid, int materialId, int number) {
+    public void saveStorageStockIns(int storageid, int materialId, int number) {
 
         Storagestock storagestock = new Storagestock();
 
@@ -43,6 +43,32 @@ public class StorageStockServiceImpl implements IStorageStockService {
         storagestock.setStorageid(storageid);
         storagestock.setMaterialid(materialId);
         storagestock.setNumber(number);
+        // 需要两个此方法
+        storagestock.setSystemnumber(0);
+
+        // 添加仓库-盘存信息
+        storageStockDao.save(storagestock);
+    }
+
+    /**
+     * 添加仓库-盘存信息
+     *
+     * @param storageid
+     * @param materialId
+     * @param number
+     */
+    @Override
+    public void saveStorageStockOut(int storageid, int materialId, int number) {
+        Storagestock storagestock = new Storagestock();
+
+        // 获取盘存信息表id
+        int stockid = stockDao.findStockId();
+        storagestock.setStockid(stockid);
+
+        storagestock.setStorageid(storageid);
+        storagestock.setMaterialid(materialId);
+        storagestock.setNumber(number);
+        // 需要两个此方法
         storagestock.setSystemnumber(1);
 
         // 添加仓库-盘存信息
