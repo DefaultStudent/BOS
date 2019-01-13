@@ -91,7 +91,6 @@
                                 <th>商品编号</th>
                                 <th>商品名称</th>
                                 <th>商品类型</th>
-                                <th>存储仓库</th>
                                 <th>供应商</th>
                                 <th>备注</th>
                                 <th>操作</th>
@@ -104,7 +103,6 @@
                                     <td><s:property value="#ma.materialId"/></td>
                                     <td><s:property value="#ma.materialName"/> </td>
                                     <td><s:property value="#ma.materialType"/> </td>
-                                    <td><s:property value="#ma.storageName"/></td>
                                     <td><s:property value="#ma.supplierName"/></td>
                                     <td><s:property value="#ma.remark"/></td>
                                     <td>

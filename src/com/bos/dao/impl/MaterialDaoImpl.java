@@ -64,7 +64,7 @@ public class MaterialDaoImpl extends BaseDaoImpl<Material> implements IMaterialD
      */
     @Override
     public List<MaterialAndSupplier> findAllMaterialInform() {
-        String hql = "select distinct (m.id), m.name, m.type, st.name, su.sname, m.remark, st.id, m.date " +
+        String hql = "select distinct (m.id), m.name, m.type,  su.sname, m.remark, m.date " +
                 "from Storagestock ss, Material m, Supplier su , Storage st, Stock sto " +
                 "where ss.materialid = m.id and su.supplyid = m.supplyid and ss.storageid = st.id and sto.id = ss.stockid";
         List<Object[]> list = (List<Object[]>) this.getHibernateTemplate().find(hql);
@@ -75,11 +75,9 @@ public class MaterialDaoImpl extends BaseDaoImpl<Material> implements IMaterialD
             materialAndSupplier.setMaterialId((Integer) objects[0]);
             materialAndSupplier.setMaterialName((String) objects[1]);
             materialAndSupplier.setMaterialType((String) objects[2]);
-            materialAndSupplier.setStorageName((String) objects[3]);
-            materialAndSupplier.setSupplierName((String) objects[4]);
-            materialAndSupplier.setRemark((String) objects[5]);
-            materialAndSupplier.setStorageid((Integer) objects[6]);
-            materialAndSupplier.setDate((String) objects[7]);
+            materialAndSupplier.setSupplierName((String) objects[3]);
+            materialAndSupplier.setRemark((String) objects[4]);
+            materialAndSupplier.setDate((String) objects[5]);
             materialAndSupplierList.add(materialAndSupplier);
         }
         return materialAndSupplierList;
