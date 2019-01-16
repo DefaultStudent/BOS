@@ -28,7 +28,13 @@
 <!-- end: Header -->
 
 <!-- start: Main Menu -->
-<s:include value="pages/menu.jsp"/>
+<s:if test="#session.loginUser.role == 0">
+  <s:include value="pages/menu.jsp"/>
+</s:if>
+<s:else>
+  <s:include value="pages/menu.jsp"/>
+</s:else>
+
 <!-- end: Main Menu -->
 
 <!-- start: Content -->
