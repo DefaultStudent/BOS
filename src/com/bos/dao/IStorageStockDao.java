@@ -1,6 +1,5 @@
 package com.bos.dao;
 
-import com.bos.dao.base.IBaseDao;
 import com.bos.domain.Storagestock;
 import com.bos.domain.StoragestockTemp;
 

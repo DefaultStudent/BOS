@@ -61,8 +61,8 @@
                 <h3 class="page-header"><i class="fa fa-indent"></i>进货信息</h3>
                 <ol class="breadcrumb">
                     <li><i class="fa fa-home"></i><a href="/index.jsp">首页</a></li>
-                    <li><i class="fa fa-list-alt"></i><a href="findAllMaterial.action">进货管理</a></li>
-                    <li><i class="fa fa-indent"></i>进货信息添加</li>
+                    <li><i class="fa fa-list-alt"></i><a href="findAllMaterial.action">入库管理</a></li>
+                    <li><i class="fa fa-indent"></i>入库信息添加</li>
                 </ol>
             </div>
         </div>
@@ -82,13 +82,13 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">进货日期</label>
+                                <label class="col-md-3 control-label">入库日期</label>
                                 <div class="col-md-9">
                                     <input type="date" name="date" class="form-control" required="required">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">进货数量</label>
+                                <label class="col-md-3 control-label">入库数量</label>
                                 <div class="col-md-9">
                                     <input name="number" type="text" class="form-control" required="required">
                                 </div>
