@@ -67,10 +67,10 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header"><i class="fa fa-table"></i>入库管理</h3>
+                    <h3 class="page-header"><i class="fa fa-table"></i>商品管理</h3>
                     <ol class="breadcrumb">
                         <li><a href="/index.jsp"><i class="fa fa-home"></i>首页</a></li>
-                        <li><i class="fa fa-table"></i>入库管理</li>
+                        <li><i class="fa fa-table"></i>商品管理</li>
                     </ol>
                 </div>
             </div>
@@ -78,7 +78,7 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h2><i class="fa fa-table red"></i><span class="break"></span><strong>入库信息列表</strong></h2>
+                        <h2><i class="fa fa-table red"></i><span class="break"></span><strong>商品信息列表</strong></h2>
                         <div class="panel-actions">
                         </div>
                     </div>
@@ -86,10 +86,10 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th>入库编号</th>
-                                <th>入库日期</th>
+                                <th>进货编号</th>
+                                <th>进货日期</th>
                                 <th>商品名称</th>
-                                <th>入库数量</th>
+                                <th>进货数量</th>
                                 <th>操作人员</th>
                                 <th>放入仓库</th>
                                 <th>备注</th>

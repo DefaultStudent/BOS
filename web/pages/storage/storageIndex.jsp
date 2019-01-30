@@ -103,26 +103,13 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <s:if test="#session.loginUser.role == 0">
-                                            <s:a class="btn btn-success" href="findDetailById?id=%{#storage.id}">
-                                                <i class=" fa fa-th-list "></i>
-                                            </s:a>
-                                            <s:a class="btn btn-info" href="findStorageById?id=%{#storage.id}">
-                                                <i class="fa fa-edit "></i>
-                                            </s:a>
-                                            <s:a class="btn btn-danger" href="deleteStorage?id=%{#storage.id}" onclick="delcfm()">
-                                                <i class="fa fa-trash-o "></i>
+                                        <s:a class="btn btn-info" href="findDetailById?id=%{#storage.id}">
+                                            <i class="fa fa-edit "></i>
+                                        </s:a>
+                                        <s:a class="btn btn-danger" href="deleteStorage?id=%{#storage.id}" onclick="delcfm()">
+                                            <i class="fa fa-trash-o "></i>
 
-                                            </s:a>
-                                        </s:if>
-                                        <s:else>
-                                            <s:a class="btn btn-success" href="findDetailById?id=%{#storage.id}">
-                                                <i class="fa fa-th-list "></i>
-                                            </s:a>
-                                            <s:a class="btn btn-danger" href="deleteStorage?id=%{#storage.id}" onclick="delcfm()">
-                                                <i class="fa fa-trash-o "></i>
-                                            </s:a>
-                                        </s:else>
+                                        </s:a>
                                     </td>
                                 </tr>
                                 </s:iterator>

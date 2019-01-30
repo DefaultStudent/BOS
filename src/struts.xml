@@ -13,129 +13,129 @@
         </global-results>
 
         <!-- UserAction的方法 -->
-        <action name="login" class="com.bos.action.UserAction" method="login">
+        <action name="login" class="com.bos.web.action.UserAction" method="login">
             <result name="home">/index.jsp</result>
             <result name="login">/login.jsp</result>
         </action>
-        <action name="logout" class="com.bos.action.UserAction" method="logout">
+        <action name="logout" class="com.bos.web.action.UserAction" method="logout">
             <result name="logout">/login.jsp</result>
         </action>
-        <action name="register" class="com.bos.action.UserAction" method="signIn">
+        <action name="register" class="com.bos.web.action.UserAction" method="signIn">
             <result name="success">/login.jsp</result>
         </action>
-        <action name="profile" class="com.bos.action.UserAction" method="findById">
+        <action name="profile" class="com.bos.web.action.UserAction" method="findById">
             <result name="success">/profile.jsp</result>
         </action>
-        <action name="updateUser" class="com.bos.action.UserAction" method="updateUser">
+        <action name="updateUser" class="com.bos.web.action.UserAction" method="updateUser">
             <result type="chain">profile</result>
         </action>
-        <action name="findAllUser" class="com.bos.action.UserAction" method="findAll">
+        <action name="findAllUser" class="com.bos.web.action.UserAction" method="findAll">
             <result name="success">/pages/staff/user.jsp</result>
         </action>
 
         <!-- StaffAction -->
-        <action name="addStaff" class="com.bos.action.StaffAction" method="addStaff">
+        <action name="addStaff" class="com.bos.web.action.StaffAction" method="addStaff">
             <result type="chain" name="success">findAllUser</result>
         </action>
-        <action name="findStaffById" class="com.bos.action.StaffAction" method="findStaffById">
+        <action name="findStaffById" class="com.bos.web.action.StaffAction" method="findStaffById">
             <result name="success">/pages/staff/editStaff.jsp</result>
         </action>
-        <action name="updateStaff" class="com.bos.action.StaffAction" method="updateStaff">
+        <action name="updateStaff" class="com.bos.web.action.StaffAction" method="updateStaff">
             <result type="chain" name="success">findAllUser</result>
         </action>
-        <action name="deleteStaff" class="com.bos.action.StaffAction" method="deleteStaff">
+        <action name="deleteStaff" class="com.bos.web.action.StaffAction" method="deleteStaff">
             <result type="chain" name="success">findAllUser</result>
         </action>
 
         <!-- StorageAction -->
-        <action name="findAllStorage" class="com.bos.action.StorageAction" method="findAllStorage">
+        <action name="findAllStorage" class="com.bos.web.action.StorageAction" method="findAllStorage">
             <result name="success">/pages/storage/storageIndex.jsp</result>
             <result name="none">/404.jsp</result>
         </action>
-        <action name="addStorage" class="com.bos.action.StorageAction" method="addStorage">
+        <action name="addStorage" class="com.bos.web.action.StorageAction" method="addStorage">
             <result name="success" type="chain">findAllStorage</result>
         </action>
-        <action name="findDetailById" class="com.bos.action.StorageAction" method="strageDetail">
+        <action name="findDetailById" class="com.bos.web.action.StorageAction" method="strageDetail">
             <result name="success">/pages/storage/storageDetail.jsp</result>
         </action>
-        <action name="findStorageById" class="com.bos.action.StorageAction" method="findStorageById">
+        <action name="findStorageById" class="com.bos.web.action.StorageAction" method="findStorageById">
             <result name="success">/pages/storage/storageEdit.jsp</result>
         </action>
-        <action name="updateStorage" class="com.bos.action.StorageAction" method="updateStorage">
+        <action name="updateStorage" class="com.bos.web.action.StorageAction" method="updateStorage">
             <result name="success" type="chain">findAllStorage</result>
         </action>
-        <action name="deleteStorage" class="com.bos.action.StorageAction" method="deleteStorage">
+        <action name="deleteStorage" class="com.bos.web.action.StorageAction" method="deleteStorage">
             <result name="success" type="chain">findAllStorage</result>
         </action>
 
         <!-- MaterialAction -->
-        <action name="findAllMaterial" class="com.bos.action.MaterialAction" method="findAllMaterial">
+        <action name="findAllMaterial" class="com.bos.web.action.MaterialAction" method="findAllMaterial">
             <result name="success">/pages/material/materialIndex.jsp</result>
         </action>
-        <action name="findMaterialById" class="com.bos.action.MaterialAction" method="findMaterialInformById">
+        <action name="findMaterialById" class="com.bos.web.action.MaterialAction" method="findMaterialInformById">
             <result name="success" type="chain">findSupplier_1</result>
         </action>
-        <action name="findSupplier" class="com.bos.action.SupplierAction" method="findAllSupplier">
+        <action name="findSupplier" class="com.bos.web.action.SupplierAction" method="findAllSupplier">
             <result name="success" type="chain">findStorage</result>
         </action>
-        <action name="findSupplier_1" class="com.bos.action.SupplierAction" method="findAllSupplier">
+        <action name="findSupplier_1" class="com.bos.web.action.SupplierAction" method="findAllSupplier">
             <result name="success">/pages/material/materialedit.jsp</result>
         </action>
-        <action name="saveMaterial" class="com.bos.action.MaterialAction" method="saveMaterial">
+        <action name="saveMaterial" class="com.bos.web.action.MaterialAction" method="saveMaterial">
             <result name="success" type="chain">findAllMaterial</result>
             <result name="error">/404.jsp</result>
         </action>
-        <action name="findStorage" class="com.bos.action.StorageAction" method="findAllStorage">
+        <action name="findStorage" class="com.bos.web.action.StorageAction" method="findAllStorage">
             <result name="success">/pages/material/materialAdd.jsp</result>
         </action>
-        <action name="deleteMaterial" class="com.bos.action.MaterialAction" method="deleteMaterial">
+        <action name="deleteMaterial" class="com.bos.web.action.MaterialAction" method="deleteMaterial">
             <result name="success" type="chain">findAllMaterial</result>
         </action>
-        <action name="updateMaterial" class="com.bos.action.MaterialAction" method="updateMaterial">
+        <action name="updateMaterial" class="com.bos.web.action.MaterialAction" method="updateMaterial">
             <result name="success" type="chain">findAllMaterial</result>
         </action>
 
         <!-- SupplierAction -->
-        <action name="findAllSupplier" class="com.bos.action.SupplierAction" method="findAllSupplier">
+        <action name="findAllSupplier" class="com.bos.web.action.SupplierAction" method="findAllSupplier">
             <result name="success">/pages/supplier/supplierIdex.jsp</result>
         </action>
-        <action name="saveSupplier" class="com.bos.action.SupplierAction" method="saveSupplier">
+        <action name="saveSupplier" class="com.bos.web.action.SupplierAction" method="saveSupplier">
             <result name="success" type="chain">findAllSupplier</result>
         </action>
-        <action name="findSupplierById" class="com.bos.action.SupplierAction" method="findSupplierById">
+        <action name="findSupplierById" class="com.bos.web.action.SupplierAction" method="findSupplierById">
             <result name="success">/pages/supplier/supplieredit.jsp</result>
         </action>
-        <action name="updateSupplier" class="com.bos.action.SupplierAction" method="updateSupplier">
+        <action name="updateSupplier" class="com.bos.web.action.SupplierAction" method="updateSupplier">
             <result name="success" type="chain">findAllSupplier</result>
         </action>
-        <action name="deleteSupplier" class="com.bos.action.SupplierAction" method="deleteSupplier">
+        <action name="deleteSupplier" class="com.bos.web.action.SupplierAction" method="deleteSupplier">
             <result name="success" type="chain">findAllSupplier</result>
         </action>
 
         <!-- InstorageAction -->
-        <action name="saveInstorage" class="com.bos.action.InstorageAction" method="saveInstorageInform">
+        <action name="saveInstorage" class="com.bos.web.action.InstorageAction" method="saveInstorageInform">
             <result name="success" type="chain">findAllInstorage</result>
         </action>
-        <action name="findAllInstorage" class="com.bos.action.InstorageAction" method="findAllInstorage">
+        <action name="findAllInstorage" class="com.bos.web.action.InstorageAction" method="findAllInstorage">
             <result>/pages/instorage/instorageindex.jsp</result>
         </action>
-        <action name="findAllMaterial_Ins" class="com.bos.action.MaterialAction" method="findAll">
+        <action name="findAllMaterial_Ins" class="com.bos.web.action.MaterialAction" method="findAll">
             <result name="success">/pages/instorage/instorageadd.jsp</result>
         </action>
-        <action name="findAllSupplier_Ins" class="com.bos.action.StorageAction" method="findAllStorage">
+        <action name="findAllSupplier_Ins" class="com.bos.web.action.StorageAction" method="findAllStorage">
             <result name="success" type="chain">findAllMaterial_Ins</result>
         </action>
         <!-- OutstorageAction -->
-        <action name="saveOutstorage" class="com.bos.action.OutsotrageAction" method="saveOutstorageInfom">
+        <action name="saveOutstorage" class="com.bos.web.action.OutsotrageAction" method="saveOutstorageInfom">
             <result name="success" type="chain">findAllOutstorage</result>
         </action>
-        <action name="findAllSupplier_Ons" class="com.bos.action.StorageAction" method="findAllStorage">
+        <action name="findAllSupplier_Ons" class="com.bos.web.action.StorageAction" method="findAllStorage">
             <result name="success" type="chain">findAllMaterial_Ons</result>
         </action>
-        <action name="findAllMaterial_Ons" class="com.bos.action.MaterialAction" method="findAll">
+        <action name="findAllMaterial_Ons" class="com.bos.web.action.MaterialAction" method="findAll">
             <result name="success">/pages/outstorage/addoutstorage.jsp</result>
         </action>
-        <action name="findAllOutstorage" class="com.bos.action.OutsotrageAction" method="findAllInstorage">
+        <action name="findAllOutstorage" class="com.bos.web.action.OutsotrageAction" method="findAllInstorage">
             <result name="success">/pages/outstorage/oustorageIndex.jsp</result>
         </action>
     </package>

@@ -1,5 +1,6 @@
 package com.bos.dao;
 
+import com.bos.dao.base.IBaseDao;
 import com.bos.domain.Instorage;
 import com.bos.domain.MaterialAndSupplier;
 

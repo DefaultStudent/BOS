@@ -1,7 +1,9 @@
 package com.bos.dao;
 
+import com.bos.dao.base.IBaseDao;
 import com.bos.domain.Material;
 import com.bos.domain.MaterialAndSupplier;
+import com.bos.domain.Storage;
 
 import java.util.List;
 
