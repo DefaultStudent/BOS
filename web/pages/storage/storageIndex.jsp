@@ -98,18 +98,24 @@
                                     <td>
                                         <div class="progress">
                                             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<s:property value="#storage.materialnum"/>" aria-valuemin="0" aria-valuemax="100" style="width: <s:property value="#storage.materialnum"/>%;">
-                                                <s:property value="#storage.materialnum"/>%
+                                                <s:property value="#storage.materialnum"/>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        <s:a class="btn btn-info" href="findDetailById?id=%{#storage.id}">
-                                            <i class="fa fa-edit "></i>
-                                        </s:a>
-                                        <s:a class="btn btn-danger" href="deleteStorage?id=%{#storage.id}" onclick="delcfm()">
-                                            <i class="fa fa-trash-o "></i>
-
-                                        </s:a>
+                                        <s:if test="#session.loginUser.role == 0">
+                                            <s:a class="btn btn-info" href="findDetailById?id=%{#storage.id}">
+                                                <i class="fa fa-edit "></i>
+                                            </s:a>
+                                            <s:a class="btn btn-danger" href="deleteStorage?id=%{#storage.id}" onclick="delcfm()">
+                                                <i class="fa fa-trash-o "></i>
+                                            </s:a>
+                                        </s:if>
+                                        <s:else>
+                                            <s:a class="btn btn-info" href="findDetailById?id=%{#storage.id}">
+                                                <i class="fa fa-edit "></i>
+                                            </s:a>
+                                        </s:else>
                                     </td>
                                 </tr>
                                 </s:iterator>
