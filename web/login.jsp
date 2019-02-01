@@ -55,7 +55,7 @@
                 <div class="login-box">
 
                     <div class="header">
-                        欢迎登录A.I仓储管理系统
+                        欢迎登录昌盛粮油商行仓储管理系统
                     </div>
 
                     <form class="form-horizontal login" method="post" action="login.action" >
@@ -88,8 +88,6 @@
 
                     </form>
 
-                    <a class="pull-left" href="page-login.html#">忘记密码？</a>
-                    <a class="pull-right" href="Register.jsp">注册</a>
 
                     <div class="clearfix"></div>
 

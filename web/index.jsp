@@ -55,7 +55,7 @@
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
       <div class="info-box red-bg">
         <i class="fa fa-thumbs-o-up"></i>
-        <div class="count">356K</div>
+        <div class="count">root</div>
         <div class="title">最佳员工</div>
       </div><!--/.info-box-->
     </div><!--/.col-->
@@ -96,20 +96,20 @@
             <h3>最佳员工</h3>
           </div>
 
-          <h3 class="text-center"><strong>Jhon Smith</strong></h3>
+          <h3 class="text-center"><strong>root</strong></h3>
           <h4 class="text-center"><small><i class="fa fa-map-marker"></i> 辽宁, 锦州</small></h4>
           <hr>
           <div class="row text-center">
             <div class="col-xs-4">
-              <div><strong>1.256</strong></div>
+              <div><strong>仓库管理员</strong></div>
               <div><small>职位</small></div>
             </div><!--/.col-->
             <div class="col-xs-4">
-              <div><strong>2.568</strong></div>
+              <div><strong>男</strong></div>
               <div><small>性别</small></div>
             </div><!--/.col-->
             <div class="col-xs-4">
-              <div><strong>25.265</strong></div>
+              <div><strong>第一仓库</strong></div>
               <div><small>所属仓库</small></div>
             </div><!--/.col-->
           </div><!--/.row-->
@@ -126,8 +126,8 @@
             <h3>优秀仓库</h3>
           </div>
 
-          <h3 class="text-center"><strong>A1</strong></h3>
-          <h4 class="text-center"><small><i class="fa fa-map-marker"></i> 辽宁, 锦州</small></h4>
+          <h3 class="text-center"><strong>第一仓库</strong></h3>
+          <h4 class="text-center"><small><i class="fa fa-map-marker"></i> 辽宁, 抚顺</small></h4>
           <hr>
           <div class="row text-center">
             <div class="col-xs-4">
@@ -135,11 +135,11 @@
               <div><small>出货量</small></div>
             </div><!--/.col-->
             <div class="col-xs-4">
-              <div><strong>2.568</strong></div>
+              <div><strong>root</strong></div>
               <div><small>负责人</small></div>
             </div><!--/.col-->
             <div class="col-xs-4">
-              <div><strong>25.265</strong></div>
+              <div><strong>食品</strong></div>
               <div><small>货物类型</small></div>
             </div><!--/.col-->
           </div><!--/.row-->
@@ -165,8 +165,8 @@
           <table class="table table-striped table-bordered bootstrap-datatable datatable">
             <thead>
             <tr>
-              <th>分区编号</th>
-              <th>分区位置</th>
+              <th>仓库编号</th>
+              <th>仓库位置</th>
               <th>负责人</th>
               <th>货物类型</th>
               <th>货物数量</th>
@@ -174,11 +174,11 @@
             </thead>
             <tbody>
             <tr>
-              <td>A31</td>
-              <td>第三库一区</td>
-              <td>王二麻子</td>
-              <td>电子产品</td>
-              <td>2000</td>
+              <td>1</td>
+              <td>辽宁省/抚顺市/望花区</td>
+              <td>root</td>
+              <td>食品</td>
+              <td>20</td>
             </tr>
             </tbody>
           </table>
